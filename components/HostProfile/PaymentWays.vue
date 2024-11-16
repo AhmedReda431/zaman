@@ -1,0 +1,3 @@
+<template>
+  payment ways
+</template>

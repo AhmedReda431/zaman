@@ -1,0 +1,3 @@
+<template>
+    host id
+</template>
