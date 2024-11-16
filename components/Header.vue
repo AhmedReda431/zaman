@@ -43,7 +43,7 @@ const route = useRoute();
 </script>
 
 <template>
-  <div>
+  <div class="header-holder">
     <div class="bg-white">
       <header class="bg-white relative">
         <nav class="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8" aria-label="Global">
@@ -55,7 +55,7 @@ const route = useRoute();
           </div>
 
           <div class="flex items-center gap-x-12">
-            <div class="hidden lg:flex lg:gap-x-12 lg:items-center">
+            <div class="hidden lg:flex lg:gap-x-12 lg:items-center text-gray-600">
 
               <NuxtLink :to="{ path: '/' }" :class="{ 'border-b-2 border-b-zaman text-zaman-900': route.path == '/' }"
                 class="text-sm font-semibold leading-6  hover:text-gray-500">
@@ -101,7 +101,7 @@ const route = useRoute();
                 </div>
               </NuxtLink>
             </div>
-            <LangSwitch />
+            <LangSwitchTwo />
             <div class="flex items-center justify-center">
               <Menu as="div" class="relative ml-3" v-if="isAuthenticated">
                 <MenuButton class="relative flex items-center rounded-ful text-sm">
@@ -119,15 +119,15 @@ const route = useRoute();
                   leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100"
                   leave-to-class="transform opacity-0 scale-95">
                   <MenuItems
-                    class="absolute z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    class="absolute z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none profile-menu">
                     <MenuItem v-slot="{ active }">
 
-                    <NuxtLink v-if="user?.role.value == 'host'" :to="{ name: 'host-profile', params: { page: 'info' } }"
+                    <NuxtLink v-if="user?.role?.value == 'host'" :to="{ path: '/host-profile', params: { page: 'info' } }"
                       :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">
                       {{ $t('profile.profile') }}
                     </NuxtLink>
 
-                    <NuxtLink v-else :to="{ name: 'profile', params: { page: 'info' } }"
+                    <NuxtLink v-else :to="{ path: '/user-profile' }"
                       :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">
                       {{ $t('profile.profile') }}
                     </NuxtLink>

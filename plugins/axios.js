@@ -4,7 +4,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   // const  { t, locale }  = useI18n()
   const config = useRuntimeConfig().public
   const tokenCookie = useCookie('token');
-  const defaultUrl = config.VITE_NUXT_API_ENDPOINT || 'https://admin.zaman-sa.com/api';
+  const defaultUrl = config.VITE_NUXT_API_ENDPOINT || 'https://admin.zman.sa/api';
 
   let api = axios.create({
     baseURL: defaultUrl,

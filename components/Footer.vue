@@ -94,7 +94,7 @@
         </div>
       </div>
       <div class="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
-        <p class="mt-8 text-xs leading-5 text-gray-200 md:order-1 md:mt-0 mx-auto text-right"> {{ $t('footerRights') }} &copy; </p>
+        <p class="mt-8 text-xs leading-5 text-gray-200 md:order-1 md:mt-0 mx-auto text-center"> {{ $t('footerRights') }} &copy; </p>
       </div>
     </div>
   </footer>
