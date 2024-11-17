@@ -64,7 +64,11 @@ export default defineNuxtConfig({
     ],
     defaultLocale: "ar",
   },
-  css: ["~/assets/css/main.css", "@/assets/scss/main.scss"],
+  css: [
+    "swiper/swiper-bundle.css",
+    "~/assets/css/main.css",
+    "@/assets/scss/main.scss",
+  ],
   vite: {
     css: {
       preprocessorOptions: {

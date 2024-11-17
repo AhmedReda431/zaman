@@ -8,6 +8,63 @@
 .cursor-pointer {
     cursor: pointer;
 }
-.router-link-exact-active{
+.router-link-exact-active {
     color: $main-color !important;
+}
+.d-inline-block {
+    display: inline-block !important;
+}
+.abolute-bottom-border {
+    position: relative;
+    &::after {
+        position: absolute;
+        content: "";
+        width: 30%;
+        height: 2px;
+        background-color: #ccc;
+        bottom: -5px;
+    }
+}
+.locale-en {
+    .abolute-bottom-border {
+        &::after {
+            left: 0;
+            right: auto;
+        }
+    }
+}
+.locale-ar {
+    .abolute-bottom-border {
+        &::after {
+            right: 0;
+            left: auto;
+        }
+    }
+}
+.d-flex {
+    display: flex;
+}
+.justify-content-center {
+    justify-content: center;
+}
+.align-items-center {
+    align-items: center;
+}
+.align-items-end {
+    align-items: flex-end;
+}
+.align-items-start {
+    align-items: flex-start;
+}
+.flex-row {
+    flex-direction: row;
+}
+.flex-column {
+    flex-direction: column;
+}
+.justify-content-between {
+    justify-content: space-between;
+}
+.justify-content-around {
+    justify-content: space-around;
 }
