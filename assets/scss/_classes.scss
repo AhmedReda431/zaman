@@ -62,9 +62,24 @@
 .flex-column {
     flex-direction: column;
 }
-.justify-content-between , .justify-space-between {
+.justify-content-between,
+.justify-space-between {
     justify-content: space-between;
 }
 .justify-content-around {
     justify-content: space-around;
+}
+.w-50 {
+    width: 50%;
+}
+.social-icons {
+    background-color: #6f8582;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+        fill: #fff;
+    }
 }

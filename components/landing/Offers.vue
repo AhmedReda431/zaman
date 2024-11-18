@@ -36,11 +36,13 @@ onMounted(async () => {
   <div class="pt-20 mb-10">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="d-flex justify-content-between align-items-center">
-        <h2 class="text-2xl font-semibold leading-7 mb-6">
+        <h2 class="text-2xl font-semibold leading-7 mb-6 abolute-bottom-border">
           {{ $t("latestOffers") }}
         </h2>
         <nuxt-link to="/real-states" class="all-offers gray">
-          <span>{{ $t("View all offers") }}</span>
+          <h1 class="title">
+            <span>{{ $t("View all offers") }}</span> <span><Icon name="material-symbols:arrow-outward" color="black" /></span>
+          </h1>
         </nuxt-link>
       </div>
 
@@ -89,5 +91,8 @@ onMounted(async () => {
     color: #ff6347;
     /* Example color */
   }
+}
+.title{
+  font-size: 20px;
 }
 </style>

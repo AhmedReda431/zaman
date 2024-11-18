@@ -2,11 +2,33 @@
   <div class="download-our-app-holder w-full h-full">
     <div class="container-holder">
       <section class="container mx-auto mx-8 px-4">
-        <div class="d-flex justify-space-between align-items-center flex-sm-column">
-          <div class="intro p-24">
+        <div
+          class="d-flex justify-space-between align-items-center flex-sm-column"
+        >
+          <div class="intro py-24">
             <h2 class="title">
               {{ $t("zaman application") }}
             </h2>
+            <p class="description w-50 text-white mt-5">
+              description
+            </p>
+            <div class="applications-hoder d-flex gap-5 mt-5">
+              <div class="application">
+                <NuxtLink to="/">
+                  <IconsLogo class="h-14 w-auto" alt="zaman" />
+                </NuxtLink>
+              </div>
+              <div class="application">
+                <NuxtLink to="/">
+                  <IconsLogo class="h-14 w-auto" alt="zaman" />
+                </NuxtLink>
+              </div>
+              <div class="application">
+                <NuxtLink to="/">
+                  <IconsLogo class="h-14 w-auto" alt="zaman" />
+                </NuxtLink>
+              </div>
+            </div>
           </div>
           <div class="mobile-ing-holder">
             <img
@@ -24,20 +46,20 @@
   background: url("~/assets/img/contact_back.jpg") no-repeat center center;
   background-size: cover;
   margin-top: 8%;
-  .container-holder{
+  .container-holder {
     inset: 0;
     width: 100%;
     height: 100%;
     background-color: #26464273;
-    .mobile-ing-holder{
+    .mobile-ing-holder {
       margin-top: -5%;
-      @media(max-width:767px){
+      @media (max-width: 767px) {
         margin-top: 0;
       }
     }
-    .title{
+    .title {
       color: #fff;
-      font-size: 35px;
+      font-size: 40px;
     }
   }
 }
