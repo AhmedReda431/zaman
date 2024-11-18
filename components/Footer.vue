@@ -188,7 +188,7 @@
             </div>
           </div>
         </div>
-        <div class="mt-16 grid grid-cols-3 gap-8 xl:col-span-3 xl:mt-0 px-2">
+        <div class="mt-16 grid grid-cols-3 gap-8 xl:col-span-3 xl:mt-0 px-2 flex-sm-column">
           <div class="md:grid md:grid-cols-1 md:gap-8 text-white">
             <div class="my-list">
               <div class="list-title">
@@ -385,5 +385,9 @@ const navigation = {
 <style lang="scss" scoped>
 .title{
   font-size: 25px;
+}
+ul{
+  list-style: disc;
+  padding: 0 20px;
 }
 </style>
