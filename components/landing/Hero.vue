@@ -58,7 +58,7 @@ onMounted(async () => {
       <div
         class=" grid grid-cols-1 sm:gap-x-4 gap-y-2 items-center justify-center"
       >
-        <h1 class="text-white font-semibold text-5xl text-center mt-16 mb-28 sm-mb-0">
+        <h1 class="text-white font-semibold text-5xl text-center mt-24 mb-28 sm-mb-0 sm-fs-26">
           {{ $t("heroSectionMain") }}
         </h1>
         <div class="mt-10 sm-mt-0">

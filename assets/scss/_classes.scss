@@ -11,6 +11,16 @@
 .router-link-exact-active {
     color: $main-color !important;
 }
+footer {
+    a {
+        font-size: 14px;
+        text-transform: capitalize;
+    }
+    .router-link-exact-active {
+        color: #6f8582 !important;
+        font-weight: bold;
+    }
+}
 .d-inline-block {
     display: inline-block !important;
 }

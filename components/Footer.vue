@@ -3,7 +3,7 @@
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="mx-auto px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-24">
       <div class="xl:grid xl:grid-cols-6 xl:gap-8">
-        <div class="space-y-8 xl:col-span-2 px-18">
+        <div class="space-y-8 xl:col-span-3 px-18">
           <div class="flex flex-col gap-10 items-start w-fit px-10">
             <!-- <IconsLogo color="white" top_color="white" alt='zaman' class="h-7" /> -->
             <svg
@@ -198,10 +198,18 @@
                 <ul role="list" class="mt-6 space-y-4">
                   <li>
                     <NuxtLink
-                      :to="{ path: '/real-states' }"
+                      :to="{ path: '/' }"
                       class="text-sm leading-6 text-gray-300 hover:text-white"
                     >
-                      {{ $t("spaces.spaces") }}
+                      {{ $t("mainPage") }}
+                    </NuxtLink>
+                  </li>
+                  <li>
+                    <NuxtLink
+                      :to="{ path: '/about-us' }"
+                      class="text-sm leading-6 text-gray-300 hover:text-white"
+                    >
+                      {{ $t("about Us") }}
                     </NuxtLink>
                   </li>
                   <li>
@@ -235,40 +243,48 @@
           <div class="md:grid md:grid-cols-1 md:gap-8 text-white">
             <div class="my-list">
               <div class="list-title">
-                <h3 class="title">{{ $t("Useful links") }}</h3>
+                <h3 class="title">{{ $t("Rent") }}</h3>
               </div>
               <div>
                 <ul role="list" class="mt-6 space-y-4">
                   <li>
                     <NuxtLink
-                      :to="{ path: '/real-states' }"
+                      
                       class="text-sm leading-6 text-gray-300 hover:text-white"
                     >
-                      {{ $t("spaces.spaces") }}
+                      {{ $t("Apartments for rent") }}
                     </NuxtLink>
                   </li>
                   <li>
                     <NuxtLink
-                      :to="{ path: '/contact-us' }"
+                      
                       class="text-sm leading-6 text-gray-300 hover:text-white"
                     >
-                      {{ $t("contact-us") }}
+                      {{ $t("Villas for rent") }}
                     </NuxtLink>
                   </li>
                   <li>
                     <NuxtLink
-                      :to="{ path: '/real-states/create' }"
+                      
                       class="text-sm leading-6 text-gray-300 hover:text-white"
                     >
-                      {{ $t("addWorkspace") }}
+                      {{ $t("Offices for rent") }}
                     </NuxtLink>
                   </li>
                   <li>
                     <NuxtLink
-                      :to="{ path: '/join' }"
+                      
                       class="text-sm leading-6 text-gray-300 hover:text-white"
                     >
-                      {{ $t("common.joinAsHost") }}
+                      {{ $t("Floors for rent") }}
+                    </NuxtLink>
+                  </li>
+                  <li>
+                    <NuxtLink
+                      
+                      class="text-sm leading-6 text-gray-300 hover:text-white"
+                    >
+                      {{ $t("Shops for rent") }}
                     </NuxtLink>
                   </li>
                 </ul>
@@ -278,40 +294,48 @@
           <div class="md:grid md:grid-cols-1 md:gap-8 text-white">
             <div class="my-list">
               <div class="list-title">
-                <h3 class="title">{{ $t("Useful links") }}</h3>
+                <h3 class="title">{{ $t("Sale") }}</h3>
               </div>
               <div>
                 <ul role="list" class="mt-6 space-y-4">
                   <li>
                     <NuxtLink
-                      :to="{ path: '/real-states' }"
+                      
                       class="text-sm leading-6 text-gray-300 hover:text-white"
                     >
-                      {{ $t("spaces.spaces") }}
+                      {{ $t("Apartments for sale") }}
                     </NuxtLink>
                   </li>
                   <li>
                     <NuxtLink
-                      :to="{ path: '/contact-us' }"
+                      
                       class="text-sm leading-6 text-gray-300 hover:text-white"
                     >
-                      {{ $t("contact-us") }}
+                      {{ $t("Villas for sale") }}
                     </NuxtLink>
                   </li>
                   <li>
                     <NuxtLink
-                      :to="{ path: '/real-states/create' }"
+                      
                       class="text-sm leading-6 text-gray-300 hover:text-white"
                     >
-                      {{ $t("addWorkspace") }}
+                      {{ $t("Offices for sale") }}
                     </NuxtLink>
                   </li>
                   <li>
                     <NuxtLink
-                      :to="{ path: '/join' }"
+                      
                       class="text-sm leading-6 text-gray-300 hover:text-white"
                     >
-                      {{ $t("common.joinAsHost") }}
+                      {{ $t("Floors for sale") }}
+                    </NuxtLink>
+                  </li>
+                  <li>
+                    <NuxtLink
+                      
+                      class="text-sm leading-6 text-gray-300 hover:text-white"
+                    >
+                      {{ $t("Shops for sale") }}
                     </NuxtLink>
                   </li>
                 </ul>
@@ -320,13 +344,13 @@
           </div>
         </div>
       </div>
-      <div class="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24 px-10">
-        <p
-          class="mt-8 text-xs leading-5 text-gray-200 md:order-1 md:mt-0 mx-auto text-center"
-        >
-          {{ $t("footerRights") }} &copy;
-        </p>
-      </div>
+    </div>
+    <div class="mt-16 border-t border-white/10 lg:mt-24 p-6 after-footer">
+      <p
+        class="text-xs leading-5 text-gray-200 md:order-1 md:mt-0 mx-auto text-center main-color"
+      >
+        {{ $t("footerRights") }} &copy;
+      </p>
     </div>
   </footer>
 </template>
@@ -389,5 +413,12 @@ const navigation = {
 ul{
   list-style: disc;
   padding: 0 20px;
+}
+.after-footer{
+  background: #fff;
+  p.main-color{
+    font-size: 20px;
+    color: $main-color !important; 
+  }
 }
 </style>
