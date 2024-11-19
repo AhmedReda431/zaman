@@ -40,8 +40,16 @@ const price_from = ref(query.price_from || 0);
 const price_to = ref(query.price_to || 10000);
 const number_of_streets = ref(query.number_of_streets || null);
 
-const lower = ref(10);
-const upper = ref(40);
+// Reactive state for selected min and max values
+
+// Methods to update the values when the slider emits events
+const onMinValueUpdate = (value) => {
+  price_from.value = value;
+};
+
+const onMaxValueUpdate = (value) => {
+  price_to.value = value;
+};
 
 const cityName = computed(() => {
   if (city_id.value) {
@@ -357,6 +365,73 @@ const searchMethod = async () => {
               </div>
             </div>
           </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">{{
+              $t("select")
+            }}</label>
+            <div class="relative">
+              <div class="flex flex-col">
+                <Listbox v-model="bathrooms_of_rooms">
+                  <div class="relative mt-1">
+                    <ListboxButton
+                      class="relative w-full cursor-default rounded-lg bg-white py-3 rtl:pr-3 pl-3 rtl:pl-10 pr-10 text-left rtl:text-right shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus-visible:border-zaman-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
+                    >
+                      <span class="block truncate">{{
+                        bathrooms_of_rooms ||
+                        $t("Choose the number of bathrooms")
+                      }}</span>
+                      <span
+                        class="pointer-events-none absolute inset-y-0 rtl:left-0 ltr:right-0 flex items-center rtl:pl-2 pr-2"
+                      >
+                      </span>
+                    </ListboxButton>
+
+                    <transition
+                      leave-active-class="transition duration-100 ease-in"
+                      leave-from-class="opacity-100"
+                      leave-to-class="opacity-0"
+                    >
+                      <ListboxOptions
+                        class="absolute mt-1 z-20 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base ring-1 ring-black/5 focus:outline-none sm:text-sm"
+                      >
+                        <ListboxOption
+                          v-slot="{ active, selected }"
+                          v-for="i in 10"
+                          :key="i + '-bathrooms_of_rooms'"
+                          :value="i"
+                          as="template"
+                        >
+                          <li
+                            :class="[
+                              active
+                                ? 'bg-amber-100 text-amber-900'
+                                : 'text-gray-900',
+                              'relative cursor-default select-none py-2 pl-10 pr-4',
+                            ]"
+                          >
+                            <span
+                              :class="[
+                                selected ? 'font-medium' : 'font-normal',
+                                'block truncate',
+                              ]"
+                            >
+                              {{ i }}
+                            </span>
+                            <span
+                              v-if="selected"
+                              class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600"
+                            >
+                              <CheckIcon class="h-5 w-5" aria-hidden="true" />
+                            </span>
+                          </li>
+                        </ListboxOption>
+                      </ListboxOptions>
+                    </transition>
+                  </div>
+                </Listbox>
+              </div>
+            </div>
+          </div>
 
           <!-- price_from Range -->
           <!-- <div class="space-y-2">
@@ -387,18 +462,20 @@ const searchMethod = async () => {
             />
             <div class="text-center">{{ price_to }} {{ $t("riyal") }}</div>
           </div> -->
-          <RangeSlider
-            :min="0"
-            :max="10000"
-            :initialLower="price_from"
-            :initialUpper="price_to"
-            :step="10"
-            @update:lowerValue="(value) => (price_from = value)"
-            @update:upperValue="(value) => (price_to = value)"
-          />
-          <span v-if="price_from > 0 || price_to">{{price_from}} - {{price_to}}</span>
+          <div class="filter-holder2">
+            <RangeSlider
+              :min="0"
+              :max="10000"
+              :step="10"
+              :initialMin="price_from"
+              :initialMax="price_to"
+              gap="500"
+              @update:minValue="onMinValueUpdate"
+              @update:maxValue="onMaxValueUpdate"
+            />
+            <div class="pt-5">{{ $t("price") }} : {{ price_from }} - {{ price_to }} {{$t('riyal')}}</div>
+          </div>
         </div>
-
         <!-- Additional Filter Options -->
         <template v-if="isAdvancedFilterVisible">
           <div class="flex items-center space-x-2 my-4">
@@ -710,5 +787,9 @@ input[type="range"]::-ms-thumb {
 .filter-holder {
   width: 95%;
   margin-inline: auto;
+}
+.filter-holder2{
+  width: 100%;
+  margin-top: 30px;
 }
 </style>

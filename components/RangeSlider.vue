@@ -1,166 +1,197 @@
 <template>
-  <div class="multi-range">
-    <input
-      type="range"
-      :min="min"
-      :max="max"
-      :step="step"
-      v-model="lowerValue"
-      @input="onLowerInput"
-    />
-    <input
-      type="range"
-      :min="min"
-      :max="max"
-      :step="step"
-      v-model="upperValue"
-      @input="onUpperInput"
-    />
+  <div class="content">
+    <div ref="slider" class="slider">
+      <!-- Left Thumb -->
+      <div
+        class="slider-thumb-left"
+        :style="{ left: leftThumbPosition + 'px' }"
+        @mousedown="startDrag('left', $event)"
+        @touchstart="startDrag('left', $event)"
+      >
+        <span></span>
+      </div>
+
+      <!-- Right Thumb -->
+      <div
+        class="slider-thumb-right"
+        :style="{ left: rightThumbPosition + 'px' }"
+        @mousedown="startDrag('right', $event)"
+        @touchstart="startDrag('right', $event)"
+      >
+        <span></span>
+      </div>
+
+      <!-- Range Line -->
+      <div class="slider-line">
+        <span
+          :style="{
+            left: leftThumbPosition + 'px',
+            width: rangeWidth + 'px',
+          }"
+        ></span>
+      </div>
+    </div>
+    <!-- <div id="result">Min: {{ minValue }} Max: {{ maxValue }}</div> -->
   </div>
 </template>
 
 <script setup>
-import { ref, watch, defineProps, defineEmits } from "vue";
+import { ref, reactive, computed, onMounted, watch } from "vue";
 
-// Props to allow customization
 const props = defineProps({
   min: { type: Number, default: 0 },
-  max: { type: Number, default: 10000 },
-  step: { type: Number, default: 10 },
-  initialLower: { type: Number, default: 0 },
-  initialUpper: { type: Number, default: 10000 },
-  gap: { type: Number, default: 4 }, // Minimum gap between sliders
+  max: { type: Number, default: 100 },
+  step: { type: Number, default: 1 },
+  initialMin: { type: Number, default: 20 },
+  initialMax: { type: Number, default: 80 },
 });
 
-// Emits for communication
-const emit = defineEmits(["update:lowerValue", "update:upperValue"]);
+const emit = defineEmits(["update:minValue", "update:maxValue"]);
 
-// Reactive values for the sliders
-const lowerValue = ref(props.initialLower);
-const upperValue = ref(props.initialUpper);
+const slider = ref(null);
 
-// Handle lower slider input
-const onLowerInput = () => {
-  if (lowerValue.value > upperValue.value - props.gap) {
-    lowerValue.value = upperValue.value - props.gap;
-  }
-  emit("update:lowerValue", lowerValue.value);
+const state = reactive({
+  sliderWidth: 0,
+  thumbWidth: 36, // Default width of the thumb
+  isDragging: false,
+  draggingThumb: null,
+  minValue: props.initialMin,
+  maxValue: props.initialMax,
+});
+
+// Computed positions for the thumbs
+const leftThumbPosition = computed(() =>
+  ((state.minValue - props.min) / (props.max - props.min)) *
+  (state.sliderWidth - state.thumbWidth)
+);
+const rightThumbPosition = computed(() =>
+  ((state.maxValue - props.min) / (props.max - props.min)) *
+  (state.sliderWidth - state.thumbWidth)
+);
+const rangeWidth = computed(() =>
+  Math.max(rightThumbPosition.value - leftThumbPosition.value, 0)
+);
+
+// Normalize value based on position
+const normalizeValue = (position) => {
+  const ratio = position / (state.sliderWidth - state.thumbWidth);
+  const value = props.min + ratio * (props.max - props.min);
+  return Math.round(value / props.step) * props.step;
 };
 
-// Handle upper slider input
-const onUpperInput = () => {
-  if (upperValue.value < lowerValue.value + props.gap) {
-    upperValue.value = lowerValue.value + props.gap;
-  }
-  emit("update:upperValue", upperValue.value);
+const startDrag = (thumb, event) => {
+  state.isDragging = true;
+  state.draggingThumb = thumb;
+
+  const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+
+  const onMove = (moveEvent) => {
+    const moveX = moveEvent.touches
+      ? moveEvent.touches[0].clientX
+      : moveEvent.clientX;
+
+    if (!slider.value) return;
+
+    const rect = slider.value.getBoundingClientRect();
+    const offsetX = Math.min(
+      Math.max(moveX - rect.left, 0),
+      state.sliderWidth - state.thumbWidth
+    );
+
+    const newValue = normalizeValue(offsetX);
+
+    if (thumb === "left") {
+      if (newValue < state.maxValue - props.step) {
+        state.minValue = newValue;
+      }
+    } else if (thumb === "right") {
+      if (newValue > state.minValue + props.step) {
+        state.maxValue = newValue;
+      }
+    }
+  };
+
+  const stopDrag = () => {
+    state.isDragging = false;
+    state.draggingThumb = null;
+
+    window.removeEventListener("mousemove", onMove);
+    window.removeEventListener("mouseup", stopDrag);
+    window.removeEventListener("touchmove", onMove);
+    window.removeEventListener("touchend", stopDrag);
+
+    emit("update:minValue", state.minValue);
+    emit("update:maxValue", state.maxValue);
+  };
+
+  window.addEventListener("mousemove", onMove);
+  window.addEventListener("mouseup", stopDrag);
+  window.addEventListener("touchmove", onMove);
+  window.addEventListener("touchend", stopDrag);
 };
 
-// Watch for value changes to emit to the parent
-watch(lowerValue, (newValue) => {
-  emit("update:lowerValue", newValue);
+onMounted(() => {
+  if (slider.value) {
+    const rect = slider.value.getBoundingClientRect();
+    state.sliderWidth = rect.width;
+  }
 });
 
-watch(upperValue, (newValue) => {
-  emit("update:upperValue", newValue);
-});
+// Watchers to sync props
+watch(
+  () => props.initialMin,
+  (newValue) => {
+    state.minValue = newValue;
+  }
+);
+watch(
+  () => props.initialMax,
+  (newValue) => {
+    state.maxValue = newValue;
+  }
+);
 </script>
 
-<style scoped lang="scss">
-input[type="range"] {
-  box-sizing: border-box;
-  appearance: none;
-  width: 400px;
-  margin: 0;
-  padding: 0 2px;
-  /* Add some L/R padding to ensure box shadow of handle is shown */
-  overflow: hidden;
-  border: 0;
-  border-radius: 1px;
-  outline: none;
-  background: linear-gradient(grey, $main-color) no-repeat center;
-  /* Use a linear gradient to generate only the 2px height background */
-  background-size: 100% 2px;
-  pointer-events: none;
-
-  &:active,
-  &:focus {
-    outline: none;
-  }
-
-  &::-webkit-slider-thumb {
-    height: 28px;
-    width: 28px;
-    border-radius: 28px;
-    background-color: #fff;
-    position: relative;
-    margin: 5px 0;
-    /* Add some margin to ensure box shadow is shown */
-    cursor: pointer;
-    appearance: none;
-    pointer-events: all;
-    box-shadow: 0 1px 4px 0.5px rgba(0, 0, 0, 0.25);
-    &::before {
-      content: " ";
-      display: block;
-      position: absolute;
-      top: 13px;
-      left: 100%;
-      width: 2000px;
-      height: 2px;
-    }
-  }
-}
-
-.multi-range {
-  position: relative;
-  height: 50px;
+<style scoped>
+.content {
+  width: 305px;
   display: flex;
-  align-items: center;
-
-  input[type="range"] {
-    position: absolute;
-
-    &:nth-child(1) {
-      &::-webkit-slider-thumb::before {
-        background-color: red;
-      }
-    }
-
-    &:nth-child(2) {
-      background: none;
-
-      &::-webkit-slider-thumb::before {
-        background-color: grey;
-      }
-    }
-  }
+  justify-content: flex-start;
 }
-.multi-range input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  position: absolute;
+
+.slider {
+  position: relative;
   width: 100%;
-  pointer-events: none;
+  height: 4px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
 }
 
-.multi-range input[type="range"]::-webkit-slider-thumb {
-  pointer-events: auto;
-  -webkit-appearance: none;
-  appearance: none;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background: orange;
-  cursor: pointer;
+.slider-line span {
+  position: absolute;
+  height: 4px;
+  background-color: orange;
+  border-radius: 4px;
 }
 
-.multi-range input[type="range"]::-moz-range-thumb {
-  pointer-events: auto;
-  appearance: none;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background: orange;
+.slider-thumb-left,
+.slider-thumb-right {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  top: 0;
+  transform: translateY(-50%);
   cursor: pointer;
+  z-index: 2;
+}
+
+.slider-thumb-left span,
+.slider-thumb-right span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #f0f0f0;
+  border: 1px solid #a4a4a4;
+  border-radius: 50%;
 }
 </style>
