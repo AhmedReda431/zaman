@@ -78,7 +78,7 @@ const categoryName = computed(() => {
 onMounted(async () => {
   loading.value = true;
   await fetchCities();
-  await fetchNeighborhoods();
+  // await fetchNeighborhoods();
   await fetchCategories();
   await fetchRealStates(query);
   loading.value = false;
@@ -137,7 +137,7 @@ const searchMethod = async () => {
           class="bg-secondary text-white px-3 py-2.5 rounded-md flex justify-center items-center gap-x-1"
         >
           <span class="font-semibold text-sm"
-            >{{ $t("results") }} ( {{ realStates?.meta?.total || 0 }} )</span
+            >{{ $t("results") }}  <span class="main-color font-weight-bold mx-2">{{ realStates?.meta?.total || 0 }}</span> </span
           >
           <!-- <span class="text-sm">{{$t('results')}}</span> -->
         </div>
@@ -463,10 +463,10 @@ const searchMethod = async () => {
             <div class="text-center">{{ price_to }} {{ $t("riyal") }}</div>
           </div> -->
           <div class="filter-holder2">
-            <RangeSlider
+            <PriceRangeSlider
               :min="0"
               :max="10000"
-              :step="10"
+              :step="100"
               :initialMin="price_from"
               :initialMax="price_to"
               gap="500"

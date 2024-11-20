@@ -31,7 +31,6 @@
         ></span>
       </div>
     </div>
-    <!-- <div id="result">Min: {{ minValue }} Max: {{ maxValue }}</div> -->
   </div>
 </template>
 
@@ -51,7 +50,7 @@ const emit = defineEmits(["update:minValue", "update:maxValue"]);
 const slider = ref(null);
 
 const state = reactive({
-  sliderWidth: 0,
+  sliderWidth: 350, // Fixed width
   thumbWidth: 36, // Default width of the thumb
   isDragging: false,
   draggingThumb: null,
@@ -129,39 +128,18 @@ const startDrag = (thumb, event) => {
   window.addEventListener("touchmove", onMove);
   window.addEventListener("touchend", stopDrag);
 };
-
-onMounted(() => {
-  if (slider.value) {
-    const rect = slider.value.getBoundingClientRect();
-    state.sliderWidth = rect.width;
-  }
-});
-
-// Watchers to sync props
-watch(
-  () => props.initialMin,
-  (newValue) => {
-    state.minValue = newValue;
-  }
-);
-watch(
-  () => props.initialMax,
-  (newValue) => {
-    state.maxValue = newValue;
-  }
-);
 </script>
 
 <style scoped>
 .content {
-  width: 305px;
+  width: 330px;
   display: flex;
   justify-content: flex-start;
 }
 
 .slider {
   position: relative;
-  width: 100%;
+  width: 350px; /* Fixed width */
   height: 4px;
   background-color: #e0e0e0;
   border-radius: 4px;
