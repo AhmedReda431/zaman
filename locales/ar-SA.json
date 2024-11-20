@@ -402,5 +402,10 @@
   "Number of streets":"عدد الشوارع",
   "Choose the number of streets":"اختر عدد الشوارع",
   "search":"بحث",
-  "Fill in your information now":"املأ بياناتك الآن"
+  "Fill in your information now":"املأ بياناتك الآن",
+  "full name":"الاسم الكامل",
+  "mobile number":"رقم الجوال",
+  "email":"بريد إلكتروني",
+  "notes":"ملاحظات",
+  "submit":"إرسال الطلب"
 }

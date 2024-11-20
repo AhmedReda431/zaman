@@ -395,6 +395,11 @@
   "Number of streets":"Number of streets",
   "Choose the number of streets":"Choose the number of streets",
   "search":"search",
-  "Fill in your information now":"Fill in your information now"
+  "Fill in your information now":"Fill in your information now",
+  "full name":"Full name",
+  "mobile number":"mobile number",
+  "email":"Email",
+  "notes":"Notes",
+  "submit":"Submit"
 
 }
