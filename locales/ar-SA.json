@@ -407,5 +407,7 @@
   "mobile number":"رقم الجوال",
   "email":"بريد إلكتروني",
   "notes":"ملاحظات",
-  "submit":"إرسال الطلب"
+  "submit":"إرسال الطلب",
+  "Request sent successfully!":"تم إرسال الطلب بنجاح!",
+  "We are happy to communicate with Zaman Company and we will respond as soon as possible":"يسعدنا تواصلك مع شركة زمن وسوف نقوم بالرد فى اسرع وقت"
 }

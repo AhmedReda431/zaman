@@ -12,8 +12,8 @@ export const useContactUs = () => {
     errors.value = null;
 
     try {
-      const response = await $api.post("/contacts", data);
-      
+      const response = await $api.post("/contact-us", data);
+
       // router.push(authStore.redirectRoute || "/");
     } catch (err) {
       errors.value = err.response?.data.errors || t("errors.defaultLoginError");

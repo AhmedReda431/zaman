@@ -11,7 +11,7 @@ a{
     text-decoration: none !important;
     color: inherit !important;
 }
-input , textarea{
+input , textarea , select{
     background: #f5f5f5 !important;
     border: 1px solid #dbdbdb !important;
     &:focus , &:active{
