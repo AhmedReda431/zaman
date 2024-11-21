@@ -6,12 +6,12 @@
         <div class="d-flex align-items-start justify-content-between">
           <div class="data w-50">
             <div class="w-full mt-5">
-              <h2
-                class="font-bold text-secondary mb-4 border-b-2 border-secondary inline-block"
+              <h1
+                class="font-bold text-secondary mb-4 border-b-2 border-secondary inline-block title"
               >
                 {{ $t("about zaman") }}
-              </h2>
-              <p class="text-gray-700 leading-relaxed">
+              </h1>
+              <p class="text-gray-700 leading-relaxed description">
                 {{ $t("zaman description") }}
               </p>
             </div>
@@ -264,6 +264,12 @@ export default {
     padding: 20px;
     border-radius: 42px !important;
   }
+}
+.description{
+  padding-inline-end: 30px;
+}
+.title{
+  font-size: 28px;
 }
 @media(max-width:992px){
   .intro-holder{
