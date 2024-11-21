@@ -1,6 +1,7 @@
 .swiper {
     width: 100%;
     height: 100%;
+    overflow-y: auto;
 }
 
 .swiper-slide {
@@ -27,6 +28,8 @@
     font-size: 18px;
     border-radius: 8px;
     padding: 2px;
+    width: auto;
+    height: auto;
 }
 
 .swiper-button-next,
@@ -43,8 +46,41 @@
         font-size: 20px !important;
     }
 }
-.swiper-slide{
-    a{
+.swiper-slide {
+    a {
         width: 100%;
     }
 }
+.goals-holder {
+    .swiper-slide {
+        min-height: 220px;
+    }
+}
+.swiper-pagination-bullet,
+.swiper-pagination-bullet-active {
+    width: 20px !important;
+    height: 20px !important;
+    background: #958e8e;
+    border: 2px solid #fff;
+}
+.swiper-pagination-bullet-active {
+    background-color: $main-color !important;
+}
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: -50px !important;
+}
+@media (max-width: 992px) {
+    .swiper-wrapper {
+        min-height: 255px;
+    }
+    .swiper-pagination-fraction,
+    .swiper-pagination-custom,
+    .swiper-horizontal > .swiper-pagination-bullets,
+    .swiper-pagination-bullets.swiper-pagination-horizontal {
+        bottom: -15px !important;
+    }
+}
+

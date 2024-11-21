@@ -7,7 +7,7 @@
           <div class="data w-50">
             <div class="w-full mt-5">
               <h1
-                class="font-bold text-secondary mb-4 border-b-2 border-secondary inline-block title"
+                class="font-bold text-secondary mb-4 border-b-2 border-secondary inline-block title mt-2 mb-8"
               >
                 {{ $t("about zaman") }}
               </h1>
@@ -28,165 +28,174 @@
     </div>
 
     <!-- Icon and Description Section -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 m-8">
-      <div class="text-center">
+    <div
+      class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8 m-8 py-24 px-20"
+    >
+      <div class="text-center vision-div">
         <div class="mb-4">
           <img
-            src="https://picsum.photos/64?random=3"
+            src="~/assets/img/about/vision.svg"
             alt="Vision Icon"
-            class="mx-auto w-12 h-12"
+            class="mx-auto w-35 h-35"
           />
         </div>
         <h3
-          class="text-m font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block"
+          class="text-m font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block title mt-2 mb-8"
         >
-          رؤيتنا
+          {{ $t("our vision") }}
         </h3>
-        <p class="text-gray-700 leading-relaxed text-right">
-          أن نكون روادًا في مجال التسويق والتطوير العقاري في منطقة الشرق الاوسط
-          وشمال افريقيا، عن طريق تطوير مشروعات راقية، تشجع على وجود حياة مستدامة
-          ومكتفية ذاتيا، بالاضافة الى التركيز على جودة الانجازات والخدمات، التي
-          تم تصميمها خصيصا لعملائنا، لتوفير نمط حياة فاخر، مع عوائد استثمارية
-          استثنائية
+        <p class="text-gray-700 leading-relaxed text-center">
+          {{ $t("vision desc") }}
         </p>
       </div>
 
-      <div class="text-center">
+      <div class="text-center mission-div">
         <div class="mb-4">
           <img
-            src="https://picsum.photos/64?random=2"
-            alt="Mission Icon"
-            class="mx-auto w-12 h-12"
+            src="~/assets/img/about/mission.svg"
+            alt="Vision Icon"
+            class="mx-auto w-35 h-35"
           />
         </div>
         <h3
-          class="text-m font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block"
+          class="text-m font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block title mt-2 mb-8"
         >
-          مهمتنا
+          {{ $t("our mission") }}
         </h3>
-        <p class="text-gray-700 leading-relaxed text-right">
-          نعمل على خلق تنمية بسيطة، ومبتكرة، ومستدامة ذاتيا، مبنية على أعلى
-          المعايير، نستخدم شغفنا والتزامنا بتقديم خدمات مبتكرة، وجودة فائقة
-          لعملائنا
+        <p class="text-gray-700 leading-relaxed text-center">
+          {{ $t("mission desc") }}
         </p>
       </div>
 
-      <div class="text-center">
+      <div class="text-center values-div">
         <div class="mb-4">
           <img
-            src="https://picsum.photos/64?random=1"
-            alt="Value Icon"
-            class="mx-auto w-12 h-12"
+            src="~/assets/img/about/values.svg"
+            alt="Vision Icon"
+            class="mx-auto w-35 h-35"
           />
         </div>
         <h3
-          class="text-m font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block"
+          class="text-m font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block title mt-2 mb-8"
         >
-          قيمتنا
+          {{ $t("our values") }}
         </h3>
-        <p class="text-gray-700 leading-relaxed text-right">
-          نوجه الاهتمام الكامل الى كل تفصيلة، والعمل تحت ضغط الوقت والميزانية،
-          بجانب احترام جميع النظائر وتحقيق الاستدامة.
+        <p class="text-gray-700 leading-relaxed text-center">
+          {{ $t("values desc") }}
         </p>
       </div>
     </div>
   </div>
 
-  <div class="max-w-7xl mx-auto p-4 text-right">
-    <!-- Slider Section -->
-    <div
-      class="container mx-auto mb-8 p-4"
-      style="background-color: #264642; color: white"
-    >
-      <h2 class="text-2xl font-bold mb-6 text-center">الأهداف المنشودة</h2>
-
-      <swiper :breakpoints="breakpoints" navigation pagination class="mb-8">
-        <swiper-slide
-          v-for="(slide, index) in slides"
-          :key="index"
-          class="p-4 m-4 border border-gray-300 rounded-lg bg-gray-500 text-white"
+  <div class="goals-holder">
+    <div class="container-holder">
+      <!-- Slider Section -->
+      <div class="container-data">
+        <h2
+          class="section-title text-m font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block title mt-2 mb-24"
         >
-          <div class="text-center">
-            <div class="text-2xl font-bold mb-2">{{ slide.number }}</div>
-            <p class="text-lg">{{ slide.text }}</p>
+          {{ $t("Desired goals") }}
+        </h2>
+        <swiper
+          :navigation="true"
+          :modules="modules"
+          class="mySwiper"
+          :breakpoints="{
+            320: { slidesPerView: 1, spaceBetween: 10 },
+            640: { slidesPerView: 2, spaceBetween: 10 },
+            768: { slidesPerView: 2, spaceBetween: 10 },
+            1024: { slidesPerView: 4, spaceBetween: 10 },
+          }"
+          :pagination="{
+            clickable: true,
+          }"
+        >
+          <swiper-slide v-for="(slide, index) in slides" :key="index">
+            <div class="text-center swiper-card">
+              <div class="text-2xl font-bold mb-2 card-number">
+                {{ index + 1 }}
+              </div>
+              <p class="text-lg">{{ slide.text }}</p>
+            </div>
+          </swiper-slide>
+        </swiper>
+      </div>
+    </div>
+  </div>
+  <!-- Cards Section -->
+  <div class="care-section">
+    <div class="care-section-holder">
+      <div class="text-center mb-8">
+        <h2
+          class="text-m font-semibold text-secondary mb-4 border-b-2 border-secondary inline-block title"
+        >
+         {{ $t('Caring for our customers through') }}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="flex items-center text-right p-4">
+          <div class="w-1/4">
+            <img
+              src="~/assets/img/about/care/1.svg"
+              alt="Innovation Icon"
+              class="mx-auto w-20 h-20 rounded-full"
+            />
           </div>
-        </swiper-slide>
-      </swiper>
-    </div>
+          <div class="w-3/4 pl-4 text-start">
+            <h3
+              class="text-lg font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block"
+            >
+              {{ $t("Innovation") }}
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+              {{ $t("innovation desc") }}
+            </p>
+          </div>
+        </div>
 
-    <!-- Cards Section -->
-    <div class="text-center mb-8">
-      <h2
-        class="text-m font-semibold text-secondary mb-4 border-b-2 border-secondary inline-block"
-      >
-        الاهتمام بعملائنا من خلال
-      </h2>
-    </div>
+        <!-- Card 2 -->
+        <div class="flex items-center text-right p-4">
+          <div class="w-1/4">
+            <img
+              src="~/assets/img/about/care/2.svg"
+              alt="Commitment Icon"
+              class="mx-auto w-20 h-20 rounded-full"
+            />
+          </div>
+          <div class="w-3/4 pl-4 text-start">
+            <h3
+              class="text-lg font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block"
+            >
+              {{ $t("Commitment") }}
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+              {{ $t("commitment desc") }}
+            </p>
+          </div>
+        </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Card 1 -->
-      <div class="flex items-center text-right p-4">
-        <div class="w-1/4">
-          <img
-            src="https://picsum.photos/64?random=4"
-            alt="Innovation Icon"
-            class="mx-auto w-12 h-12 rounded-full"
-          />
-        </div>
-        <div class="w-3/4 pl-4">
-          <h3
-            class="text-lg font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block"
-          >
-            الابتكار
-          </h3>
-          <p class="text-gray-700 leading-relaxed">
-            نقدم لعملائنا من خلال مشاريعنا العقارية خدمات مبتكرة وذكية تتيح لهم
-            أسلوب حياة وعمليات تجارية أكثر سهولة.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="flex items-center text-right p-4">
-        <div class="w-1/4">
-          <img
-            src="https://picsum.photos/64?random=5"
-            alt="Commitment Icon"
-            class="mx-auto w-12 h-12 rounded-full"
-          />
-        </div>
-        <div class="w-3/4 pl-4">
-          <h3
-            class="text-lg font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block"
-          >
-            الالتزام
-          </h3>
-          <p class="text-gray-700 leading-relaxed">
-            الالتزام نؤمن بأن الالتزام هو جوهر وجودنا. نحرص دائمًا على بناء
-            علاقة قوية مع عملائنا وتلبية احتياجاتهم بكل دقة.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="flex items-center text-right p-4">
-        <div class="w-1/4">
-          <img
-            src="https://picsum.photos/64?random=6"
-            alt="Reputation Icon"
-            class="mx-auto w-12 h-12 rounded-full"
-          />
-        </div>
-        <div class="w-3/4 pl-4">
-          <h3
-            class="text-lg font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block"
-          >
-            بناء السمعة
-          </h3>
-          <p class="text-gray-700 leading-relaxed">
-            تسعى زمن في كل الاتجاهات إلى بناء سمعة قوية تتعلق بالجودة والتميز في
-            تقديم خدماتها إلى جميع عملائها.
-          </p>
+        <!-- Card 3 -->
+        <div class="flex items-center text-right p-4">
+          <div class="w-1/4">
+            <img
+              src="~/assets/img/about/care/3.svg"
+              alt="Reputation Icon"
+              class="mx-auto w-20 h-20 rounded-full"
+            />
+          </div>
+          <div class="w-3/4 pl-4 text-start">
+            <h3
+              class="text-lg font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block"
+            >
+             {{ $t('Building reputation') }}
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+             
+              {{$t('Building reputation desc')}}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -194,9 +203,15 @@
 </template>
 
 <script>
+// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/swiper-bundle.css";
-
+import { onMounted } from "vue";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+// Import required modules
+import { Navigation, Pagination } from "swiper/modules";
 export default {
   components: {
     Swiper,
@@ -228,6 +243,10 @@ export default {
     };
   },
   name: "ResponsiveSection",
+  setup() {
+    const modules = [Navigation, Pagination];
+    return { modules: modules };
+  },
 };
 </script>
 
@@ -236,10 +255,27 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 150px;
-  background-color: #768575;
-  width: 80%; /* تقليل عرض الشرائح إلى 80% من عرض الحاوية */
-  max-width: 300px; /* تحديد أقصى عرض للشرائح */
+  flex-direction: column;
+  background-color: #76857557;
+  border: 2px solid #ffffff9c;
+}
+.swiper-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  .card-number {
+    background: #fff;
+    color: #bd9a60;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+  }
 }
 
 .swiper-pagination-bullet-active {
@@ -265,20 +301,40 @@ export default {
     border-radius: 42px !important;
   }
 }
-.description{
+.description {
   padding-inline-end: 30px;
 }
-.title{
+.title {
   font-size: 28px;
+  text-transform: capitalize;
 }
-@media(max-width:992px){
-  .intro-holder{
-    .d-flex{
+@media (max-width: 992px) {
+  .intro-holder {
+    .d-flex {
       flex-direction: column;
-      div{
+      div {
         width: 100% !important;
       }
     }
   }
+}
+.mission-div {
+  border-inline: 1px solid #eee;
+  padding: 0 15px;
+}
+.goals-holder {
+  background: url("~/assets/img/contact_back.jpg");
+  color: #fff;
+  text-align: center;
+  .container-holder {
+    padding: 5% 0 5% 0;
+    background-color: rgb(38 70 66 / 78%);
+    .container-data {
+      padding-inline: 5%;
+    }
+  }
+}
+.care-section {
+  margin: 5% 2%;
 }
 </style>
