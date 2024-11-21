@@ -146,7 +146,7 @@
           </div>
           <div class="w-3/4 pl-4 text-start">
             <h3
-              class="text-lg font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block"
+              class="text-lg font-semibold main-color mb-2 inline-block"
             >
               {{ $t("Innovation") }}
             </h3>
@@ -167,7 +167,7 @@
           </div>
           <div class="w-3/4 pl-4 text-start">
             <h3
-              class="text-lg font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block"
+              class="text-lg font-semibold text-secondary mb-2 inline-block"
             >
               {{ $t("Commitment") }}
             </h3>
@@ -188,7 +188,7 @@
           </div>
           <div class="w-3/4 pl-4 text-start">
             <h3
-              class="text-lg font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block"
+              class="text-lg font-semibold main-color mb-2 inline-block"
             >
              {{ $t('Building reputation') }}
             </h3>
