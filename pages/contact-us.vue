@@ -73,10 +73,38 @@
           <div class="">
             <button
               type="submit"
-              class="px-6 py-2 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring focus:ring-gray-300"
+              class="px-6 py-2 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring focus:ring-gray-300 d-flex gap-3 py-3"
               style="background-color: #264642; color: white"
             >
-              {{ $t("submit") }}
+              <span>{{ $t("submit") }}</span>
+              <span class="icon">
+                <svg
+                  width="23"
+                  height="23"
+                  viewBox="0 0 23 23"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  data-v-f6fc78ba=""
+                >
+                  <g clip-path="url(#clip0_85_49628)" data-v-f6fc78ba="">
+                    <path
+                      d="M6.54912 15.64L0.504717 12.2912C0.36228 12.1963 0.247336 12.0656 0.171435 11.9121C0.0955337 11.7587 0.0613492 11.588 0.0723167 11.4172C0.076226 11.247 0.127319 11.0811 0.219905 10.9382C0.312492 10.7952 0.442938 10.6808 0.596717 10.6076L21.8579 0.0736193C22.0094 0.0180221 22.1757 0.0180221 22.3271 0.0736193L6.53072 15.7044L6.54912 15.64ZM6.43872 17.0844V22.356C6.43964 22.4497 6.46913 22.5408 6.52323 22.6172C6.57733 22.6937 6.65348 22.7518 6.74149 22.7838C6.8295 22.8158 6.92519 22.8202 7.01575 22.7963C7.10632 22.7725 7.18746 22.7216 7.24832 22.6504L10.9283 18.1608L15.4547 20.7C15.5728 20.778 15.7073 20.8277 15.8477 20.8453C15.9881 20.8628 16.1307 20.8478 16.2643 20.8012C16.4049 20.7536 16.5319 20.6727 16.6344 20.5653C16.7369 20.458 16.812 20.3274 16.8531 20.1848L22.8331 0.920019C22.8382 0.871082 22.8382 0.821756 22.8331 0.772819L6.43872 17.0844Z"
+                      fill="white"
+                      data-v-f6fc78ba=""
+                    ></path>
+                  </g>
+                  <defs data-v-f6fc78ba="">
+                    <clipPath id="clip0_85_49628" data-v-f6fc78ba="">
+                      <rect
+                        width="23"
+                        height="23"
+                        fill="white"
+                        data-v-f6fc78ba=""
+                      ></rect>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </span>
             </button>
           </div>
         </form>
@@ -96,7 +124,7 @@
 
         <div class="success-message-holder">
           <div class="main-container">
-            <div class="check-container">
+            <!-- <div class="check-container">
               <div class="check-background">
                 <svg
                   viewBox="0 0 65 51"
@@ -113,7 +141,12 @@
                 </svg>
               </div>
               <div class="check-shadow"></div>
-            </div>
+            </div> -->
+            <img
+              src="~/assets/img/submit_done.svg"
+              alt="Success Image"
+              class="mx-auto mb-4"
+            />
           </div>
         </div>
         <!-- <h3 class="text-green-600 text-2xl font-bold">

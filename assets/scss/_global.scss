@@ -7,14 +7,24 @@
 .focus\:ring-indigo-500:focus {
     box-shadow: none !important;
 }
-a{
+a {
     text-decoration: none !important;
     color: inherit !important;
 }
-input , textarea , select{
+input,
+textarea,
+select {
     background: #f5f5f5 !important;
     border: 1px solid #dbdbdb !important;
-    &:focus , &:active{
+    &:focus,
+    &:active {
         box-shadow: 0 0 2px 0px $main-color !important;
+    }
+}
+
+nav {
+    a {
+        font-size: 16px !important;
+        text-transform: capitalize;
     }
 }

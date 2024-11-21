@@ -4,30 +4,33 @@
       <LoadingScreen v-if="isLoading" />
       <NuxtPage :key="locale" />
       <transition name="page">
-        <AlertComponent v-if="alert" :message="alert.message" :type="alert.type" @close="dismissAlert" />
+        <AlertComponent
+          v-if="alert"
+          :message="alert.message"
+          :type="alert.type"
+          @close="dismissAlert"
+        />
       </transition>
     </NuxtLayout>
   </Html>
 </template>
 
 <script setup>
-import { ref, watch, computed, nextTick } from 'vue';
+import { ref, watch, computed, nextTick } from "vue";
 
 const LOADING_TIMEOUT_DURATION = 150; // ms
 const ALERT_DISPLAY_DURATION = 4500; // ms
 
 const { locale, setLocale } = useI18n();
 const localeValue = computed(() => {
-  return locale.value === 'ar' ? 'rtl' : 'ltr';
+  return locale.value === "ar" ? "rtl" : "ltr";
 });
-const i18n = useCookie('i18n_redirected')
-if(!i18n.value){
-  setLocale('ar')
+const i18n = useCookie("i18n_redirected");
+if (!i18n.value) {
+  setLocale("ar");
 }
 
-
-
-const isLoading = ref(false);
+const isLoading = ref(true);
 
 // Watch for changes in the locale
 watch(locale, (newValue, oldValue) => {
@@ -58,8 +61,9 @@ function showAlert(newAlert) {
 function dismissAlert() {
   alert.value = null;
 }
-</script>
 
+useNuxtApp().hook("app:mounted", () => (isLoading.value = false));
+</script>
 
 <style>
 .page-enter-active,
@@ -72,7 +76,7 @@ function dismissAlert() {
   opacity: 0;
   filter: blur(1rem);
 }
-.fade-enter-active, 
+.fade-enter-active,
 .fade-leave-active {
   transition: all 0.3s;
 }
