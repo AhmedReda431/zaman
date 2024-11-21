@@ -109,6 +109,7 @@
           :pagination="{
             clickable: true,
           }"
+          :loop="true"
         >
           <swiper-slide v-for="(slide, index) in slides" :key="index">
             <div class="text-center swiper-card">
