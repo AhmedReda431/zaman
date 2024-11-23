@@ -96,30 +96,32 @@
         >
           {{ $t("Desired goals") }}
         </h2>
-        <swiper
-          :navigation="true"
-          :modules="modules"
-          class="mySwiper"
-          :breakpoints="{
-            320: { slidesPerView: 1, spaceBetween: 10 },
-            640: { slidesPerView: 2, spaceBetween: 10 },
-            768: { slidesPerView: 2, spaceBetween: 10 },
-            1024: { slidesPerView: 4, spaceBetween: 10 },
-          }"
-          :pagination="{
-            clickable: true,
-          }"
-          :loop="true"
-        >
-          <swiper-slide v-for="(slide, index) in slides" :key="index">
-            <div class="text-center swiper-card">
-              <div class="text-2xl font-bold mb-2 card-number">
-                {{ index + 1 }}
+        <ClientOnly>
+          <swiper
+            :navigation="true"
+            :modules="modules"
+            class="mySwiper"
+            :breakpoints="{
+              320: { slidesPerView: 1, spaceBetween: 10 },
+              640: { slidesPerView: 2, spaceBetween: 10 },
+              768: { slidesPerView: 2, spaceBetween: 10 },
+              1024: { slidesPerView: 4, spaceBetween: 10 },
+            }"
+            :pagination="{
+              clickable: true,
+            }"
+            :loop="true"
+          >
+            <swiper-slide v-for="(slide, index) in slides" :key="index">
+              <div class="text-center swiper-card">
+                <div class="text-2xl font-bold mb-2 card-number">
+                  {{ index + 1 }}
+                </div>
+                <p class="text-lg">{{ slide.text }}</p>
               </div>
-              <p class="text-lg">{{ slide.text }}</p>
-            </div>
-          </swiper-slide>
-        </swiper>
+            </swiper-slide>
+          </swiper>
+        </ClientOnly>
       </div>
     </div>
   </div>
@@ -130,7 +132,7 @@
         <h2
           class="text-m font-semibold text-secondary mb-4 border-b-2 border-secondary inline-block title"
         >
-         {{ $t('Caring for our customers through') }}
+          {{ $t("Caring for our customers through") }}
         </h2>
       </div>
 
@@ -145,9 +147,7 @@
             />
           </div>
           <div class="w-3/4 pl-4 text-start">
-            <h3
-              class="text-lg font-semibold main-color mb-2 inline-block"
-            >
+            <h3 class="text-lg font-semibold main-color mb-2 inline-block">
               {{ $t("Innovation") }}
             </h3>
             <p class="text-gray-700 leading-relaxed">
@@ -166,9 +166,7 @@
             />
           </div>
           <div class="w-3/4 pl-4 text-start">
-            <h3
-              class="text-lg font-semibold text-secondary mb-2 inline-block"
-            >
+            <h3 class="text-lg font-semibold text-secondary mb-2 inline-block">
               {{ $t("Commitment") }}
             </h3>
             <p class="text-gray-700 leading-relaxed">
@@ -187,14 +185,11 @@
             />
           </div>
           <div class="w-3/4 pl-4 text-start">
-            <h3
-              class="text-lg font-semibold main-color mb-2 inline-block"
-            >
-             {{ $t('Building reputation') }}
+            <h3 class="text-lg font-semibold main-color mb-2 inline-block">
+              {{ $t("Building reputation") }}
             </h3>
             <p class="text-gray-700 leading-relaxed">
-             
-              {{$t('Building reputation desc')}}
+              {{ $t("Building reputation desc") }}
             </p>
           </div>
         </div>
@@ -206,7 +201,7 @@
 <script>
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { onMounted } from "vue";
+// import { onMounted } from "vue";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -215,8 +210,8 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 export default {
   components: {
-    Swiper,
-    SwiperSlide,
+    // Swiper,
+    // SwiperSlide,
   },
   data() {
     return {

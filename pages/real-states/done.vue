@@ -28,4 +28,9 @@ definePageMeta({
 
     </div>
 </template>
+<style lang="scss" scoped>
+.text-white{
+    color: #fff !important;
+}
+</style>
 

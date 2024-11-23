@@ -19,6 +19,29 @@ const isAdvancedFilterVisible = ref(false);
 const toggleFilter = () => {
   isFilterVisible.value = !isFilterVisible.value;
 };
+const resetFilters = () => {
+  // Reset all filters to their default values
+  city_id.value = "";
+  neighborhood_id.value = "";
+  category_id.value = "";
+  number_of_rooms.value = "";
+  bathrooms_of_rooms.value = "";
+  search.value = "";
+  land_area.value = "";
+  price_from.value = 0;
+  price_to.value = 10000;
+  number_of_streets.value = null;
+
+  // Clear the query parameters in the URL
+  router.push({
+    path: route.path, // Keep the current route
+    query: {}, // Clear all query parameters
+  });
+
+  // Refetch the data with cleared filters
+  fetchRealStates({});
+};
+
 const toggleAdvancedFilter = () => {
   isAdvancedFilterVisible.value = !isAdvancedFilterVisible.value;
 };
@@ -104,6 +127,36 @@ const searchMethod = async () => {
     router.go(0);
   });
 };
+
+// settign pagination
+
+// Existing imports and setup remain unchanged
+
+const handlePageChange = async (page) => {
+  // Check if the query object has at least one key-value pair
+  const hasFilters = Object.keys(query).length > 0;
+
+  // Construct the updated query, only including 'page' if filters exist
+  const updatedQuery = hasFilters ? { ...query, page } : { page };
+
+  // Update the route with the new page query
+  router.push({
+    path: route.path,
+    query: updatedQuery,
+  });
+
+  // Wait for the route to fully update and fetch data
+  await fetchRealStates(updatedQuery);
+
+  // Ensure the scroll happens after the data and DOM update
+  setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, 100);
+};
 </script>
 <template>
   <div class="max-w--6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -118,6 +171,14 @@ const searchMethod = async () => {
         >
           <Icon name="mdi:filter" class="w-4 h-4" />
           <span class="text-sm">{{ $t("filter") }}</span>
+        </button>
+        <button
+          @click="resetFilters"
+          v-if="Object.keys(route.query).length"
+          class="bg-zaman text-white px-3 py-2.5 rounded-md flex items-center"
+        >
+          <Icon name="mdi:filter" class="w-4 h-4" />
+          <span class="text-sm">Reset</span>
         </button>
 
         <!-- Search Bar -->
@@ -137,8 +198,11 @@ const searchMethod = async () => {
           class="bg-secondary text-white px-3 py-2.5 rounded-md flex justify-center items-center gap-x-1"
         >
           <span class="font-semibold text-sm"
-            >{{ $t("results") }}  <span class="main-color font-weight-bold mx-2">{{ realStates?.meta?.total || 0 }}</span> </span
-          >
+            >{{ $t("results") }}
+            <span class="main-color font-weight-bold mx-2">{{
+              realStates?.meta?.total || 0
+            }}</span>
+          </span>
           <!-- <span class="text-sm">{{$t('results')}}</span> -->
         </div>
       </div>
@@ -473,7 +537,10 @@ const searchMethod = async () => {
               @update:minValue="onMinValueUpdate"
               @update:maxValue="onMaxValueUpdate"
             />
-            <div class="pt-5">{{ $t("price") }} : {{ price_from }} - {{ price_to }} {{$t('riyal')}}</div>
+            <div class="pt-5">
+              {{ $t("price") }} : {{ price_from }} - {{ price_to }}
+              {{ $t("riyal") }}
+            </div>
           </div>
         </div>
         <!-- Additional Filter Options -->
@@ -726,6 +793,12 @@ const searchMethod = async () => {
         <OfferCard :offer="item" class="my-4 w-full" />
       </NuxtLink>
     </div>
+    <!-- Pagination Component -->
+    <Pagination
+      v-if="realStates?.meta"
+      :meta="realStates.meta"
+      @pageChange="handlePageChange"
+    />
     <div v-if="loading" class="mt-8 grid grid-cols-4 gap-4 mb-5">
       <CardSkeleton v-for="i in 8" :key="i" />
     </div>
@@ -788,7 +861,7 @@ input[type="range"]::-ms-thumb {
   width: 95%;
   margin-inline: auto;
 }
-.filter-holder2{
+.filter-holder2 {
   width: 100%;
   margin-top: 30px;
 }

@@ -93,13 +93,14 @@ const route = useRoute();
                   {{ $t('authentication.login') }}
                 </div>
               </NuxtLink>
-              <NuxtLink :to="{ path: '/real-states/create' }"
+              <NuxtLink :to="{ path: '/real-states/create' }" v-if="isAuthenticated"
                 class="rounded-md bg-zaman px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-zaman-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zaman-700">
                 <div class="flex items-center gap-x-1 text-white">
                   <HomeIcon class="h-5 w-5 flex-none text-white" aria-hidden="true" />
                   {{ $t('addYourBuilding') }}
                 </div>
               </NuxtLink>
+              <div class="mx-10" v-else></div>
             </div>
             <LangSwitchTwo />
             <div class="flex items-center justify-center">

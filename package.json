@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
     "@nuxtjs/google-fonts": "^3.2.0",
@@ -43,6 +44,7 @@
     "luxon": "^3.5.0",
     "nuxt-swiper": "^1.2.2",
     "pinia": "^2.2.2",
+    "sweetalert2": "^11.14.5",
     "swiper": "^10.0.0",
     "tailwind-variants": "^0.1.20",
     "tw-elements": "^1.1.0",

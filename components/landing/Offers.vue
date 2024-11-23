@@ -41,30 +41,38 @@ onMounted(async () => {
         </h2>
         <nuxt-link to="/real-states" class="all-offers gray">
           <h1 class="title">
-            <span>{{ $t("View all offers") }}</span> <span><Icon name="material-symbols:arrow-outward" color="black" /></span>
+            <span>{{ $t("View all offers") }}</span>
+            <span
+              ><Icon name="material-symbols:arrow-outward" color="black"
+            /></span>
           </h1>
         </nuxt-link>
       </div>
 
       <!-- Swiper Component -->
       <div v-if="!loading && realStates?.real_estates?.length">
-        <swiper
-          :navigation="true"
-          :modules="modules"
-          class="mySwiper"
-          :breakpoints="{
-            320: { slidesPerView: 1, spaceBetween: 10 },
-            640: { slidesPerView: 2, spaceBetween: 10 },
-            768: { slidesPerView: 3, spaceBetween: 10 },
-            1024: { slidesPerView: 4, spaceBetween: 10 },
-          }"
-        >
-          <swiper-slide v-for="item in realStates.real_estates" :key="item.id">
-            <NuxtLink :to="`/real-states/${item.id}`">
-              <OfferCard :offer="item" class="my-4" />
-            </NuxtLink>
-          </swiper-slide>
-        </swiper>
+        <ClientOnly>
+          <swiper
+            :navigation="true"
+            :modules="modules"
+            class="mySwiper"
+            :breakpoints="{
+              320: { slidesPerView: 1, spaceBetween: 10 },
+              640: { slidesPerView: 2, spaceBetween: 10 },
+              768: { slidesPerView: 3, spaceBetween: 10 },
+              1024: { slidesPerView: 4, spaceBetween: 10 },
+            }"
+          >
+            <swiper-slide
+              v-for="item in realStates.real_estates"
+              :key="item.id"
+            >
+              <NuxtLink :to="`/real-states/${item.id}`">
+                <OfferCard :offer="item" class="my-4" />
+              </NuxtLink>
+            </swiper-slide>
+          </swiper>
+        </ClientOnly>
       </div>
 
       <!-- Loading Skeleton -->
@@ -74,9 +82,7 @@ onMounted(async () => {
 
       <!-- No Data Message -->
       <div
-        v-if="
-          !loading && !realStates?.real_estates?.length
-        "
+        v-if="!loading && !realStates?.real_estates?.length"
         class="mt-8 w-full text-center"
       >
         <h2>لا يوجد عناصر</h2>
@@ -92,7 +98,7 @@ onMounted(async () => {
     /* Example color */
   }
 }
-.title{
+.title {
   font-size: 20px;
 }
 </style>

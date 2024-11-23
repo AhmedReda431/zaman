@@ -17,27 +17,27 @@
             </h1>
           </nuxt-link> -->
         </div>
-        <div
-          class="certificates-holder mt-24 text-center"
-        >
+        <div class="certificates-holder mt-24 text-center">
           <!-- Swiper Component -->
           <div>
-            <swiper
-              :navigation="false"
-              :autoplay="true"
-              :modules="modules"
-              class="mySwiper text-center d-flex justify-content-center align-items-center"
-              :breakpoints="{
-                320: { slidesPerView: 1, spaceBetween: 10 },
-                640: { slidesPerView: 2, spaceBetween: 10 },
-                768: { slidesPerView: 3, spaceBetween: 10 },
-                1024: { slidesPerView: 4, spaceBetween: 10 },
-              }"
-            >
-              <swiper-slide v-for="(x, index) in 20" :key="index">
-                <IconsLogo class="h-14 w-auto" alt="zaman" />
-              </swiper-slide>
-            </swiper>
+            <ClientOnly>
+              <swiper
+                :navigation="false"
+                :autoplay="true"
+                :modules="modules"
+                class="mySwiper text-center d-flex justify-content-center align-items-center"
+                :breakpoints="{
+                  320: { slidesPerView: 1, spaceBetween: 10 },
+                  640: { slidesPerView: 2, spaceBetween: 10 },
+                  768: { slidesPerView: 3, spaceBetween: 10 },
+                  1024: { slidesPerView: 4, spaceBetween: 10 },
+                }"
+              >
+                <swiper-slide v-for="(x, index) in 20" :key="index">
+                  <IconsLogo class="h-14 w-auto" alt="zaman" />
+                </swiper-slide>
+              </swiper>
+            </ClientOnly>
           </div>
         </div>
       </section>
@@ -76,10 +76,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 // Import required modules
-import { Navigation , Autoplay } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 
 // Modules and Swiper instance
-const modules = [Navigation , Autoplay];
+const modules = [Navigation, Autoplay];
 const swiperInstance = ref(null);
 
 // Fetching real estate data
