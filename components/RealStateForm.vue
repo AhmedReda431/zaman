@@ -684,7 +684,7 @@ onMounted(async () => {
 </template>
 <style lang="scss" scoped>
 .adding-label {
-  width: 200px;
+  width: 230px;
   height: 70px;
 }
 </style>
