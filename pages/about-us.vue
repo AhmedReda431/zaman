@@ -240,6 +240,11 @@ export default {
   },
   name: "ResponsiveSection",
   setup() {
+    definePageMeta({
+      description: "Your real-state has been created successfully",
+      layout: "default",
+    });
+
     const modules = [Navigation, Pagination];
     return { modules: modules };
   },

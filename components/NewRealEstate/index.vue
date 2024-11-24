@@ -71,7 +71,7 @@ const cityName = computed(() => {
         // return locale.value == "ar" ? unref(obj).name_ar : unref(obj).name;
         return unref(obj).name;
     }
-    return "اختر المدينه";
+    return t('select city');
 });
 const categoryName = computed(() => {
     if (formData.value.category_id) {

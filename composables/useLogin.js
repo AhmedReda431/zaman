@@ -28,6 +28,11 @@ export const useLogin = () => {
         showAlert(typeof response?.data?.message == 'object' ? Object.values(response?.data?.message)[0] :response?.data?.message, 'warning',)
       }
     } catch (err) {
+      console.log('err' , err);
+      
+      if(err?.response?.data?.message){
+        showAlert(err.response.data.message, 'danger')
+      }
       error.value = err.response?.data.errors || t("errors.defaultLoginError");
       
       showAlert('something going wrong, please try again', 'danger')

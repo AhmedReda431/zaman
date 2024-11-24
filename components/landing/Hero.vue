@@ -36,7 +36,7 @@ const cityName = computed(() => {
     const obj = cities.value.find((cat) => cat.id == city_id.value);
     return unref(obj).name;
   }
-  return "اختر المدينه";
+  return t('select city');
 });
 const searchButton = () => {
   router.push({

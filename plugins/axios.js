@@ -10,7 +10,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     config.VITE_NUXT_API_ENDPOINT || "https://admin.zman.sa/api";
 
   // Access the `t` function via Nuxt app's i18n instance
-  const { $t } = nuxtApp;
+  const { t } = nuxtApp.vueApp.__VUE_I18N__.global;
 
   let api = axios.create({
     baseURL: defaultUrl,
@@ -44,14 +44,14 @@ export default defineNuxtPlugin((nuxtApp) => {
         if (error.response.status === 401) {
           tokenCookie.value = null;
           router.push("/login");
-          $toastMessage($t("unauthorizedMessage"), "error");
+          $toastMessage(t("unauthorizedMessage"), "error");
         } else if (error.response.status === 500) {
-          $toastMessage($t("serverErrorMessage"), "error");
+          $toastMessage(t("serverErrorMessage"), "error");
         } else if (error.response.status === 400) {
-          $toastMessage($t("badRequestMessage"), "error");
+          $toastMessage(t("badRequestMessage"), "error");
         }
       } else {
-        $toastMessage($t("unexpectedErrorMessage"), "error");
+        $toastMessage(t("unexpectedErrorMessage"), "error");
       }
 
       // Reject the error to propagate it
