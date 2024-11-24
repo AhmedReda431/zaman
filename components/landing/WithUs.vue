@@ -9,23 +9,35 @@
             <h2 class="title">
               {{ $t("zaman application") }}
             </h2>
-            <p class="description w-50 text-white mt-5">
-              description
-            </p>
+            <h4 class="description w-50 text-white mt-5">
+              {{ $t("app description") }}
+            </h4>
             <div class="applications-hoder d-flex gap-5 mt-5">
               <div class="application">
                 <NuxtLink to="/">
-                  <IconsLogo class="h-14 w-auto" alt="zaman" />
+                  <img
+                    src="~/assets/img/home/app-store-17122018.png"
+                    alt="app-img"
+                    class="w-100"
+                  />
                 </NuxtLink>
               </div>
               <div class="application">
                 <NuxtLink to="/">
-                  <IconsLogo class="h-14 w-auto" alt="zaman" />
+                  <img
+                    src="~/assets/img/home/apple-android-store-icons.png"
+                    alt="app-img"
+                    class="w-100"
+                  />
                 </NuxtLink>
               </div>
               <div class="application">
                 <NuxtLink to="/">
-                  <IconsLogo class="h-14 w-auto" alt="zaman" />
+                  <img
+                    src="~/assets/img/home/ExTweChWYAAeGfy.png"
+                    alt="app-img"
+                    class="w-100"
+                  />
                 </NuxtLink>
               </div>
             </div>
@@ -63,4 +75,42 @@
     }
   }
 }
+.description {
+  font-size: 22px;
+  margin-bottom: 35px;
+}
 </style>
+<script>
+export default {
+  methods: {
+    getSettingData() {
+      this.$api
+        .get("/settings")
+        .then((res) => {
+          this.settingData = res?.data?.data;
+          email: "fddf@gmail.com";
+          fb_link: "https://youtube.com/";
+          id: 1;
+          inst_link: "https://youtube.com/";
+          linkedin_link: "https://youtube.com/";
+          phone: "https://youtube.com/";
+          tw_link: "https://youtube.com/";
+          whatsapp: "https://youtube.com/";
+        })
+        .catch((err) => {
+          if (err?.response?.data?.message) {
+            showAlert(err.response.data.message, "danger");
+          }
+        });
+    },
+  },
+  data() {
+    return {
+      settingData: null,
+    };
+  },
+  mounted() {
+    // this.getSettingData();
+  },
+};
+</script>

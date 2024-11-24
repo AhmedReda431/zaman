@@ -430,7 +430,7 @@ const handlePageChange = async (page) => {
             </div>
           </div>
           <div class="space-y-2">
-            <label class="block text-sm font-medium text-gray-700">{{
+            <!-- <label class="block text-sm font-medium text-gray-700">{{
               $t("select")
             }}</label>
             <div class="relative">
@@ -494,7 +494,7 @@ const handlePageChange = async (page) => {
                   </div>
                 </Listbox>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <!-- price_from Range -->

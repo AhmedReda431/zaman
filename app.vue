@@ -61,7 +61,29 @@ function showAlert(newAlert) {
 function dismissAlert() {
   alert.value = null;
 }
+const { $api } = useNuxtApp();
+import { useCookie } from "#app";
 
+function getSettingData() {
+  $api
+    .get("/settings")
+    .then((res) => {
+      Object.entries(res?.data?.data).forEach((element) => {
+        const [key, value] = element;
+        if (value && key !== 'id') {
+          const emailCookie = useCookie(`setting-${key}`, { maxAge: 3600 });
+          emailCookie.value = value;
+        }
+      });
+    })
+    .catch((err) => {
+      if (err?.response?.data?.message) {
+        showAlert(err.response.data.message, "danger");
+      }
+    });
+}
+
+getSettingData();
 useNuxtApp().hook("app:mounted", () => (isLoading.value = false));
 </script>
 

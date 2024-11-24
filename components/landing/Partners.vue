@@ -17,7 +17,10 @@
             </h1>
           </nuxt-link> -->
         </div>
-        <div class="certificates-holder mt-24 text-center">
+        <div
+          class="certificates-holder mt-24 text-center"
+          v-if="certificates?.length"
+        >
           <!-- Swiper Component -->
           <div>
             <ClientOnly>
@@ -33,8 +36,17 @@
                   1024: { slidesPerView: 4, spaceBetween: 10 },
                 }"
               >
-                <swiper-slide v-for="(x, index) in 20" :key="index">
-                  <IconsLogo class="h-14 w-auto" alt="zaman" />
+                <swiper-slide
+                  v-for="(certificate, index) in certificates"
+                  :key="index"
+                >
+                  <img
+                    :src="certificate.image"
+                    class="h-14 w-auto"
+                    alt="certificate-img"
+                    v-if="certificate?.image"
+                    
+                  />
                 </swiper-slide>
               </swiper>
             </ClientOnly>
@@ -68,6 +80,9 @@
 }
 </style>
 <script setup>
+import logo from "@/assets/img/Logo-zamn.png";
+const { $api } = useNuxtApp();
+let certificates = ref(null);
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
 
@@ -89,7 +104,7 @@ const { fetchRealStates, realStates, loading, success, error } =
 // Lifecycle: Mounted
 onMounted(async () => {
   loading.value = true;
-
+  getCertificatesData();
   await fetchRealStates().finally(() => {
     loading.value = false;
 
@@ -99,4 +114,20 @@ onMounted(async () => {
     }
   });
 });
+
+function getCertificatesData() {
+  $api
+    .get("/certificates")
+    .then((res) => {
+      certificates.value = res?.data?.data;
+    })
+    .catch((err) => {
+      if (err?.response?.data?.message) {
+        showAlert(err.response.data.message, "danger");
+      }
+    });
+}
+function setAltImage(event) {
+  event.target.src = logo; // Use the imported logo
+}
 </script>

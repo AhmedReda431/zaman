@@ -163,7 +163,7 @@
               />
             </svg>
             <div class="description">
-              <p class="text-white">description</p>
+              <p class="text-white">{{$t('footer description')}}</p>
             </div>
 
             <div class="flex gap-3">
@@ -420,5 +420,9 @@ ul{
     font-size: 20px;
     color: $main-color !important; 
   }
+}
+.description{
+  width: 55%;
+  font-size: 20px;
 }
 </style>

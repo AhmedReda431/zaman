@@ -222,7 +222,7 @@ export default {
   // Sample container
   .main-container {
     width: 100%;
-    height: 200px;
+    //height: 200px;
     display: flex;
     flex-flow: column;
     justify-content: center;
