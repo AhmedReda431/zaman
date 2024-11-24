@@ -815,7 +815,7 @@ const handlePageChange = async (page) => {
       </h2>
     </div>
   </div>
-  <LoadingComp :loading="loading" />
+  <LoadingScreen v-if="loading" />
 </template>
 
 <style scoped lang="scss">

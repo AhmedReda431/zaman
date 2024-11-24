@@ -208,6 +208,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 // Import required modules
 import { Navigation, Pagination } from "swiper/modules";
+
 export default {
   components: {
     // Swiper,
@@ -216,11 +217,11 @@ export default {
   data() {
     return {
       slides: [
-        { number: "1", text: "فقرة 1: تفاصيل حول الهدف الأول." },
-        { number: "2", text: "فقرة 2: تفاصيل حول الهدف الثاني." },
-        { number: "3", text: "فقرة 3: تفاصيل حول الهدف الثالث." },
-        { number: "4", text: "فقرة 4: تفاصيل حول الهدف الرابع." },
-        { number: "5", text: "فقرة 5: تفاصيل حول الهدف الخامس." },
+        { number: "1", text: this.$t("sentence1") },
+        { number: "2", text: this.$t("sentence2") },
+        { number: "3", text: this.$t("sentence3") },
+        { number: "4", text: this.$t("sentence4") },
+        { number: "5", text: this.$t("sentence5") },
       ],
       breakpoints: {
         // when window width is >= 640px
