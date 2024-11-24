@@ -18,7 +18,7 @@
           </div>
           <div class="img-holder w-50">
             <img
-              src="https://picsum.photos/800/400"
+              src="~/assets/img/about/about-us-img.jpg"
               alt="House Image"
               class="w-full h-full object-cover w-100"
             />
