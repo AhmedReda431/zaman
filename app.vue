@@ -2,7 +2,7 @@
   <Html :lang="locale" :dir="localeValue">
     <NuxtLayout>
       <LoadingScreen v-if="isLoading" />
-      <NuxtPage :key="locale" />
+      <NuxtPage :key="`${locale}-${route.fullPath}`" />
       <transition name="page">
         <AlertComponent
           v-if="alert"
@@ -17,7 +17,7 @@
 
 <script setup>
 import { ref, watch, computed, nextTick } from "vue";
-
+import { useRoute } from "vue-router";
 const LOADING_TIMEOUT_DURATION = 150; // ms
 const ALERT_DISPLAY_DURATION = 4500; // ms
 
@@ -29,7 +29,7 @@ const i18n = useCookie("i18n_redirected");
 if (!i18n.value) {
   setLocale("ar");
 }
-
+const route = useRoute();
 const isLoading = ref(true);
 
 // Watch for changes in the locale
@@ -43,6 +43,17 @@ watch(locale, (newValue, oldValue) => {
     });
   }
 });
+// watch(
+//   route,
+//   () => {
+//     isLoading.value = true;
+//     setTimeout(() => {
+//       isLoading.value = false;
+//     }, 2000);
+//   },
+//   { immediate: true },
+//   { deep: true }
+// );
 
 const { onAlert } = useAlert();
 const alert = ref(null);
@@ -70,7 +81,7 @@ function getSettingData() {
     .then((res) => {
       Object.entries(res?.data?.data).forEach((element) => {
         const [key, value] = element;
-        if (value && key !== 'id') {
+        if (value && key !== "id") {
           const emailCookie = useCookie(`setting-${key}`, { maxAge: 3600 });
           emailCookie.value = value;
         }
