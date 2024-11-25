@@ -482,5 +482,9 @@
   "sentence5":"فقرة 1: تفاصيل حول الهدف الخامس.",
   "location":"موقع",
   "building location":"موقع المبنى",
-  "Paste your location URL or iframe embed code here":"الصق عنوان URL لموقعك أو كود تضمين iframe لها"
+  "Paste your location URL or iframe embed code here":"الصق عنوان URL لموقعك أو كود تضمين iframe لها",
+  "whatsapp number":"رقم واتس اب",
+  "There is no information to deal with the property":"لا توجد معلومات للتعامل مع العقار",
+  "additional informations":"معلومات إضافية",
+  "Street information":"معلومات الشارع"
 }
