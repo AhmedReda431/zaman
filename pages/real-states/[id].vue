@@ -98,7 +98,7 @@ const copyToClipboard = (text) => {
           </div>
         </div>
         <!-- Main image -->
-        <div class="relative overflow-hidden rounded-lg mb-2 h-96">
+        <div class="relative overflow-hidden rounded-lg mb-2 h-96 h-500px">
           <img
             v-if="
               currentTab == 'images' &&
@@ -188,7 +188,7 @@ const copyToClipboard = (text) => {
             <!-- <PhoneIcon size="24" /> -->
             <span class="mx-2 text-sm d-flex gap-3 align-items-center">
               <img src="~/assets/Icons/mobile.svg" alt="whatsapp" />
-              {{ $t("mobile number") }}
+              <p class="font-semibold">{{ $t("mobile number") }}</p>
             </span>
             <!-- {{ realState.phone }} -->
           </a>
