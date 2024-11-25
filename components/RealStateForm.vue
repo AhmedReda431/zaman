@@ -48,6 +48,7 @@ const formData = ref({
   land_area: "",
   number_of_council_rooms: "",
   hall_number: "",
+  location: "",
 });
 
 const selectedFiles = ref([]);
@@ -198,6 +199,7 @@ onMounted(async () => {
               <input
                 v-model="formData.price"
                 type="number"
+                min="0"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
             </div>
@@ -326,6 +328,7 @@ onMounted(async () => {
               <input
                 v-model="formData.land_area"
                 type="number"
+                min="0"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
             </div>
@@ -370,6 +373,7 @@ onMounted(async () => {
               <input
                 v-model="formData.street_area"
                 type="number"
+                min="0"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
             </div>
@@ -601,7 +605,7 @@ onMounted(async () => {
         <h2 class="text-sm font-semibold leading-6 text-secondary mt-5">
           {{ $t('building location') }}
         </h2>
-        <LocationViewer class="mt-5" />
+        <LocationViewer class="mt-5" @updateLocation="formData.location = $event" />
 
         <!-- plans Image Upload Section -->
         <h2 class="text-sm font-semibold leading-6 text-secondary mt-5">
