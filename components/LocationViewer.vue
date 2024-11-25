@@ -1,13 +1,13 @@
 <template>
   <div class="location-viewer">
-    <h2>View Location</h2>
-    <label for="location">Paste your location URL or iframe embed code:</label>
+    <!-- <h2>View Location</h2> -->
+    <!-- <label for="location">Paste your location URL or iframe embed code:</label> -->
     <textarea
       id="location"
       v-model="locationInput"
       @input="updateEmbedContent"
-      placeholder="Paste your location URL or iframe embed code here"
-      rows="5"
+      :placeholder="$t('Paste your location URL or iframe embed code here')"
+      rows="7"
       required
     ></textarea>
 

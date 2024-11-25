@@ -148,7 +148,7 @@ let actions = ["طلب تمويل عقاري", "حجز معاينة العقار
         <!-- Right side -->
         <div class="flex items-center space-x-2 rtl:space-x-reverse">
           <span class="text-sm font-semibold">{{
-            realState?.category?.name
+            realState?.category?.title
           }}</span>
           <span
             class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded"

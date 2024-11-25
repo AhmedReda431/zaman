@@ -605,7 +605,7 @@ onMounted(async () => {
         <h2 class="text-sm font-semibold leading-6 text-secondary mt-5">
           {{ $t('building location') }}
         </h2>
-        <LocationViewer class="mt-5" @updateLocation="formData.location = $event" />
+        <LocationViewer class="mt-3" @updateLocation="formData.location = $event" />
 
         <!-- plans Image Upload Section -->
         <h2 class="text-sm font-semibold leading-6 text-secondary mt-5">
