@@ -505,61 +505,63 @@ onMounted(async () => {
                 </section> -->
 
         <!-- Multiple Image Upload Section -->
-        <h2 class="text-sm font-semibold leading-6 text-secondary">
+        <h2 class="text-sm font-semibold leading-6 text-secondary mt-5">
           {{ $t("the pictures") }}
         </h2>
-        <div class="flex items-center justify-center w-full">
-          <!-- Button to trigger multiple image upload -->
+        <div class="images-holder">
+          <div class="flex items-center justify-center w-full">
+            <!-- Button to trigger multiple image upload -->
 
-          <label
-            for="multiple-image-upload"
-            class="flex justify-center items-center bg-gray-50 rounded-lg py-2 px-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:bg-gray-700 dark:border-gray-600 dark:hover:border-gray-500 border-2 border-gray-300 border-dashed adding-label"
-          >
-            <div class="flex flex-row items-center gap-5 justify-center px-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="currentColor"
-                  d="M11 21v-8H3v-2h8V3h2v8h8v2h-8v8z"
-                />
-              </svg>
-              <p class="text-sm text-gray-700">
-                <span class="font-semibold">{{
-                  $t("addImages.addAdditionalImages")
-                }}</span>
-              </p>
-            </div>
-            <input
-              id="multiple-image-upload"
-              @change="handleFileUpload"
-              type="file"
-              multiple
-              class="hidden"
-            />
-          </label>
-        </div>
-
-        <div v-if="uploadedImages.length" class="grid gap-4 grid-cols-6">
-          <div
-            v-for="(image, index) in uploadedImages"
-            :key="index"
-            class="relative"
-          >
-            <img
-              :src="image.url"
-              alt="Uploaded Image"
-              class="border-2 rounded m-2 w-64 object-cover aspect-[4/3]"
-            />
-            <button
-              @click="deleteImage(index)"
-              class="absolute top-0 right-0 m-3 text-red-500 hover:text-red-700"
+            <label
+              for="multiple-image-upload"
+              class="flex justify-center items-center bg-gray-50 rounded-lg py-2 px-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:bg-gray-700 dark:border-gray-600 dark:hover:border-gray-500 border-2 border-gray-300 border-dashed adding-label"
             >
-              <Icon name="material-symbols:delete-forever-outline" />
-            </button>
+              <div class="flex flex-row items-center gap-5 justify-center px-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M11 21v-8H3v-2h8V3h2v8h8v2h-8v8z"
+                  />
+                </svg>
+                <p class="text-sm text-gray-700">
+                  <span class="font-semibold">{{
+                    $t("addImages.addAdditionalImages")
+                  }}</span>
+                </p>
+              </div>
+              <input
+                id="multiple-image-upload"
+                @change="handleFileUpload"
+                type="file"
+                multiple
+                class="hidden"
+              />
+            </label>
+          </div>
+
+          <div v-if="uploadedImages.length" class="grid gap-4 grid-cols-6">
+            <div
+              v-for="(image, index) in uploadedImages"
+              :key="index"
+              class="relative"
+            >
+              <img
+                :src="image.url"
+                alt="Uploaded Image"
+                class="border-2 rounded m-2 w-64 object-cover aspect-[4/3]"
+              />
+              <button
+                @click="deleteImage(index)"
+                class="absolute top-0 right-0 m-3 text-red-500 hover:text-red-700"
+              >
+                <Icon name="material-symbols:delete-forever-outline" />
+              </button>
+            </div>
           </div>
         </div>
 
@@ -596,58 +598,67 @@ onMounted(async () => {
                     </div>
                 </section> -->
 
+        <h2 class="text-sm font-semibold leading-6 text-secondary mt-5">
+          {{ $t('building location') }}
+        </h2>
+        <LocationViewer class="mt-5" />
+
         <!-- plans Image Upload Section -->
-        <h2 class="text-sm font-semibold leading-6 text-secondary">{{$t('chart')}}</h2>
-        <div class="flex items-center justify-center w-full">
-          <!-- Button to trigger plans image upload -->
+        <h2 class="text-sm font-semibold leading-6 text-secondary mt-5">
+          {{ $t("chart") }}
+        </h2>
+        <div class="images-holder">
+          <div class="flex items-center justify-center w-full">
+            <!-- Button to trigger plans image upload -->
 
-          <label
-            for="multiple-image-plans-upload"
-            class="flex justify-center items-center bg-gray-50 rounded-lg py-2 px-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:bg-gray-700 dark:border-gray-600 dark:hover:border-gray-500 border-2 border-gray-300 border-dashed adding-label"
-          >
-            <div class="flex flex-row items-center gap-5 justify-center px-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="currentColor"
-                  d="M11 21v-8H3v-2h8V3h2v8h8v2h-8v8z"
-                />
-              </svg>
-              <p class="text-sm text-gray-700">
-                <span class="font-semibold"> {{ $t("Add chart") }}</span>
-              </p>
-            </div>
-            <input
-              id="multiple-image-plans-upload"
-              @change="handleFileUploadPlans"
-              type="file"
-              multiple
-              class="hidden"
-            />
-          </label>
-        </div>
-
-        <div v-if="uploadedImagesPlans.length" class="grid gap-4 grid-cols-6">
-          <div
-            v-for="(image, index) in uploadedImagesPlans"
-            :key="index"
-            class="relative"
-          >
-            <img
-              :src="image.url"
-              alt="Uploaded Image"
-              class="border-2 rounded m-2 w-64 object-cover aspect-[4/3]"
-            />
-            <button
-              @click="deleteImagePlans(index)"
-              class="absolute top-0 right-0 m-3 text-red-500 hover:text-red-700"
+            <label
+              for="multiple-image-plans-upload"
+              class="flex justify-center items-center bg-gray-50 rounded-lg py-2 px-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:bg-gray-700 dark:border-gray-600 dark:hover:border-gray-500 border-2 border-gray-300 border-dashed adding-label"
             >
-              <Icon name="material-symbols:delete-forever-outline" />
-            </button>
+              <div class="flex flex-row items-center gap-5 justify-center px-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M11 21v-8H3v-2h8V3h2v8h8v2h-8v8z"
+                  />
+                </svg>
+                <p class="text-sm text-gray-700">
+                  <span class="font-semibold"> {{ $t("Add chart") }}</span>
+                </p>
+              </div>
+              <input
+                id="multiple-image-plans-upload"
+                @change="handleFileUploadPlans"
+                type="file"
+                multiple
+                class="hidden"
+              />
+            </label>
+          </div>
+
+          <div v-if="uploadedImagesPlans.length" class="grid gap-4 grid-cols-6">
+            <div
+              v-for="(image, index) in uploadedImagesPlans"
+              :key="index"
+              class="relative"
+            >
+              <img
+                :src="image.url"
+                alt="Uploaded Image"
+                class="border-2 rounded m-2 w-64 object-cover aspect-[4/3]"
+              />
+              <button
+                @click="deleteImagePlans(index)"
+                class="absolute top-0 right-0 m-3 text-red-500 hover:text-red-700"
+              >
+                <Icon name="material-symbols:delete-forever-outline" />
+              </button>
+            </div>
           </div>
         </div>
 
@@ -686,5 +697,16 @@ onMounted(async () => {
 .adding-label {
   width: 230px;
   height: 70px;
+}
+.images-holder {
+  background: #f5f5f5;
+  padding: 35px 10px;
+  margin: 20px 15px;
+  border-radius: 15px;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 </style>

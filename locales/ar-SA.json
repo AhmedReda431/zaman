@@ -479,5 +479,8 @@
   "sentence2":"فقرة 1: تفاصيل حول الهدف الثانى.",
   "sentence3":"فقرة 1: تفاصيل حول الهدف الثالث.",
   "sentence4":"فقرة 1: تفاصيل حول الهدف الرابع.",
-  "sentence5":"فقرة 1: تفاصيل حول الهدف الخامس."
+  "sentence5":"فقرة 1: تفاصيل حول الهدف الخامس.",
+  "location":"موقع",
+  "building location":"موقع المبنى",
+  "Paste your location URL or iframe embed code here":"الصق عنوان URL لموقعك أو كود تضمين iframe لها"
 }
