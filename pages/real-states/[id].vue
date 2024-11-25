@@ -97,8 +97,6 @@ function bookApiCall() {
   $api
     .post("/booking-real-estates", bookFormData.value)
     .then((res) => {
-      console.log("res", res.data.message);
-
       showToast(res?.data?.message, "success");
     })
     .catch((err) => {
