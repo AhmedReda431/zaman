@@ -9,18 +9,15 @@ export default defineNuxtPlugin((nuxtApp) => {
   const defaultUrl =
     config.VITE_NUXT_API_ENDPOINT || "https://admin.zman.sa/api";
 
-  // Access the `t` function via Nuxt app's i18n instance
-  const { t } = nuxtApp.vueApp.__VUE_I18N__.global;
-
   let api = axios.create({
     baseURL: defaultUrl,
   });
 
-  // Watch for changes in the token cookie
+  // Watch for changes in the token cookie and update headers accordingly
   const unsubscribe = watch(
     tokenCookie,
     (newToken) => {
-      api.defaults.headers.common["lang"] = "ar";
+      api.defaults.headers.common["lang"] = "ar"; // Set default language
       if (newToken) {
         api.defaults.headers.common["Authorization"] = `Bearer ${newToken}`;
       } else {
@@ -30,39 +27,70 @@ export default defineNuxtPlugin((nuxtApp) => {
     { immediate: true }
   );
 
-  // Add an interceptor to handle errors
-  api.interceptors.response.use(
-    (response) => {
-      // Return the response if no error
-      return response;
-    },
-    (error) => {
-      const { $toastMessage } = nuxtApp;
+  // Hook into app's lifecycle to ensure i18n is initialized
+  nuxtApp.hook("app:mounted", () => {
+    const i18n = nuxtApp.vueApp.__VUE_I18N__;
 
-      if (error.response) {
-        // Handle specific error codes with translated messages
-        if (error.response.status === 401) {
-          tokenCookie.value = null;
-          router.push("/login");
-          $toastMessage(t("unauthorizedMessage"), "error");
-        } else if (error.response.status === 500) {
-          $toastMessage(t("serverErrorMessage"), "error");
-        } else if (error.response.status === 400) {
-          $toastMessage(t("badRequestMessage"), "error");
-        }
-      } else {
-        $toastMessage(t("unexpectedErrorMessage"), "error");
-      }
-
-      // Reject the error to propagate it
-      return Promise.reject(error);
+    // Validate i18n initialization
+    if (!i18n || !i18n.global) {
+      console.warn("i18n plugin is not properly initialized");
+      return;
     }
-  );
 
+    const { t } = i18n.global;
+
+    // Add Axios interceptor to handle API errors
+    api.interceptors.response.use(
+      (response) => {
+        return response; // No errors, return response
+      },
+      (error) => {
+        const { $toastMessage } = nuxtApp;
+
+        // Handle specific error codes
+        if (error.response) {
+          switch (error.response.status) {
+            case 401: // Unauthorized
+              tokenCookie.value = null;
+              router.push("/login");
+              $toastMessage(
+                t("unauthorizedMessage") || "Unauthorized",
+                "error"
+              );
+              break;
+            case 500: // Server error
+              $toastMessage(t("serverErrorMessage") || "Server error", "error");
+              break;
+            case 400: // Bad request
+              $toastMessage(t("badRequestMessage") || "Bad request", "error");
+              break;
+            default:
+              $toastMessage(
+                t("unexpectedErrorMessage") || "An unexpected error occurred",
+                "error"
+              );
+          }
+        } else {
+          // Handle network or unknown errors
+          $toastMessage(
+            t("unexpectedErrorMessage") || "An unexpected error occurred",
+            "error"
+          );
+        }
+
+        return Promise.reject(error); // Reject the promise to propagate the error
+      }
+    );
+
+    console.log("i18n plugin is initialized, Axios is ready to use.");
+  });
+
+  // Clean up watcher on app unmount
   nuxtApp.hook("app:beforeUnmount", () => {
     unsubscribe();
   });
 
+  // Provide the Axios instance globally
   return {
     provide: {
       api: api,
