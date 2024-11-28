@@ -102,7 +102,7 @@ const route = useRoute();
               </NuxtLink>
               <div class="mx-10" v-else></div>
             </div>
-            <LangSwitchTwo />
+            <LangSwitch />
             <div class="flex items-center justify-center">
               <Menu as="div" class="relative ml-3" v-if="isAuthenticated">
                 <MenuButton class="relative flex items-center rounded-ful text-sm">

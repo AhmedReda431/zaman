@@ -223,7 +223,7 @@
     "update": "سيتم الموافقه على نشر العقار من قبل فريق الدعم خلال مدة تصل 48 ساعة"
   },
   "chooseCategory": "اختر التصنيف",
-  "results": "النتائج",
+  "results": " عدد النتائج",
   "date": "التاريخ",
   "minTime": "الحجز الادني للمدة ",
   "selectRegion": "اختر المنطقة",
@@ -492,5 +492,13 @@
   "Additional notes": "ملاحظات إضافية",
   "Report a property": "الإبلاغ عن عقار",
   "The name is double": "الاسم ثنائى",
-  "Type of report": "نوع التقرير"
+  "Type of report": "نوع التقرير",
+  "Display list": "قائمة العرض",
+  "highest price": "أعلى سعر",
+  "lowest price": "أقل سعر",
+  "newest": "الأحدث",
+  "oldest": "الأقدم",
+  "favourite": "مفضل",
+  "Riyadh branch": "فرع الرياض",
+  "Jeddah branch": "فرع جدة"
 }

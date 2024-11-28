@@ -157,6 +157,37 @@ const handlePageChange = async (page) => {
     });
   }, 100);
 };
+// State to track if the 'grid' class should be applied
+const isGrid = ref(false);
+
+// Function to toggle the 'grid' class
+const toggleGrid = () => {
+  isGrid.value = !isGrid.value;
+};
+
+const ordersList = [
+  {
+    value: "high_price",
+    name: t("highest price"),
+  },
+  {
+    value: "low_price",
+    name: t("lowest price"),
+  },
+  {
+    value: "new",
+    name: t("newest"),
+  },
+  {
+    value: "old",
+    name: t("oldest"),
+  },
+  {
+    value: "favourite",
+    name: t("favourite"),
+  },
+];
+const selectedOrder = ref(ordersList[0]);
 </script>
 <template>
   <div class="max-w--6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -164,7 +195,6 @@ const handlePageChange = async (page) => {
       <!-- Top Bar -->
 
       <div class="mt-5 flex items-center justify-between gap-2 px-10">
-        <!-- Filter Button -->
         <button
           @click="toggleFilter"
           class="bg-zaman text-white px-3 py-2.5 rounded-md flex items-center"
@@ -182,21 +212,114 @@ const handlePageChange = async (page) => {
         </button>
 
         <!-- Search Bar -->
-        <div class="flex-grow relative">
+        <div class="flex-grow relative d-flex gap-2 justify-content-between">
           <input
             v-model="search"
             type="text"
             name="search"
             id="search"
             :placeholder="$t('search about')"
-            class="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-md placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
+            class="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-md placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm search-input"
           />
+          <div
+            class="sort-by-displayblock w-full rounded-md border-0 py-2.5 text-gray-900 shadow-md placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm d-flex gap-2 justify-content-between px-3 align-items-center"
+          >
+            <!-- Filter Button -->
+            <div
+              @click="toggleGrid"
+              class="cursor-pointer d-flex align-items-center"
+            >
+              <h3>{{ $t("Display list") }}</h3>
+              <span class="mx-3" :class="{'grid-icon-holder':isGrid}">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1.5em"
+                  height="1.5em"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M5 11q-.825 0-1.412-.587T3 9V5q0-.825.588-1.412T5 3h4q.825 0 1.413.588T11 5v4q0 .825-.587 1.413T9 11zm0 10q-.825 0-1.412-.587T3 19v-4q0-.825.588-1.412T5 13h4q.825 0 1.413.588T11 15v4q0 .825-.587 1.413T9 21zm10-10q-.825 0-1.412-.587T13 9V5q0-.825.588-1.412T15 3h4q.825 0 1.413.588T21 5v4q0 .825-.587 1.413T19 11zm0 10q-.825 0-1.412-.587T13 19v-4q0-.825.588-1.412T15 13h4q.825 0 1.413.588T21 15v4q0 .825-.587 1.413T19 21z"
+                  />
+                </svg>
+              </span>
+            </div>
+            <!-- sortBy Filter -->
+            <Listbox v-model="selectedOrder">
+              <div class="relative mt-1 cursor-pointer">
+                <ListboxButton
+                  class="cursor-pointer relative w-full cursor-default rounded-lg text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 sm:text-sm sortByBtn"
+                >
+                  <span class="block truncate">{{ selectedOrder.name }}</span>
+                  <span
+                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2" :class="{'grid-icon-holder':selectedOrder}"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.6em"
+                      height="1.6em"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M9 19v-2h12v2zm0-6v-2h12v2zm0-6V5h12v2zM5 20q-.825 0-1.412-.587T3 18t.588-1.412T5 16t1.413.588T7 18t-.587 1.413T5 20m0-6q-.825 0-1.412-.587T3 12t.588-1.412T5 10t1.413.588T7 12t-.587 1.413T5 14m0-6q-.825 0-1.412-.587T3 6t.588-1.412T5 4t1.413.588T7 6t-.587 1.413T5 8"
+                      />
+                    </svg>
+                  </span>
+                </ListboxButton>
+
+                <transition
+                  leave-active-class="transition duration-100 ease-in"
+                  leave-from-class="opacity-100"
+                  leave-to-class="opacity-0"
+                >
+                  <ListboxOptions
+                    class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm z-9"
+                  >
+                    <ListboxOption
+                      v-slot="{ active, selected }"
+                      v-for="(order, index) in ordersList"
+                      :key="index"
+                      :value="order"
+                      as="template"
+                    >
+                      <li
+                        :class="[
+                          active
+                            ? 'bg-amber-100 text-amber-900'
+                            : 'text-gray-900',
+                          'relative cursor-default select-none py-2 pl-10 pr-4',
+                        ]"
+                      >
+                        <span
+                          :class="[
+                            selected ? 'font-medium' : 'font-normal',
+                            'block truncate',
+                          ]"
+                          >{{ order.name }}</span
+                        >
+                        <span
+                          v-if="selected"
+                          class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600"
+                        >
+                          <CheckIcon class="h-5 w-5" aria-hidden="true" />
+                        </span>
+                      </li>
+                    </ListboxOption>
+                  </ListboxOptions>
+                </transition>
+              </div>
+            </Listbox>
+          </div>
         </div>
 
         <!-- Results Counter -->
         <div
           class="bg-secondary text-white px-3 py-2.5 rounded-md flex justify-center items-center gap-x-1"
         >
+          <span>
+            <img src="~/assets/img/result_number.svg" alt="icon" />
+          </span>
           <span class="font-semibold text-sm"
             >{{ $t("results") }}
             <span class="main-color font-weight-bold mx-2">{{
@@ -790,7 +913,7 @@ const handlePageChange = async (page) => {
         :to="`/real-states/${item.id}`"
         class="card-holder w-full"
       >
-        <OfferCard :offer="item" class="my-4 w-full" />
+        <OfferCard :offer="item" class="my-4 w-full" :isGrid="isGrid" />
       </NuxtLink>
     </div>
     <!-- Pagination Component -->
@@ -864,5 +987,20 @@ input[type="range"]::-ms-thumb {
 .filter-holder2 {
   width: 100%;
   margin-top: 30px;
+}
+.search-input {
+  width: auto;
+  min-width: 75%;
+}
+.sortByBtn {
+  min-width: 160px;
+  z-index: 9;
+}
+.grid-icon-holder{
+  svg{
+    path{
+      fill:rgb(189 154 96 / var(--tw-bg-opacity, 1))
+    }
+  }
 }
 </style>

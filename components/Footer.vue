@@ -3,8 +3,8 @@
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="mx-auto px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-24">
       <div class="xl:grid xl:grid-cols-6 xl:gap-8">
-        <div class="space-y-8 xl:col-span-3 px-18">
-          <div class="flex flex-col gap-10 items-start w-fit px-10">
+        <div class="space-y-1 xl:col-span-2 px-1">
+          <div class="flex flex-col gap-10 items-start w-fit px-0">
             <!-- <IconsLogo color="white" top_color="white" alt='zaman' class="h-7" /> -->
             <svg
               width="280"
@@ -163,7 +163,7 @@
               />
             </svg>
             <div class="description">
-              <p class="text-white">{{$t('footer description')}}</p>
+              <p class="text-white">{{ $t("footer description") }}</p>
             </div>
 
             <div class="flex gap-3">
@@ -188,12 +188,14 @@
             </div>
           </div>
         </div>
-        <div class="mt-16 grid grid-cols-3 gap-8 xl:col-span-3 xl:mt-0 px-2 flex-sm-column">
+        <div
+          class="mt-16 grid grid-cols-2 gap-0 xl:col-span-3 xl:mt-0 px-2 flex-sm-column"
+        >
           <div class="md:grid md:grid-cols-1 md:gap-8 text-white">
             <div class="my-list">
-              <div class="list-title">
+              <!-- <div class="list-title">
                 <h3 class="title">{{ $t("Useful links") }}</h3>
-              </div>
+              </div> -->
               <div>
                 <ul role="list" class="mt-6 space-y-4">
                   <li>
@@ -241,104 +243,70 @@
             </div>
           </div>
           <div class="md:grid md:grid-cols-1 md:gap-8 text-white">
-            <div class="my-list">
-              <div class="list-title">
-                <h3 class="title">{{ $t("Rent") }}</h3>
-              </div>
-              <div>
-                <ul role="list" class="mt-6 space-y-4">
-                  <li>
-                    <NuxtLink
-                      
-                      class="text-sm leading-6 text-gray-300 hover:text-white"
-                    >
-                      {{ $t("Apartments for rent") }}
-                    </NuxtLink>
-                  </li>
-                  <li>
-                    <NuxtLink
-                      
-                      class="text-sm leading-6 text-gray-300 hover:text-white"
-                    >
-                      {{ $t("Villas for rent") }}
-                    </NuxtLink>
-                  </li>
-                  <li>
-                    <NuxtLink
-                      
-                      class="text-sm leading-6 text-gray-300 hover:text-white"
-                    >
-                      {{ $t("Offices for rent") }}
-                    </NuxtLink>
-                  </li>
-                  <li>
-                    <NuxtLink
-                      
-                      class="text-sm leading-6 text-gray-300 hover:text-white"
-                    >
-                      {{ $t("Floors for rent") }}
-                    </NuxtLink>
-                  </li>
-                  <li>
-                    <NuxtLink
-                      
-                      class="text-sm leading-6 text-gray-300 hover:text-white"
-                    >
-                      {{ $t("Shops for rent") }}
-                    </NuxtLink>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="md:grid md:grid-cols-1 md:gap-8 text-white">
-            <div class="my-list">
-              <div class="list-title">
-                <h3 class="title">{{ $t("Sale") }}</h3>
-              </div>
-              <div>
-                <ul role="list" class="mt-6 space-y-4">
-                  <li>
-                    <NuxtLink
-                      
-                      class="text-sm leading-6 text-gray-300 hover:text-white"
-                    >
-                      {{ $t("Apartments for sale") }}
-                    </NuxtLink>
-                  </li>
-                  <li>
-                    <NuxtLink
-                      
-                      class="text-sm leading-6 text-gray-300 hover:text-white"
-                    >
-                      {{ $t("Villas for sale") }}
-                    </NuxtLink>
-                  </li>
-                  <li>
-                    <NuxtLink
-                      
-                      class="text-sm leading-6 text-gray-300 hover:text-white"
-                    >
-                      {{ $t("Offices for sale") }}
-                    </NuxtLink>
-                  </li>
-                  <li>
-                    <NuxtLink
-                      
-                      class="text-sm leading-6 text-gray-300 hover:text-white"
-                    >
-                      {{ $t("Floors for sale") }}
-                    </NuxtLink>
-                  </li>
-                  <li>
-                    <NuxtLink
-                      
-                      class="text-sm leading-6 text-gray-300 hover:text-white"
-                    >
-                      {{ $t("Shops for sale") }}
-                    </NuxtLink>
-                  </li>
-                </ul>
+            <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+              <div class="md:grid md:grid-cols-1 md:gap-8">
+                <div>
+                  <section role="list" class="mt-6 flex items-center">
+                    <div>
+                      <div
+                        class="text-sm leading-6 text-gray-300 hover:text-white flex items-center"
+                      >
+                        <svg
+                          width="10"
+                          height="14"
+                          viewBox="0 0 10 14"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M5 0C2.23571 0 0 2.191 0 4.9C0 7.819 3.15714 11.844 4.45714 13.377C4.74286 13.713 5.26429 13.713 5.55 13.377C6.84286 11.844 10 7.819 10 4.9C10 2.191 7.76429 0 5 0ZM5 6.65C4.01429 6.65 3.21429 5.866 3.21429 4.9C3.21429 3.934 4.01429 3.15 5 3.15C5.98571 3.15 6.78571 3.934 6.78571 4.9C6.78571 5.866 5.98571 6.65 5 6.65Z"
+                            fill="#768C88"
+                          ></path></svg
+                        ><span class="mx-3"> {{$t('Riyadh branch')}}</span>
+                      </div>
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8918.483659127067!2d46.62900437132356!3d24.794426867064043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2ee3780125bd21%3A0x36f69d94dbad4cbd!2z2KjYsdisINin2YTZhdiz2KrZgtio2YQ!5e0!3m2!1sar!2seg!4v1730189128456!5m2!1sar!2seg"
+                        width="200"
+                        height="200"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        style="border: 0px"
+                      ></iframe>
+                    </div>
+                    <div class="mx-3">
+                      <div
+                        class="text-sm leading-6 text-gray-300 hover:text-white flex items-center"
+                      >
+                        <svg
+                          width="10"
+                          height="14"
+                          viewBox="0 0 10 14"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M5 0C2.23571 0 0 2.191 0 4.9C0 7.819 3.15714 11.844 4.45714 13.377C4.74286 13.713 5.26429 13.713 5.55 13.377C6.84286 11.844 10 7.819 10 4.9C10 2.191 7.76429 0 5 0ZM5 6.65C4.01429 6.65 3.21429 5.866 3.21429 4.9C3.21429 3.934 4.01429 3.15 5 3.15C5.98571 3.15 6.78571 3.934 6.78571 4.9C6.78571 5.866 5.98571 6.65 5 6.65Z"
+                            fill="#768C88"
+                          ></path></svg
+                        ><span class="mx-3"> {{$t('Jeddah branch')}}</span>
+                      </div>
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3709.5766569058883!2d39.1108582!3d21.6024419!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3dbabb0e53c41%3A0xf11d981517c55a1f!2sThe%20Headquarters%20Business%20Park!5e0!3m2!1sar!2seg!4v1730189323197!5m2!1sar!2seg"
+                        width="200"
+                        height="200"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        style="border: 0px"
+                      ></iframe>
+                    </div>
+                  </section>
+                </div>
               </div>
             </div>
           </div>
@@ -407,21 +375,21 @@ const navigation = {
 };
 </script>
 <style lang="scss" scoped>
-.title{
+.title {
   font-size: 25px;
 }
-ul{
+ul {
   list-style: disc;
   padding: 0 20px;
 }
-.after-footer{
+.after-footer {
   background: #fff;
-  p.main-color{
+  p.main-color {
     font-size: 20px;
-    color: $main-color !important; 
+    color: $main-color !important;
   }
 }
-.description{
+.description {
   width: 55%;
   font-size: 20px;
 }

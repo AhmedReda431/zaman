@@ -218,7 +218,7 @@
     "update": "Space will be published by the support team within 48 hours"
   },
   "chooseCategory": "Choose Category",
-  "results": "Results",
+  "results": "number of Results",
   "date": "Date",
   "minTime": "Minimum Booking Time",
   "selectRegion": "Select Region",
@@ -486,5 +486,13 @@
   "Additional notes":"Additional notes",
   "Report a property":"Report a property",
   "The name is double":"The name is double",
-  "Type of report":"Type of report"
+  "Type of report":"Type of report",
+  "Display list":"Display list",
+  "highest price":"Highest price",
+  "lowest price":"lowest price",
+  "newest":"newest",
+  "oldest":"oldest",
+  "favourite":"favourite",
+  "Riyadh branch":"Riyadh branch",
+  "Jeddah branch":"Jeddah branch"
 }

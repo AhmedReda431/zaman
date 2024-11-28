@@ -19,7 +19,7 @@ const router = useRouter();
 const categories = ref([
   { value: "sell", label: t("categories.sell") },
   { value: "rent", label: t("categories.rent") },
-  { value: "requests", label: t("categories.requests") },
+  //{ value: "requests", label: t("categories.requests") },
 ]);
 const type = ref("");
 const city_id = ref("");

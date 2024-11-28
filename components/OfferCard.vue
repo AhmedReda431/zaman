@@ -12,6 +12,10 @@ const props = defineProps({
     //     price: 100000,
     // },
   },
+  isGrid: {
+    type: Boolean
+  },
+  
 });
 </script>
 
@@ -19,10 +23,12 @@ const props = defineProps({
   <div
     class="rounded-lg overflow-hidden border relative bg-white shadow-lg max-w-[320px]"
     :key="offer.title"
+    :class="{'d-flex': isGrid}"
   >
     <img
       class="w-full object-cover h-48 md:h-64 card-img"
       :src="offer.images[0]"
+      :class="{'grid': isGrid}"
       alt=""
     />
     <span
@@ -90,5 +96,9 @@ const props = defineProps({
 .card-img {
   height: 300px !important;
   width: 100% !important;
+}
+.card-img.grid {
+  height: 100% !important;
+  width: 97px !important;
 }
 </style>
