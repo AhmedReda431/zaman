@@ -494,5 +494,12 @@
   "oldest":"oldest",
   "favourite":"favourite",
   "Riyadh branch":"Riyadh branch",
-  "Jeddah branch":"Jeddah branch"
+  "Jeddah branch":"Jeddah branch",
+  "height":"height",
+  "Depth":"Depth",
+  "electrecity":"Electrecity",
+  "water":"Water",
+  "yes":"Yes",
+  "no":"No",
+  "requistBuilding":"Request Your Building"
 }

@@ -46,7 +46,7 @@ const route = useRoute();
   <div class="header-holder">
     <div class="bg-white">
       <header class="bg-white relative">
-        <nav class="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8" aria-label="Global">
+        <nav class="mx-auto flex max-w-8xl items-center justify-between p-4 px-28 nav-holder" aria-label="Global">
           <div class="hidden lg:flex">
             <NuxtLink href="/" class="-m-1.5 p-1.5">
               <span class="sr-only">Your Company</span>
@@ -55,7 +55,7 @@ const route = useRoute();
           </div>
 
           <div class="flex items-center gap-x-12">
-            <div class="hidden lg:flex lg:gap-x-12 lg:items-center text-gray-600">
+            <div class="hidden lg:flex lg:gap-x-12 lg:items-center text-gray-600 links-holder">
 
               <NuxtLink :to="{ path: '/' }" :class="{ 'border-b-2 border-b-zaman text-zaman-900': route.path == '/' }"
                 class="text-sm font-semibold leading-6  hover:text-gray-500">
@@ -94,10 +94,17 @@ const route = useRoute();
                 </div>
               </NuxtLink>
               <NuxtLink :to="{ path: '/real-states/create' }" v-if="isAuthenticated"
-                class="rounded-md bg-zaman px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-zaman-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zaman-700">
+                class="rounded-md bg-zaman px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-zaman-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zaman-700 large-btn-a">
                 <div class="flex items-center gap-x-1 text-white">
                   <HomeIcon class="h-5 w-5 flex-none text-white" aria-hidden="true" />
                   {{ $t('addYourBuilding') }}
+                </div>
+              </NuxtLink>
+              <NuxtLink :to="{ path: '/order-state' }" v-if="isAuthenticated"
+                class="rounded-md bg-zaman px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-zaman-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zaman-700 large-btn-a">
+                <div class="flex items-center gap-x-1 text-white">
+                  <HomeIcon class="h-5 w-5 flex-none text-white" aria-hidden="true" />
+                  {{ $t('requistBuilding') }}
                 </div>
               </NuxtLink>
               <div class="mx-10" v-else></div>

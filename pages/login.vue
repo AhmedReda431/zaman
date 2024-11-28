@@ -64,7 +64,7 @@ const handleLogin = async (data) => {
             </NuxtLink>
             <h2 class="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">{{
               $t('authentication.welcomeAgain')
-            }}</h2>
+            }}</h2>ACC
             <div class="mt-2 text-sm leading-6 text-gray-500">
               <div class="font-semibold text-gray-500">{{ $t("authentication.pleaseLogin") }}</div>
             </div>

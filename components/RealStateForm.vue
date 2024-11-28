@@ -38,7 +38,7 @@ const formData = ref({
   //   whatsup: "",
   //   license_number: "",
   //   real_estate_characteristics: "",
-  //   depth: "",
+    depth: "",
   water: 0,
   electricity: 0,
   street_facing: "",
@@ -49,6 +49,7 @@ const formData = ref({
   number_of_council_rooms: "",
   hall_number: "",
   location: "",
+  // amenities: "",
 });
 
 const selectedFiles = ref([]);
@@ -265,61 +266,45 @@ onMounted(async () => {
               <label class="block text-sm font-medium text-gray-700">{{
                 $t("Number of bedrooms")
               }}</label>
-              <select
+              <input
                 v-model="formData.bedrooms"
+                type="number"
+                min="0"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              >
-                <option value="" disabled>{{ $t("select") }}</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
+              />
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700">{{
                 $t("Number of bathrooms")
               }}</label>
-              <select
+              <input
                 v-model="formData.bathrooms_of_rooms"
+                type="number"
+                min="0"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              >
-                <option value="" disabled>{{ $t("select") }}</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
+              />
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700">
                 {{ $t("Number of halls") }}</label
               >
-              <select
+              <input
                 v-model="formData.hall_number"
+                type="number"
+                min="0"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              >
-                <option value="" disabled>{{ $t("select") }}</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
+              />
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700">
                 {{ $t("Number of council rooms") }}</label
               >
-              <select
+              <input
                 v-model="formData.number_of_council_rooms"
+                type="number"
+                min="0"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              >
-                <option value="" disabled>{{ $t("select") }}</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
+              />
             </div>
             <div class="md:col-span-2">
               <label class="block text-sm font-medium text-gray-700">
@@ -391,14 +376,14 @@ onMounted(async () => {
         </div>
 
         <!-- Additional Information -->
-        <!-- <div class="mt-8">
+        <div class="mt-8">
           <h2 class="text-sm font-semibold leading-6 text-secondary">
            {{$t('Additional information')}}
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 m-4">
             <div>
               <label class="block text-sm font-medium text-gray-700"
-                >مياه</label
+                >{{$t('water')}}</label
               >
               <div class="mt-1 flex items-center space-x-4">
                 <label class="inline-flex items-center">
@@ -408,7 +393,7 @@ onMounted(async () => {
                     :value="1"
                     class="form-radio"
                   />
-                  <span class="mr-2 ml-8">نعم</span>
+                  <span class="mr-2 ml-8">{{$t('yes')}}</span>
                 </label>
                 <label class="inline-flex items-center">
                   <input
@@ -417,13 +402,13 @@ onMounted(async () => {
                     :value="0"
                     class="form-radio"
                   />
-                  <span class="mr-2">لا</span>
+                  <span class="mr-2">{{$t('no')}}</span>
                 </label>
               </div>
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700"
-                >كهرباء</label
+                >{{$t('electrecity')}}</label
               >
               <div class="mt-1 flex items-center space-x-4">
                 <label class="inline-flex items-center">
@@ -433,7 +418,7 @@ onMounted(async () => {
                     :value="1"
                     class="form-radio"
                   />
-                  <span class="mr-2 ml-8">نعم</span>
+                  <span class="mr-2 ml-8">{{$t('yes')}}</span>
                 </label>
                 <label class="inline-flex items-center">
                   <input
@@ -442,13 +427,13 @@ onMounted(async () => {
                     :value="0"
                     class="form-radio"
                   />
-                  <span class="mr-2">لا</span>
+                  <span class="mr-2">{{$t('no')}}</span>
                 </label>
               </div>
             </div>
-            <div class="md:col-span-1">
+            <div class="md:col-span-">
               <label class="block text-sm font-medium text-gray-700"
-                >الطول</label
+                >{{$t('height')}}</label
               >
               <input
                 v-model="formData.length"
@@ -458,7 +443,7 @@ onMounted(async () => {
             </div>
             <div class="md:col-span-1">
               <label class="block text-sm font-medium text-gray-700"
-                >العمق</label
+                >{{$t('Depth')}}</label
               >
               <input
                 v-model="formData.depth"
@@ -467,14 +452,14 @@ onMounted(async () => {
               />
             </div>
           </div>
-        </div> -->
+        </div>
 
         <!-- Features and Amenities -->
         <!-- <div class="mt-8">
                     <h2 class="text-sm font-semibold leading-6 text-secondary">المميزات والمرافق</h2>
                     <div class="m-4">
                         <label class="block text-sm font-medium text-gray-700">المميزات والمرافق</label>
-                        <input v-model="formData.formData.amenities" type="text"
+                        <input v-model="formData.amenities" type="text"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                     </div>
                 </div> -->

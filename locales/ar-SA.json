@@ -500,5 +500,12 @@
   "oldest": "الأقدم",
   "favourite": "مفضل",
   "Riyadh branch": "فرع الرياض",
-  "Jeddah branch": "فرع جدة"
+  "Jeddah branch": "فرع جدة",
+  "height":"الطول",
+  "Depth":"العمق",
+  "electrecity":"الكهرباء",
+  "water":"المياة",
+  "yes":"نعم",
+  "no":"لا",
+  "requistBuilding":"أطلب عقارك"
 }

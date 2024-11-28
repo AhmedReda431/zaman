@@ -63,5 +63,20 @@
     }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1024px) and (max-width:1600px) {
+    .nav-holder{
+        padding-inline: 10px !important;
+        overflow: hidden;
+        .links-holder{
+            a{
+                font-size: 12px !important;
+            }
+            .large-btn-a{
+                padding: 5px 10px;
+            }
+        }
+        .flex.items-center.gap-x-12{
+            gap: 10px !important;
+        }
+    }
 }
