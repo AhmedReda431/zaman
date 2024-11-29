@@ -87,9 +87,8 @@
     </div>
   </div>
 
-  <div class="goals-holder">
+  <!-- <div class="goals-holder">
     <div class="container-holder">
-      <!-- Slider Section -->
       <div class="container-data">
         <h2
           class="section-title text-m font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block title mt-2 mb-24"
@@ -124,7 +123,7 @@
         </ClientOnly>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- Cards Section -->
   <div class="care-section">
     <div class="care-section-holder">

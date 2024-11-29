@@ -32,16 +32,16 @@ const props = defineProps({
       alt=""
     />
     <span
-      class="absolute top-5 right-5 bg-secondary rounded text-sm text-white font-semibold px-4 py-1"
+      class="absolute top-5 right-5 bg-secondary rounded text-sm text-white font-semibold px-4 py-1" :class="{'new-absolute-setting' : isGrid}"
     >
-      البيع
+      {{ $t('sell') }}
     </span>
     <span
       class="absolute top-5 left-5 w-8 h-8 bg-opacity-75 flex items-center justify-center rounded-full bg-secondary text-white"
     >
       <Icon size="20" name="ph:heart-bold" />
     </span>
-    <div class="p-4">
+    <div class="p-4 w-full">
       <div class="flex justify-between items-center">
         <h3
           class="text-lg font-semibold leading-8 tracking-tight text-gray-900"
@@ -100,5 +100,11 @@ const props = defineProps({
 .card-img.grid {
   height: 100% !important;
   width: 97px !important;
+}
+
+.new-absolute-setting{
+  bottom: 10px;
+  right: 10px;
+  top: auto !important;
 }
 </style>

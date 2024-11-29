@@ -135,12 +135,15 @@ const { $toastMessage } = useNuxtApp();
 const showToast = (message, type) => {
   $toastMessage(message, type); // Use type 'success', 'error', 'info', etc.
 };
+definePageMeta({
+    middleware: "auth"
+})
 onMounted(async () => {
-  if (!isAuthenticated.value) {
-    showToast(t("you must login first!"), "error");
-    const router = useRouter();
-    router.push("/login");
-  }
+  // if (!isAuthenticated.value) {
+  //   showToast(t("you must login first!"), "error");
+  //   const router = useRouter();
+  //   router.push("/login");
+  // }
   await fetchCities();
   await fetchCategories();
 });

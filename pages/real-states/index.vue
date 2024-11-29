@@ -194,10 +194,10 @@ const selectedOrder = ref(ordersList[0]);
     <div>
       <!-- Top Bar -->
 
-      <div class="mt-5 flex items-center justify-between gap-2 px-10">
+      <div class="mt-5 flex items-center justify-between gap-2 px-10 refresed-in-sm">
         <button
           @click="toggleFilter"
-          class="bg-zaman text-white px-3 py-2.5 rounded-md flex items-center"
+          class="bg-zaman text-white px-3 py-2.5 rounded-md flex items-center filter-btn"
         >
           <Icon name="mdi:filter" class="w-4 h-4" />
           <span class="text-sm">{{ $t("filter") }}</span>
@@ -212,7 +212,7 @@ const selectedOrder = ref(ordersList[0]);
         </button>
 
         <!-- Search Bar -->
-        <div class="flex-grow relative d-flex gap-2 justify-content-between">
+        <div class="flex-grow relative d-flex gap-2 justify-content-between refresed-in-sm input-holder">
           <input
             v-model="search"
             type="text"
@@ -315,7 +315,7 @@ const selectedOrder = ref(ordersList[0]);
 
         <!-- Results Counter -->
         <div
-          class="bg-secondary text-white px-3 py-2.5 rounded-md flex justify-center items-center gap-x-1"
+          class="bg-secondary text-white px-3 py-2.5 rounded-md flex justify-center items-center gap-x-1 filter-btn"
         >
           <span>
             <img src="~/assets/img/result_number.svg" alt="icon" />
@@ -1002,5 +1002,8 @@ input[type="range"]::-ms-thumb {
       fill:rgb(189 154 96 / var(--tw-bg-opacity, 1))
     }
   }
+}
+.filter-btn{
+  height: 49px;
 }
 </style>

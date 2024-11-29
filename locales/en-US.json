@@ -501,5 +501,7 @@
   "water":"Water",
   "yes":"Yes",
   "no":"No",
-  "requistBuilding":"Request Your Building"
+  "requistBuilding":"Request Your Building",
+  "sell":"Sell",
+  "features":"Features"
 }

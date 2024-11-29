@@ -12,7 +12,7 @@ export const useCategories = () => {
     error.value = null;
 
     try {
-      const response = await $api.get("/states");
+      const response = await $api.get("/categories");
       categories.value = response.data.data;
     } catch (err) {
       error.value =
