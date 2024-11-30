@@ -26,9 +26,6 @@ let propertyInfo = ref([]);
 let streetInfo = ref([]);
 let info = ref([]);
 const { $api } = useNuxtApp();
-const isIframe = (location) => {
-  return location?.includes("<iframe");
-};
 onMounted(async () => {
   // Ensure this runs only on the client-side
   currentPageUrl = window.location.href;
@@ -96,9 +93,6 @@ onMounted(async () => {
       value: `${realState.value.street_facing} `,
       icon: "mdi mdi-vector-square",
     });
-    setTimeout(() => {
-      realState.value.location = 'https://maps.app.goo.gl/KeTNZ691reXCkzuM7'
-    }, 5000);
 });
 let currentImageIndex = ref(0);
 
@@ -429,15 +423,7 @@ function reportApiCall() {
         {{ $t("location") }}
       </h2>
       <div class="d-flex gap-4 align-items-center flex-wrap">
-        <!-- Handle iframe string -->
-        <div
-          v-if="isIframe(realState.location)"
-          v-html="realState.location"
-        ></div>
-
-        <!-- Handle URL -->
         <iframe
-          v-else
           :src="realState?.location"
           frameborder="0"
           allowfullscreen
