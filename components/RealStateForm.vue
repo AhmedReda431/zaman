@@ -1,6 +1,7 @@
 <script setup>
 import { useForm, useIsFormValid, useValidateForm } from "vee-validate";
 import { ref, computed, onMounted, watch } from "vue";
+const { $api } = useNuxtApp();
 import {
   Listbox,
   ListboxLabel,
@@ -51,7 +52,9 @@ const formData = ref({
   location: "",
   // amenities: "",
 });
-
+let featuresArray = ref([]);
+const features = ref([]);
+let features_id = ref([]);
 const selectedFiles = ref([]);
 const uploadedImages = ref([]);
 const handleFileUpload = (event) => {
@@ -106,7 +109,16 @@ const selectedLocation = ref(null);
 const location = (data) => {
   selectedLocation.value = data;
 };
-
+function getFeatures() {
+  $api
+    .get(`/features`)
+    .then((res) => {
+      features.value = res.data.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 const submit = async () => {
   await validateForm();
   if (isValid.value) {
@@ -138,6 +150,15 @@ const showToast = (message, type) => {
 definePageMeta({
     middleware: "auth"
 })
+// Watch for changes in `featuresArray` and update `features_id` accordingly
+watch(
+  featuresArray,
+  (newVal) => {
+    // Reset `features_id` before pushing new values
+    features_id.value = newVal.map((feature) => feature.id);
+  },
+  { immediate: true }
+); // Use immediate to run the watch on initial load
 onMounted(async () => {
   // if (!isAuthenticated.value) {
   //   showToast(t("you must login first!"), "error");
@@ -146,6 +167,7 @@ onMounted(async () => {
   // }
   await fetchCities();
   await fetchCategories();
+  await getFeatures();
 });
 </script>
 
@@ -192,9 +214,47 @@ onMounted(async () => {
                   {{ $t("select") }}
                 </option>
                 <option v-for="cat in categories" :value="cat.id" :key="cat">
-                  {{ cat.name }}
+                  {{ cat.title }}
                 </option>
               </select>
+            </div>
+            <div class="flex flex-col" v-if="features?.length">
+              <label for="features" class="">{{ $t("features") }}</label>
+
+              <Listbox v-model="featuresArray" multiple>
+                <ListboxButton
+                  class="w-full px-4 py-2 border rounded-md bg-white text-left flex items-center justify-between multi_select_dropdown relative"
+                >
+                  <span>{{
+                    featuresArray.map((feature) => feature.name).join(", ")
+                  }}</span>
+                  <ChevronDownIcon class="h-5 w-5 text-gray-500" />
+                </ListboxButton>
+                <!-- Use Vue's built-in `transition` component to add transitions. -->
+                <transition
+                  enter-active-class="transition duration-100 ease-out"
+                  enter-from-class="transform scale-95 opacity-0"
+                  enter-to-class="transform scale-100 opacity-100"
+                  leave-active-class="transition duration-75 ease-out"
+                  leave-from-class="transform scale-100 opacity-100"
+                  leave-to-class="transform scale-95 opacity-0"
+                >
+                  <ListboxOptions class="border rounded">
+                    <ListboxOption
+                      v-for="feature in features"
+                      :key="feature.id"
+                      :value="feature"
+                      class="cursor-pointer px-4 py-2 hover:bg-gray-200 d-flex gap-3"
+                    >
+                      <CheckIcon
+                        v-if="featuresArray.includes(feature)"
+                        class="h-5 w-5 text-indigo-600"
+                      />
+                      <span>{{ feature.name }}</span>
+                    </ListboxOption>
+                  </ListboxOptions>
+                </transition>
+              </Listbox>
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700">

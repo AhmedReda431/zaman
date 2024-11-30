@@ -84,10 +84,18 @@ function openReportModal() {
 }
 
 let bookFormData = ref({
+  name: null,
+  phone: null,
+  date: null,
+  note: null,
+  real_estate_id: useRoute().params.id,
+});
+let reportFormData = ref({
+  name: null,
+  phone: null,
   type: null,
   note: null,
-  date: null,
-  id: useRoute().params.id,
+  real_estate_id: useRoute().params.id,
 });
 const { $toastMessage } = useNuxtApp();
 const showToast = (message, type) => {
@@ -106,6 +114,21 @@ function bookApiCall() {
     })
     .finally(() => {
       closeBookModal();
+    });
+}
+function reportApiCall() {
+  $api
+    .post("/notify-real-estates", reportFormData.value)
+    .then((res) => {
+      showToast(res?.data?.message, "success");
+    })
+    .catch((err) => {
+      if (err?.response?.data?.message) {
+        showToast(err?.response?.data?.message, "danger");
+      }
+    })
+    .finally(() => {
+      closeReportModal();
     });
 }
 </script>
@@ -177,6 +200,15 @@ function bookApiCall() {
                 <span class="text-sm text-gray-500">{{ formattedDate }}</span>
               </div>
             </div> -->
+            <span
+              class="font-semibold d-flex gap-2 align-items-center"
+              v-if="realState?.uniqu_code"
+            >
+              <span>
+                {{ $t('building code') }} :
+              </span>
+              <span class="orange">{{ realState?.uniqu_code }}</span>
+            </span>
             <span
               class="font-semibold d-flex gap-2 align-items-center"
               v-if="realState?.date"
@@ -292,6 +324,7 @@ function bookApiCall() {
           </button>
           <button
             class="w-full bg-gray-500 text-white py-2 rounded transition duration-300 ease-in-out"
+            @click="openReportModal"
           >
             {{ $t("Report this property") }}
           </button>
@@ -426,7 +459,7 @@ function bookApiCall() {
               leave-to="opacity-0 scale-95"
             >
               <DialogPanel
-                class="w-full max-w-3xl transform overflow-hidden rounded-2xl bg-white p-0 text-left align-middle shadow-xl transition-all"
+                class="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white p-0 text-left align-middle shadow-xl transition-all"
               >
                 <DialogTitle
                   as="h3"
@@ -439,7 +472,7 @@ function bookApiCall() {
                       {{ $t("Book a property inspection") }}
                     </div>
                     <button
-                      class="diismiss-icon border px-3 py-1 rounded"
+                      class="dismiss-icon border px-3 py-1 rounded"
                       @click="bookDialogIsOpen = false"
                     >
                       x
@@ -448,13 +481,13 @@ function bookApiCall() {
                 </DialogTitle>
                 <div class="mt-2 p-4">
                   <form>
-                    <div class="grid grid-cols-2 md:grid-cols-2 gap-4 m-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 m-4">
                       <div>
                         <label class="block text-sm font-medium text-gray-700">
-                          {{ $t("Preview type") }}</label
+                          {{ $t("name") }}</label
                         >
                         <input
-                          v-model="bookFormData.type"
+                          v-model="bookFormData.name"
                           required
                           type="text"
                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -462,7 +495,18 @@ function bookApiCall() {
                       </div>
                       <div>
                         <label class="block text-sm font-medium text-gray-700">
-                          {{ $t("nspection date") }}</label
+                          {{ $t("mobile number") }}</label
+                        >
+                        <input
+                          v-model="bookFormData.phone"
+                          required
+                          type="text"
+                          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">
+                          {{ $t("Inspection date") }}</label
                         >
                         <input
                           v-model="bookFormData.date"
@@ -475,7 +519,7 @@ function bookApiCall() {
                     <div class="grid grid-cols-1 md:grid-cols-1 gap-4 m-4">
                       <div>
                         <label class="block text-sm font-medium text-gray-700">
-                          {{ $t("Preview type") }}</label
+                          {{ $t("notes") }}</label
                         >
                         <textarea
                           v-model="bookFormData.note"
@@ -491,6 +535,165 @@ function bookApiCall() {
                 <div class="mt-4 p-4 d-flex justify-content-center mb-3">
                   <button
                     @click.stop="bookApiCall"
+                    class="px-6 py-2 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring focus:ring-gray-300 d-flex gap-3 py-3"
+                    style="background-color: #264642; color: white"
+                  >
+                    <span>{{ $t("submit") }}</span>
+                    <span class="icon">
+                      <svg
+                        width="23"
+                        height="23"
+                        viewBox="0 0 23 23"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        data-v-f6fc78ba=""
+                      >
+                        <g clip-path="url(#clip0_85_49628)" data-v-f6fc78ba="">
+                          <path
+                            d="M6.54912 15.64L0.504717 12.2912C0.36228 12.1963 0.247336 12.0656 0.171435 11.9121C0.0955337 11.7587 0.0613492 11.588 0.0723167 11.4172C0.076226 11.247 0.127319 11.0811 0.219905 10.9382C0.312492 10.7952 0.442938 10.6808 0.596717 10.6076L21.8579 0.0736193C22.0094 0.0180221 22.1757 0.0180221 22.3271 0.0736193L6.53072 15.7044L6.54912 15.64ZM6.43872 17.0844V22.356C6.43964 22.4497 6.46913 22.5408 6.52323 22.6172C6.57733 22.6937 6.65348 22.7518 6.74149 22.7838C6.8295 22.8158 6.92519 22.8202 7.01575 22.7963C7.10632 22.7725 7.18746 22.7216 7.24832 22.6504L10.9283 18.1608L15.4547 20.7C15.5728 20.778 15.7073 20.8277 15.8477 20.8453C15.9881 20.8628 16.1307 20.8478 16.2643 20.8012C16.4049 20.7536 16.5319 20.6727 16.6344 20.5653C16.7369 20.458 16.812 20.3274 16.8531 20.1848L22.8331 0.920019C22.8382 0.871082 22.8382 0.821756 22.8331 0.772819L6.43872 17.0844Z"
+                            fill="white"
+                            data-v-f6fc78ba=""
+                          ></path>
+                        </g>
+                        <defs data-v-f6fc78ba="">
+                          <clipPath id="clip0_85_49628" data-v-f6fc78ba="">
+                            <rect
+                              width="23"
+                              height="23"
+                              fill="white"
+                              data-v-f6fc78ba=""
+                            ></rect>
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </DialogPanel>
+            </TransitionChild>
+          </div>
+        </div>
+      </Dialog>
+    </TransitionRoot>
+    <TransitionRoot appear :show="reportDialogIsOpen" as="template">
+      <Dialog as="div" @close="closeReportModal" class="relative z-10">
+        <TransitionChild
+          as="template"
+          enter="duration-300 ease-out"
+          enter-from="opacity-0"
+          enter-to="opacity-100"
+          leave="duration-200 ease-in"
+          leave-from="opacity-100"
+          leave-to="opacity-0"
+        >
+          <div class="fixed inset-0 bg-black/25" />
+        </TransitionChild>
+
+        <div class="fixed inset-0 overflow-y-auto">
+          <div
+            class="flex min-h-full items-center justify-center p-4 text-center"
+          >
+            <TransitionChild
+              as="template"
+              enter="duration-300 ease-out"
+              enter-from="opacity-0 scale-95"
+              enter-to="opacity-100 scale-100"
+              leave="duration-200 ease-in"
+              leave-from="opacity-100 scale-100"
+              leave-to="opacity-0 scale-95"
+            >
+              <DialogPanel
+                class="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white p-0 text-left align-middle shadow-xl transition-all"
+              >
+                <DialogTitle
+                  as="h3"
+                  class="text-lg font-medium leading-6 text-gray-900 bg-main text-white p-4 rounded"
+                >
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <div class="title">
+                      {{ $t("Report this property") }}
+                    </div>
+                    <button
+                      class="dismiss-icon border px-3 py-1 rounded"
+                      @click="reportDialogIsOpen = false"
+                    >
+                      x
+                    </button>
+                  </div>
+                </DialogTitle>
+                <div class="mt-2 p-4">
+                  <form>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 m-4">
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">
+                          {{ $t("name") }}</label
+                        >
+                        <input
+                          v-model="reportFormData.name"
+                          required
+                          type="text"
+                          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">
+                          {{ $t("mobile number") }}</label
+                        >
+                        <input
+                          v-model="reportFormData.phone"
+                          required
+                          type="text"
+                          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">
+                          {{ $t("report type") }}</label
+                        >
+                        <select
+                          v-model="reportFormData.type"
+                          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        >
+                          <option value="" disabled>{{ $t("select") }}</option>
+                          <option value="0">
+                            {{ $t('The property is not available') }}
+                          </option>
+                          <option value="1">
+                            {{ $t('No response from the broker') }}
+                          </option>
+                          <option value="2">
+                            {{ $t('There are no ownership details') }}
+                          </option>
+                          <option value="3">
+                            {{ $t('The property information is inaccurate') }}
+                          </option>
+                          <option value="4">
+                            {{ $t('Poorly written description') }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-1 gap-4 m-4">
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">
+                          {{ $t("notes") }}</label
+                        >
+                        <textarea
+                          v-model="reportFormData.note"
+                          type="text"
+                          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          rows="6"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="mt-4 p-4 d-flex justify-content-center mb-3">
+                  <button
+                    @click.stop="reportApiCall"
                     class="px-6 py-2 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring focus:ring-gray-300 d-flex gap-3 py-3"
                     style="background-color: #264642; color: white"
                   >
@@ -578,5 +781,11 @@ function bookApiCall() {
     padding-block: 15px;
     border-radius: 10px;
   }
+}
+label {
+  text-align: start !important;
+}
+.dismiss-icon {
+  border-radius: 10px;
 }
 </style>

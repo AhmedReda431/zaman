@@ -47,16 +47,16 @@ watch(selected, () => {
   <Listbox as="div" v-model="selected" class="flex items-center gap-3">
     <div class="relative">
       <ListboxButton
-        class="relative w-full cursor-pointer rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
+        class="relative w-full cursor-pointer rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6 languages-button-holder"
       >
         <span class="flex items-center" v-if="selected">
           <Icon size="24" :name="selected.icon" />
         </span>
-        <span
+        <!-- <span
           class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2"
         >
           <ChevronUpDownIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
-        </span>
+        </span> -->
       </ListboxButton>
 
       <transition
@@ -65,7 +65,7 @@ watch(selected, () => {
         leave-to-class="opacity-0"
       >
         <ListboxOptions
-          class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+          class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm options-holder"
         >
           <ListboxOption
             as="template"
@@ -80,7 +80,7 @@ watch(selected, () => {
                 'relative cursor-default select-none py-2 pl-3 pr-9',
               ]"
             >
-              <div class="flex items-center">
+              <div class="d-flex justify-content-end mx-0 px-0">
                 <Icon size="24" :name="country.icon" />
               </div>
 
@@ -88,11 +88,11 @@ watch(selected, () => {
                 v-if="selected"
                 :class="[
                   active ? 'text-white' : 'text-indigo-600',
-                  'absolute inset-y-0 right-0 flex items-center pr-4',
+                  'absolute inset-y-0 right-0 flex items-center pr-1',
                 ]"
               >
-                <CheckIcon class="h-5 w-5" aria-hidden="true" /> </span
-              >
+                <CheckIcon class="h-5 w-5" aria-hidden="true" />
+              </span>
             </li>
           </ListboxOption>
         </ListboxOptions>
@@ -100,3 +100,23 @@ watch(selected, () => {
     </div>
   </Listbox>
 </template>
+<style lang="scss" scoped>
+.languages-button-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid #999;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+.options-holder {
+  width: 80px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  li{
+    cursor: pointer !important;
+  }
+}
+</style>

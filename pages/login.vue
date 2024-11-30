@@ -1,103 +1,151 @@
 <script setup>
-import { ref, computed } from 'vue';
-import * as Yup from 'yup';
+import { ref, computed } from "vue";
+import * as Yup from "yup";
 
 definePageMeta({
-  title: 'Login',
-  description: 'Login page description',
-  layout: 'auth',
+  title: "Login",
+  description: "Login page description",
+  layout: "auth",
 });
 const { t } = useI18n();
 const { showAlert } = useAlert();
 const { login, loading, error } = useLogin();
 
-const loginType = ref('email');
+const loginType = ref("email");
 
 const usernameRules = computed(() => {
-  return loginType.value === 'email'
-    ? Yup.string().matches(/^[\w\.-]+@[a-zA-Z\d\.-]+\.(com|net|org|edu|gov|mil|info|biz|co.uk|io)$/, t('validation.email.notValid')).required(t('validation.email.required'))
-    : Yup.string().matches(/^\+966-\d{2}-\d{7}$/, t('validation.phone.notValid')).required(t('validation.phone.required'));
+  return loginType.value === "email"
+    ? Yup.string()
+        .matches(
+          /^[\w\.-]+@[a-zA-Z\d\.-]+\.(com|net|org|edu|gov|mil|info|biz|co.uk|io)$/,
+          t("validation.email.notValid")
+        )
+        .required(t("validation.email.required"))
+    : Yup.string()
+        .matches(/^\+966-\d{2}-\d{7}$/, t("validation.phone.notValid"))
+        .required(t("validation.phone.required"));
 });
 const usernamePlaceholder = computed(() => {
-  return loginType.value === 'email' ? '\u202Aexample@gmail.com' : '\u202A+966-XX-XXXXXXX';
+  return loginType.value === "email"
+    ? "\u202Aexample@gmail.com"
+    : "\u202A+966-XX-XXXXXXX";
 });
 const usernameLabel = computed(() => {
-  return loginType.value === 'email' ? t('common.email') : t('common.phone');
+  return loginType.value === "email" ? t("common.email") : t("common.phone");
 });
 
 const formSchema = ref({
   fields: [
     {
       label: usernameLabel,
-      name: 'username',
-      as: 'input',
+      name: "username",
+      as: "input",
       placeholder: usernamePlaceholder,
       rules: usernameRules,
     },
     {
-      label: t('common.password'),
-      name: 'password',
-      as: 'input',
-      type: 'password',
-      placeholder: '******',
-      rules: Yup.string().min(6, t('validation.password.minLength')).required(t('validation.password.required')),
+      label: t("common.password"),
+      name: "password",
+      as: "input",
+      type: "password",
+      placeholder: "******",
+      rules: Yup.string()
+        .min(6, t("validation.password.minLength"))
+        .required(t("validation.password.required")),
     },
   ],
 });
 
 const handleLogin = async (data) => {
   await login(data.username, data.password);
-
 };
-
-
 </script>
 
 <template>
   <section class="h-full">
     <div class="flex min-h-full flex-1">
-      <div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+      <div
+        class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24"
+      >
         <div class="mx-auto w-full max-w-sm lg:w-96">
-          <div>
+          <div class="text-center">
             <NuxtLink to="/">
-              <IconsLogo class="h-14 w-auto " alt="zaman" />
+              <IconsLogo class="h-14 w-auto" alt="zaman" />
             </NuxtLink>
-            <h2 class="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">{{
-              $t('authentication.welcomeAgain')
-            }}</h2>ACC
-            <div class="mt-2 text-sm leading-6 text-gray-500">
-              <div class="font-semibold text-gray-500">{{ $t("authentication.pleaseLogin") }}</div>
+            <h1 class="font-bold text-secondary mb-4 inline-block title my-8">
+              {{ $t("authentication.welcomeAgain") }}
+            </h1>
+            <div class="text-sm leading-6 text-gray-500">
+              <div
+                class="mt-8 text-xl font-bold leading-9 tracking-tight text-gray-900"
+              >
+                {{ $t("authentication.pleaseLogin") }}
+              </div>
             </div>
           </div>
 
           <div class="mt-10">
             <div>
-              <DynamicForm :schema="formSchema" @submit="handleLogin" :serverError="error" class="space-y-6">
+              <div
+                class="absolute top-10"
+                :class="{
+                  'left-10': $i18n.locale == 'en',
+                  'right-10': $i18n.locale == 'ar',
+                }"
+              >
+                <div class="d-flex align-items-center gap-3">
+                  <span>
+                    <LangSwitch />
+                  </span>
+                  <span>{{ $t("language") }}</span>
+                </div>
+              </div>
+              <DynamicForm
+                :schema="formSchema"
+                @submit="handleLogin"
+                :serverError="error"
+                class="space-y-6"
+              >
                 <template #buttuns>
-
                   <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                      <input id="remember-me" name="remember-me" type="checkbox"
-                        class="h-4 w-4 rounded border-gray-300 text-zaman-600 focus:ring-zaman-600" />
-                      <label for="remember-me"
-                        class="rtl:mr-3 ml-3 block text-sm leading-6 text-gray-700">تذكرني</label>
+                      <input
+                        id="remember-me"
+                        name="remember-me"
+                        type="checkbox"
+                        class="h-4 w-4 rounded border-gray-300 text-zaman-600 focus:ring-zaman-600"
+                      />
+                      <label
+                        for="remember-me"
+                        class="rtl:mr-3 ml-3 block text-sm leading-6 text-gray-700"
+                        >{{ $t("Remember me") }}</label
+                      >
                     </div>
 
                     <div class="text-sm leading-6">
-                      <a href="#" class="font-semibold text-zaman-600 hover:text-zaman-500">{{
-                        $t("authentication.forgotPassword") }}</a>
+                      <a
+                        href="#"
+                        class="font-semibold text-zaman-600 hover:text-zaman-500"
+                        >{{ $t("authentication.forgotPassword") }}</a
+                      >
                     </div>
                   </div>
 
                   <div>
-                    <button type="submit" :class="{ 'cursor-not-allowed': loading, 'opacity-50': loading }"
+                    <button
+                      type="submit"
+                      :class="{
+                        'cursor-not-allowed': loading,
+                        'opacity-50': loading,
+                      }"
                       :disabled="loading"
-                      class="flex w-full justify-center rounded-md bg-zaman px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-zaman-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                      class="flex w-full justify-center rounded-md bg-zaman px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-zaman-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
                       <span v-if="!loading">
-                        {{ $t('authentication.login') }}
+                        {{ $t("authentication.login") }}
                       </span>
                       <span v-if="loading">
-                        {{ $t('loading') }}
+                        {{ $t("loading") }}
                         <IconsLoadingWhite />
                       </span>
                     </button>
@@ -137,16 +185,23 @@ const handleLogin = async (data) => {
                 </a>
               </div> -->
               <p class="text-center text-sm leading-6 text-gray-500 py-4">
-                {{ $t('authentication.dontHaveAccount') }}{{ ' ' }}
-                <NuxtLink to="/register" class="font-semibold text-zaman hover:text-zaman-700">{{
-                  $t('authentication.registerNow') }}</NuxtLink>
+                {{ $t("authentication.dontHaveAccount") }}{{ " " }}
+                <NuxtLink
+                  to="/register"
+                  class="font-semibold text-zaman hover:text-zaman-700"
+                  >{{ $t("authentication.registerNow") }}</NuxtLink
+                >
               </p>
             </div>
           </div>
         </div>
       </div>
       <div class="relative hidden w-0 flex-1 lg:block">
-        <img class="absolute inset-0 h-full w-full object-cover" src="@/assets/img/login.png" alt="" />
+        <img
+          class="absolute inset-0 h-full w-full object-cover"
+          src="@/assets/img/login.png"
+          alt=""
+        />
       </div>
     </div>
   </section>
