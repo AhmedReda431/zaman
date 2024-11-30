@@ -69,7 +69,7 @@ onMounted(async () => {
   // street info
   if (realState.value.street)
     streetInfo.value.push({
-      label: "اسم الشارع",
+      label: t('streetName'),
       value: `${realState.value.street} `,
       icon: "mdi mdi-vector-square",
     });
@@ -855,6 +855,9 @@ label {
 }
 .info-data-holder {
   min-width: 225px;
-  min-height: 80px;
+  min-height: 89px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
