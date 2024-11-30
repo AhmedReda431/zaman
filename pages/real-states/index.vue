@@ -194,7 +194,9 @@ const selectedOrder = ref(ordersList[0]);
     <div>
       <!-- Top Bar -->
 
-      <div class="mt-5 flex items-center justify-between gap-2 px-10 refresed-in-sm">
+      <div
+        class="mt-5 flex items-center justify-between gap-2 px-10 refresed-in-sm"
+      >
         <button
           @click="toggleFilter"
           class="bg-zaman text-white px-3 py-2.5 rounded-md flex items-center filter-btn"
@@ -212,7 +214,9 @@ const selectedOrder = ref(ordersList[0]);
         </button>
 
         <!-- Search Bar -->
-        <div class="flex-grow relative d-flex gap-2 justify-content-between refresed-in-sm input-holder">
+        <div
+          class="flex-grow relative d-flex gap-2 justify-content-between refresed-in-sm input-holder"
+        >
           <input
             v-model="search"
             type="text"
@@ -230,7 +234,7 @@ const selectedOrder = ref(ordersList[0]);
               class="cursor-pointer d-flex align-items-center"
             >
               <h3>{{ $t("Display list") }}</h3>
-              <span class="mx-3" :class="{'grid-icon-holder':isGrid}">
+              <span class="mx-3" :class="{ 'grid-icon-holder': isGrid }">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1.5em"
@@ -252,7 +256,8 @@ const selectedOrder = ref(ordersList[0]);
                 >
                   <span class="block truncate">{{ selectedOrder.name }}</span>
                   <span
-                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2" :class="{'grid-icon-holder':selectedOrder}"
+                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
+                    :class="{ 'grid-icon-holder': selectedOrder }"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -650,7 +655,7 @@ const selectedOrder = ref(ordersList[0]);
             <div class="text-center">{{ price_to }} {{ $t("riyal") }}</div>
           </div> -->
           <div class="filter-holder2">
-            <PriceRangeSlider
+            <!-- <PriceRangeSlider
               :min="0"
               :max="10000"
               :step="100"
@@ -659,9 +664,33 @@ const selectedOrder = ref(ordersList[0]);
               gap="500"
               @update:minValue="onMinValueUpdate"
               @update:maxValue="onMaxValueUpdate"
-            />
+            /> -->
+            <div class="grid grid-cols-2 gap-3">
+              <div class="price-from">
+                <label class="block text-sm font-medium text-gray-700">{{
+                  $t("price from")
+                }}</label>
+                <input
+                  v-model="price_from"
+                  type="number"
+                  min="0"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+              <div class="price-to">
+                <label class="block text-sm font-medium text-gray-700">{{
+                  $t("price to")
+                }}</label>
+                <input
+                  v-model="price_to"
+                  type="number"
+                  min="0"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
             <div class="pt-5">
-              {{ $t("price") }} : {{ price_from }} - {{ price_to }}
+              <!-- {{ $t("price") }} : {{ price_from }} - {{ price_to }} -->
               {{ $t("riyal") }}
             </div>
           </div>
@@ -996,14 +1025,14 @@ input[type="range"]::-ms-thumb {
   min-width: 160px;
   z-index: 9;
 }
-.grid-icon-holder{
-  svg{
-    path{
-      fill:rgb(189 154 96 / var(--tw-bg-opacity, 1))
+.grid-icon-holder {
+  svg {
+    path {
+      fill: rgb(189 154 96 / var(--tw-bg-opacity, 1));
     }
   }
 }
-.filter-btn{
+.filter-btn {
   height: 49px;
 }
 </style>

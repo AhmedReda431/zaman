@@ -9,6 +9,7 @@ import {
   CalendarFoldIcon,
 } from "lucide-vue-next";
 const { fetchRealState, realState, loading, success, error } = useRealStates();
+const { t, locale } = useI18n();
 import {
   RadioGroup,
   RadioGroupDescription,
@@ -25,6 +26,9 @@ let propertyInfo = ref([]);
 let streetInfo = ref([]);
 let info = ref([]);
 const { $api } = useNuxtApp();
+const isIframe = (location) => {
+  return location?.includes("<iframe");
+};
 onMounted(async () => {
   // Ensure this runs only on the client-side
   currentPageUrl = window.location.href;
@@ -32,6 +36,69 @@ onMounted(async () => {
 
   let id = useRoute().params.id;
   await fetchRealState(id);
+  // property info
+  if (realState.value.land_area)
+    propertyInfo.value.push({
+      label: t("Land area"),
+      value: `${realState.value.land_area} م`,
+      icon: "mdi mdi-vector-square",
+    });
+  if (realState.value.number_of_rooms)
+    propertyInfo.value.push({
+      label: t("Number of rooms"),
+      value: `${realState.value.number_of_rooms} `,
+      icon: "mdi mdi-vector-square",
+    });
+
+  if (realState.value.number_of_council_rooms)
+    propertyInfo.value.push({
+      label: t("numberOfCouncilRooms"),
+      value: `${realState.value.number_of_council_rooms} `,
+      icon: "mdi mdi-vector-square",
+    });
+
+  if (realState.value.bathrooms_of_rooms)
+    propertyInfo.value.push({
+      label: t("Number of bathrooms"),
+      value: `${realState.value.bathrooms_of_rooms} `,
+      icon: "mdi mdi-vector-square",
+    });
+  if (realState.value.hall_number)
+    propertyInfo.value.push({
+      label: t("numberOfHalls"),
+      value: `${realState.value.hall_number} `,
+      icon: "mdi mdi-vector-square",
+    });
+  // street info
+  if (realState.value.street)
+    streetInfo.value.push({
+      label: "اسم الشارع",
+      value: `${realState.value.street} `,
+      icon: "mdi mdi-vector-square",
+    });
+  if (realState.value.number_of_streets)
+    streetInfo.value.push({
+      label: t("Number of streets"),
+      value: `${realState.value.number_of_streets} `,
+      icon: "mdi mdi-vector-square",
+    });
+
+  if (realState.value.street_area)
+    streetInfo.value.push({
+      label: t("streetWidth"),
+      value: `${realState.value.street_area} `,
+      icon: "mdi mdi-vector-square",
+    });
+
+  if (realState.value.street_facing)
+    streetInfo.value.push({
+      label: t("streetFacade"),
+      value: `${realState.value.street_facing} `,
+      icon: "mdi mdi-vector-square",
+    });
+    setTimeout(() => {
+      realState.value.location = 'https://maps.app.goo.gl/KeTNZ691reXCkzuM7'
+    }, 5000);
 });
 let currentImageIndex = ref(0);
 
@@ -204,9 +271,7 @@ function reportApiCall() {
               class="font-semibold d-flex gap-2 align-items-center"
               v-if="realState?.uniqu_code"
             >
-              <span>
-                {{ $t('building code') }} :
-              </span>
+              <span> {{ $t("building code") }} : </span>
               <span class="orange">{{ realState?.uniqu_code }}</span>
             </span>
             <span
@@ -344,7 +409,7 @@ function reportApiCall() {
         <div
           v-for="(item, index) in propertyInfo"
           :key="index"
-          class="flex flex-col items-center border border-gray-300 rounded-lg p-3 w-36 text-center"
+          class="flex flex-col items-center border border-gray-300 rounded-lg p-3 w-36 text-center info-data-holder"
         >
           <span class="flex items-center gap-1 text-yellow-700">
             <span v-if="item.icon" :class="item.icon"></span>
@@ -356,6 +421,7 @@ function reportApiCall() {
     </div>
     <div
       class="p-4 md:p-8 bg-white rounded-lg shadow-lg border border-gray-300 m-3"
+      v-if="realState?.location"
     >
       <h2
         class="text-lg md:text-xl font-semibold text-gray-700 mb-4 text-start"
@@ -363,17 +429,21 @@ function reportApiCall() {
         {{ $t("location") }}
       </h2>
       <div class="d-flex gap-4 align-items-center flex-wrap">
+        <!-- Handle iframe string -->
         <div
-          v-for="(item, index) in propertyInfo"
-          :key="index"
-          class="flex flex-col items-center border border-gray-300 rounded-lg p-3 w-36 text-center"
-        >
-          <span class="flex items-center gap-1 text-yellow-700">
-            <span v-if="item.icon" :class="item.icon"></span>
-            {{ item.value }}
-          </span>
-          <span class="text-gray-500">{{ item.label }}</span>
-        </div>
+          v-if="isIframe(realState.location)"
+          v-html="realState.location"
+        ></div>
+
+        <!-- Handle URL -->
+        <iframe
+          v-else
+          :src="realState?.location"
+          frameborder="0"
+          allowfullscreen
+          loading="lazy"
+          class="w-full h-96"
+        ></iframe>
       </div>
     </div>
 
@@ -389,7 +459,7 @@ function reportApiCall() {
         <div
           v-for="(item, index) in streetInfo"
           :key="index"
-          class="flex flex-col items-center border border-gray-300 rounded-lg p-2 w-32 text-center"
+          class="flex flex-col items-center border border-gray-300 rounded-lg p-2 w-32 text-center info-data-holder"
         >
           <span class="flex items-center gap-1 text-yellow-700">
             <span v-if="item.icon" :class="item.icon"></span>
@@ -402,6 +472,7 @@ function reportApiCall() {
 
     <div
       class="p-4 md:p-8 bg-white rounded-lg shadow-lg border border-gray-300 m-3"
+      v-if="realState?.features"
     >
       <h2
         class="text-lg md:text-xl font-semibold text-gray-700 mb-4 text-start"
@@ -410,11 +481,14 @@ function reportApiCall() {
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-5 gap-6 pt-4">
         <div
-          v-for="(item, index) in info"
+          v-for="(item, index) in realState.features"
           :key="index"
           class="flex flex-col items-center border-l pr-4"
         >
-          <span class="text-gray-500">{{ item.label }}</span>
+          <!-- <span v-if="item.image">
+          <img :src="item.image" alt="" class="small-image">
+        </span> -->
+          <span class="text-gray-500">{{ item.name }}</span>
           <span class="text-yellow-700">{{ item.value }}</span>
         </div>
       </div>
@@ -658,19 +732,19 @@ function reportApiCall() {
                         >
                           <option value="" disabled>{{ $t("select") }}</option>
                           <option value="0">
-                            {{ $t('The property is not available') }}
+                            {{ $t("The property is not available") }}
                           </option>
                           <option value="1">
-                            {{ $t('No response from the broker') }}
+                            {{ $t("No response from the broker") }}
                           </option>
                           <option value="2">
-                            {{ $t('There are no ownership details') }}
+                            {{ $t("There are no ownership details") }}
                           </option>
                           <option value="3">
-                            {{ $t('The property information is inaccurate') }}
+                            {{ $t("The property information is inaccurate") }}
                           </option>
                           <option value="4">
-                            {{ $t('Poorly written description') }}
+                            {{ $t("Poorly written description") }}
                           </option>
                         </select>
                       </div>
@@ -787,5 +861,14 @@ label {
 }
 .dismiss-icon {
   border-radius: 10px;
+}
+.small-image {
+  width: 70px;
+  height: 70%;
+  border-radius: 10px;
+}
+.info-data-holder {
+  min-width: 225px;
+  min-height: 80px;
 }
 </style>
