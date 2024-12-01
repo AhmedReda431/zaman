@@ -1019,7 +1019,7 @@ input[type="range"]::-ms-thumb {
 }
 .search-input {
   width: auto;
-  min-width: 70%;
+  min-width: 68%;
 }
 .sortByBtn {
   min-width: 160px;

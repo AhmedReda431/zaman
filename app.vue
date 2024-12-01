@@ -2,10 +2,8 @@
   <Html :lang="locale" :dir="localeValue" :class="`${$i18n.locale}-lang`">
     <NuxtLayout>
       <LoadingScreen v-if="isLoading" />
-      <transition name="page" mode="out-in">
-        <NuxtPage :key="route.fullPath" />
-      </transition>
-      <transition name="fade">
+      <NuxtPage :key="`${locale}-${route.fullPath}`" />
+      <transition name="page">
         <AlertComponent
           v-if="alert"
           :message="alert.message"
@@ -16,7 +14,6 @@
     </NuxtLayout>
   </Html>
 </template>
-
 
 <script setup>
 import { ref, watch, computed, nextTick } from "vue";
