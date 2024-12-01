@@ -85,11 +85,7 @@ const handleRegister = async (data) => {
           <div class="mt-10">
             <div>
               <div
-                class="absolute top-10"
-                :class="{
-                  'right-10': $i18n.locale == 'en',
-                  'left-10': $i18n.locale == 'ar',
-                }"
+                class="absolute absolute-lang"
               >
                 <div class="d-flex align-items-center gap-3">
                   <span>

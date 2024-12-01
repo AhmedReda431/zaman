@@ -525,5 +525,6 @@
   "Researcher":"Researcher",
   "owner":"Owner",
   "mediator":"Mediator",
-  "developer":"Developer"
+  "developer":"Developer",
+  "notifications":"Notifications"
 }
