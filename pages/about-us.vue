@@ -29,7 +29,7 @@
 
     <!-- Icon and Description Section -->
     <div
-      class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8 m-8 py-24 px-20"
+      class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8 m-8 py-24 px-20 w-sm-full"
     >
       <div class="text-center vision-div">
         <div class="mb-4">

@@ -35,7 +35,7 @@ onMounted(async () => {
 <template>
   <div class="pt-20 mb-10">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex justify-content-between align-items-center align-items-sm-baseline">
         <h2 class="text-2xl font-semibold leading-7 mb-6 abolute-bottom-border">
           {{ $t("latestOffers") }}
         </h2>

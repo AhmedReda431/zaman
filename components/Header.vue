@@ -187,10 +187,30 @@ const route = useRoute();
               <div class="mt-6 flow-root">
                 <div class="-my-6 divide-y divide-gray-500/10">
                   <div class="py-6">
+                    <NuxtLink :to="{ path: '/' }"
+                      class="text-xl font-semibold leading-6 text-gray-900 hover:text-gray-500">
+                      <div class="flex items-center gap-x-1">
+                        {{ $t('mainPage') }}
+                      </div>
+                    </NuxtLink>
+                  </div>
+                </div>
+                <div class="-my-6 divide-y divide-gray-500/10">
+                  <div class="py-6">
                     <NuxtLink :to="{ path: '/real-states' }"
                       class="text-xl font-semibold leading-6 text-gray-900 hover:text-gray-500">
                       <div class="flex items-center gap-x-1">
-                        {{ $t('spaces.spaces') }}
+                        {{ $t('realEstateOffers') }}
+                      </div>
+                    </NuxtLink>
+                  </div>
+                </div>
+                <div class="-my-6 divide-y divide-gray-500/10">
+                  <div class="py-6">
+                    <NuxtLink :to="{ path: '/about-us' }"
+                      class="text-xl font-semibold leading-6 text-gray-900 hover:text-gray-500">
+                      <div class="flex items-center gap-x-1">
+                        {{ $t('about-us') }}
                       </div>
                     </NuxtLink>
                   </div>
@@ -211,19 +231,31 @@ const route = useRoute();
                       class="text-xl font-semibold leading-6 text-gray-900 hover:text-gray-500">
                       <span class="sr-only">add space</span>
                       <div class="flex items-center gap-x-1">
-                        <SquaresPlusIcon class="h-5 w-5 " aria-hidden="true" />
-                        {{ $t('addWorkspace') }}
+                        <!-- <SquaresPlusIcon class="h-5 w-5 " aria-hidden="true" /> -->
+                        {{ $t('addYourBuilding') }}
                       </div>
                     </NuxtLink>
                   </div>
                 </div>
                 <div class="-my-6 divide-y divide-gray-500/10">
                   <div class="py-6">
-                    <NuxtLink :to="{ path: '/login' }" v-if="!isAuthenticated"
+                    <NuxtLink :to="{ path: '/order-state' }"
+                      class="text-xl font-semibold leading-6 text-gray-900 hover:text-gray-500">
+                      <span class="sr-only">add space</span>
+                      <div class="flex items-center gap-x-1">
+                        <!-- <SquaresPlusIcon class="h-5 w-5 " aria-hidden="true" /> -->
+                        {{ $t('requistBuilding') }}
+                      </div>
+                    </NuxtLink>
+                  </div>
+                </div>
+                <div class="-my-6 divide-y divide-gray-500/10" v-if="!isAuthenticated">
+                  <div class="py-6">
+                    <NuxtLink :to="{ path: '/login' }" 
                       class="text-xl font-semibold leading-6 text-gray-900 hover:text-gray-500">
                       <span class="sr-only">Login</span>
                       <div class="flex items-center gap-x-1">
-                        <LockClosedIcon class="h-5 w-5" aria-hidden="true" />
+                        <!-- <LockClosedIcon class="h-5 w-5" aria-hidden="true" /> -->
                         {{ $t('authentication.login') }}
                       </div>
                     </NuxtLink>

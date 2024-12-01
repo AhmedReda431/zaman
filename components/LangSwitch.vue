@@ -115,6 +115,8 @@ watch(selected, () => {
   width: 80px !important;
   display: flex !important;
   flex-direction: column !important;
+  z-index: 99999;
+  position: fixed;
   li{
     cursor: pointer !important;
   }

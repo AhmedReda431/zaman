@@ -87,11 +87,7 @@ const handleLogin = async (data) => {
           <div class="mt-10">
             <div>
               <div
-                class="absolute top-10"
-                :class="{
-                  'left-10': $i18n.locale == 'en',
-                  'right-10': $i18n.locale == 'ar',
-                }"
+                class="absolute absolute-lang"
               >
                 <div class="d-flex align-items-center gap-3">
                   <span>
@@ -122,13 +118,13 @@ const handleLogin = async (data) => {
                       >
                     </div>
 
-                    <div class="text-sm leading-6">
+                    <!-- <div class="text-sm leading-6">
                       <a
                         href="#"
                         class="font-semibold text-zaman-600 hover:text-zaman-500"
                         >{{ $t("authentication.forgotPassword") }}</a
                       >
-                    </div>
+                    </div> -->
                   </div>
 
                   <div>

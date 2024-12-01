@@ -243,7 +243,7 @@
             </div>
           </div>
           <div class="md:grid md:grid-cols-1 md:gap-8 text-white">
-            <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+            <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0 flex-sm-column">
               <div class="md:grid md:grid-cols-1 md:gap-8">
                 <div>
                   <section role="list" class="mt-6 flex items-center">

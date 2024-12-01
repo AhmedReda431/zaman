@@ -527,5 +527,9 @@
   "The property information is inaccurate":"معلومات الملكية غير دقيقة",
   "Poorly written description":"وصف مكتوب بشكل سيء",
   "building code":"كود العقار",
-  "Paste your iframe embed code here":"الصق رمز تضمين iframe الخاص بك هنا"
+  "Paste your iframe embed code here":"الصق رمز تضمين iframe الخاص بك هنا",
+  "Researcher":"باحث",
+  "owner":"مالك",
+  "mediator":"وسيط",
+  "developer":"مطور"
 }

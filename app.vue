@@ -1,5 +1,5 @@
 <template>
-  <Html :lang="locale" :dir="localeValue">
+  <Html :lang="locale" :dir="localeValue" :class="`${$i18n.locale}-lang`">
     <NuxtLayout>
       <LoadingScreen v-if="isLoading" />
       <NuxtPage :key="`${locale}-${route.fullPath}`" />

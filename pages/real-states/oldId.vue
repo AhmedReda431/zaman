@@ -174,7 +174,7 @@ let actions = ["طلب تمويل عقاري", "حجز معاينة العقار
             class="absolute top-0 right-0 p-2 flex space-x-2 rtl:space-x-reverse"
           >
             <RadioGroup v-model="currentTab">
-              <div class="mt-4 grid grid-cols-4 gap-y-6 sm:gap-x-4">
+              <div class="mt-4 grid grid-cols-4 gap-y-6 gap-2">
                 <RadioGroupOption
                   as="template"
                   v-for="tab in tabs"

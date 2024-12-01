@@ -521,5 +521,9 @@
   "The property information is inaccurate":"The property information is inaccurate",
   "Poorly written description":"Poorly written description",
   "building code":"building code",
-  "Paste your iframe embed code here":"Paste your iframe embed code here"
+  "Paste your iframe embed code here":"Paste your iframe embed code here",
+  "Researcher":"Researcher",
+  "owner":"Owner",
+  "mediator":"Mediator",
+  "developer":"Developer"
 }

@@ -85,10 +85,10 @@ const handleRegister = async (data) => {
           <div class="mt-10">
             <div>
               <div
-                class="absolute top-2"
+                class="absolute top-10"
                 :class="{
-                  'left-10': $i18n.locale == 'en',
-                  'right-10': $i18n.locale == 'ar',
+                  'right-10': $i18n.locale == 'en',
+                  'left-10': $i18n.locale == 'ar',
                 }"
               >
                 <div class="d-flex align-items-center gap-3">
@@ -130,7 +130,7 @@ const handleRegister = async (data) => {
             </div>
 
             <div class="mt-10">
-              <div class="relative">
+              <!-- <div class="relative">
                 <div
                   class="absolute inset-0 flex items-center"
                   aria-hidden="true"
@@ -171,7 +171,7 @@ const handleRegister = async (data) => {
                   </svg>
                   <span class="text-sm font-semibold leading-6">Google</span>
                 </a>
-              </div>
+              </div> -->
 
               <p class="text-center text-sm leading-6 text-gray-500 py-4">
                 {{ $t("authentication.doHaveAccount") }}{{ " " }}
