@@ -167,15 +167,108 @@
             </div>
 
             <div class="flex gap-3">
-              <div
+              <a
+                :href="facebookSettingValue"
+                target="_blank"
                 class="text-gray-500 hover:text-gray-400 social-icons"
                 v-if="facebookSettingValue"
               >
                 <!-- <span class="sr-only">{{ item.name }}</span> -->
-                
-              </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="none"
+                    stroke="#fff"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M7 10v4h3v7h4v-7h3l1-4h-4V8a1 1 0 0 1 1-1h3V3h-3a5 5 0 0 0-5 5v2z"
+                  />
+                </svg>
+              </a>
+              <a
+                :href="instaSettingValue"
+                target="_blank"
+                class="text-gray-500 hover:text-gray-400 social-icons"
+                v-if="instaSettingValue"
+              >
+                <!-- <span class="sr-only">{{ item.name }}</span> -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    fill="none"
+                    stroke="#fff"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"
+                    />
+                    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0m7.5-4.5v.01" />
+                  </g>
+                </svg>
+              </a>
+              <a
+                :href="linkedinSettingValue"
+                target="_blank"
+                class="text-gray-500 hover:text-gray-400 social-icons"
+                v-if="linkedinSettingValue"
+              >
+                <!-- <span class="sr-only">{{ item.name }}</span> -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    fill="none"
+                    stroke="#fff"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm4 5v5m0-8v.01M12 16v-5"
+                    />
+                    <path d="M16 16v-3a2 2 0 0 0-4 0" />
+                  </g>
+                </svg>
+              </a>
+              <a
+                :href="twitterSettingValue"
+                target="_blank"
+                class="text-gray-500 hover:text-gray-400 social-icons"
+                v-if="twitterSettingValue"
+              >
+                <!-- <span class="sr-only">{{ item.name }}</span> -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="none"
+                    stroke="#fff"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M22 4.01c-1 .49-1.98.689-3 .99c-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4c0 0-4.182 7.433 4 11c-1.872 1.247-3.739 2.088-6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58-1.04 6.522-3.723 7.651-7.742a13.8 13.8 0 0 0 .497-3.753c0-.249 1.51-2.772 1.818-4.013z"
+                  />
+                </svg>
+              </a>
             </div>
-            <div class="flex gap-3">
+            <!-- <div class="flex gap-3">
               <div
                 v-for="item in navigation.paymentMethods"
                 :key="item.name"
@@ -184,7 +277,7 @@
                 <span class="sr-only">{{ item.name }}</span>
                 <Icon size="36" :name="item.icon" />
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div
@@ -375,14 +468,14 @@ const navigation = {
   ],
 };
 const facebookSetting = useCookie("setting-fb_link");
-// const instaSetting = useCookie("setting-inst_link");
-// const linkedinSetting = useCookie("setting-linkedin_link");
-// const twitterSetting = useCookie("setting-tw_link");
+const instaSetting = useCookie("setting-inst_link");
+const linkedinSetting = useCookie("setting-linkedin_link");
+const twitterSetting = useCookie("setting-tw_link");
 
 const facebookSettingValue = facebookSetting?.value;
-// const instaSettingValue = instaSetting?.value;
-// const linkedinSettingValue = linkedinSetting?.value;
-// const twitterSettingValue = twitterSetting?.value;
+const instaSettingValue = instaSetting?.value;
+const linkedinSettingValue = linkedinSetting?.value;
+const twitterSettingValue = twitterSetting?.value;
 </script>
 <style lang="scss" scoped>
 .title {
