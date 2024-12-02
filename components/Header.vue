@@ -392,3 +392,8 @@ const route = useRoute();
     </div>
   </div>
 </template>
+<style lang="scss" scoped>
+.profile-menu{
+  position: fixed;
+}
+</style>

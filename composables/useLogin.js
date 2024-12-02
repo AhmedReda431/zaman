@@ -22,7 +22,7 @@ export const useLogin = () => {
       if(response?.data?.data?.user){
         authStore.setToken(response?.data?.data?.token);
         authStore.setUser(response?.data?.data?.user);
-        router.push(authStore.redirectRoute || "/");
+        router.push(authStore.redirectRoute || "/").then(() => router.go(0));
       }
       else if (response?.data?.message) {
         showAlert(typeof response?.data?.message == 'object' ? Object.values(response?.data?.message)[0] :response?.data?.message, 'warning',)
