@@ -532,5 +532,10 @@
   "owner":"مالك",
   "mediator":"وسيط",
   "developer":"مطور",
-  "notifications":"الاشعارات"
+  "notifications":"الاشعارات",
+  "edit profile": "تعديل الملف الشخصي",
+  "control panel": "لوحة التحكم",
+  "My requests": "طلباتي",
+  "Financing requests": "طلبات التمويل",
+  "Inspection requests": "طلبات المعاينة"
 }
