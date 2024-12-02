@@ -168,12 +168,11 @@
 
             <div class="flex gap-3">
               <div
-                v-for="item in navigation.social"
-                :key="item.name"
                 class="text-gray-500 hover:text-gray-400 social-icons"
+                v-if="facebookSettingValue"
               >
-                <span class="sr-only">{{ item.name }}</span>
-                <component :is="item.icon" class="h-6 w-6" aria-hidden="true" />
+                <!-- <span class="sr-only">{{ item.name }}</span> -->
+                
               </div>
             </div>
             <div class="flex gap-3">
@@ -243,7 +242,9 @@
             </div>
           </div>
           <div class="md:grid md:grid-cols-1 md:gap-8 text-white">
-            <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0 flex-sm-column">
+            <div
+              class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0 flex-sm-column"
+            >
               <div class="md:grid md:grid-cols-1 md:gap-8">
                 <div>
                   <section role="list" class="mt-6 flex items-center">
@@ -264,7 +265,7 @@
                             d="M5 0C2.23571 0 0 2.191 0 4.9C0 7.819 3.15714 11.844 4.45714 13.377C4.74286 13.713 5.26429 13.713 5.55 13.377C6.84286 11.844 10 7.819 10 4.9C10 2.191 7.76429 0 5 0ZM5 6.65C4.01429 6.65 3.21429 5.866 3.21429 4.9C3.21429 3.934 4.01429 3.15 5 3.15C5.98571 3.15 6.78571 3.934 6.78571 4.9C6.78571 5.866 5.98571 6.65 5 6.65Z"
                             fill="#768C88"
                           ></path></svg
-                        ><span class="mx-3"> {{$t('Riyadh branch')}}</span>
+                        ><span class="mx-3"> {{ $t("Riyadh branch") }}</span>
                       </div>
                       <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8918.483659127067!2d46.62900437132356!3d24.794426867064043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2ee3780125bd21%3A0x36f69d94dbad4cbd!2z2KjYsdisINin2YTZhdiz2KrZgtio2YQ!5e0!3m2!1sar!2seg!4v1730189128456!5m2!1sar!2seg"
@@ -293,7 +294,7 @@
                             d="M5 0C2.23571 0 0 2.191 0 4.9C0 7.819 3.15714 11.844 4.45714 13.377C4.74286 13.713 5.26429 13.713 5.55 13.377C6.84286 11.844 10 7.819 10 4.9C10 2.191 7.76429 0 5 0ZM5 6.65C4.01429 6.65 3.21429 5.866 3.21429 4.9C3.21429 3.934 4.01429 3.15 5 3.15C5.98571 3.15 6.78571 3.934 6.78571 4.9C6.78571 5.866 5.98571 6.65 5 6.65Z"
                             fill="#768C88"
                           ></path></svg
-                        ><span class="mx-3"> {{$t('Jeddah branch')}}</span>
+                        ><span class="mx-3"> {{ $t("Jeddah branch") }}</span>
                       </div>
                       <iframe
                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3709.5766569058883!2d39.1108582!3d21.6024419!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3dbabb0e53c41%3A0xf11d981517c55a1f!2sThe%20Headquarters%20Business%20Park!5e0!3m2!1sar!2seg!4v1730189323197!5m2!1sar!2seg"
@@ -373,6 +374,15 @@ const navigation = {
     },
   ],
 };
+const facebookSetting = useCookie("setting-fb_link");
+// const instaSetting = useCookie("setting-inst_link");
+// const linkedinSetting = useCookie("setting-linkedin_link");
+// const twitterSetting = useCookie("setting-tw_link");
+
+const facebookSettingValue = facebookSetting?.value;
+// const instaSettingValue = instaSetting?.value;
+// const linkedinSettingValue = linkedinSetting?.value;
+// const twitterSettingValue = twitterSetting?.value;
 </script>
 <style lang="scss" scoped>
 .title {
