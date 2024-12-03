@@ -83,7 +83,7 @@
               </div>
             </nuxt-link>
             <nuxt-link
-              :to="{ path: '/' }"
+              :to="{ path: '/profile/requests' }"
               class="box text-white d-flex justify-content-center align-items-center flex-column p-5 rounded"
             >
               <div class="icon-holder">

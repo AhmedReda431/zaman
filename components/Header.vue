@@ -213,7 +213,7 @@ const route = useRoute();
                         {{ $t("profile.profile") }}
                       </NuxtLink>
                     </MenuItem>
-                    <MenuItem v-slot="{ active }">
+                    <!-- <MenuItem v-slot="{ active }">
                       <NuxtLink
                         :to="{ path: '/notifications' }"
                         :class="[
@@ -223,7 +223,7 @@ const route = useRoute();
                       >
                         {{ $t("notifications") }}
                       </NuxtLink>
-                    </MenuItem>
+                    </MenuItem> -->
                     <MenuItem v-slot="{ active }">
                       <button
                         @click="logout"

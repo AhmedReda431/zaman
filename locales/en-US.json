@@ -531,5 +531,16 @@
   "control panel": "control panel",
   "My requests": "My requests",
   "Financing requests": "Financing requests",
-  "Inspection requests": "Inspection requests"
+  "Inspection requests": "Inspection requests",
+
+  "Reference number":"Reference number",
+  "The property":"The property",
+  "Advertiser":"Advertiser",
+  "Displayed price":"Displayed price",
+  "Actions":"Actions",
+  "no requests to display":"no requests to display",
+  "delete":"Delete",
+  "edit":"Edit",
+  "Delete Request":"Delete Request",
+  "Edit Request":"Edit Request"
 }

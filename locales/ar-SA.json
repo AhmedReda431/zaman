@@ -537,5 +537,15 @@
   "control panel": "لوحة التحكم",
   "My requests": "طلباتي",
   "Financing requests": "طلبات التمويل",
-  "Inspection requests": "طلبات المعاينة"
+  "Inspection requests": "طلبات المعاينة",
+  "Reference number":"الرقم المرجعي",
+  "The property":"العقار",
+  "Advertiser":"المعلن",
+  "Displayed price":"السعر المعروض",
+  "Actions":"الإجراءات",
+  "no requests to display":"لا توجد طلبات للعرض",
+   "delete":"حذف",
+  "edit":"تعديل",
+  "Delete Request":"حذف طلب",
+  "Edit Request":"تعديل طلب"
 }
