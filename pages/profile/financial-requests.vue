@@ -6,7 +6,7 @@
     >
       <div class="container mx-auto px-4 sm:px-8">
         <h1 class="title font-bold">
-          {{ $t("My requests") }}
+          {{ $t("Financing requests") }}
         </h1>
         <div class="py-8">
           <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -89,36 +89,36 @@
                       class="px-5 py-5 border-b border-gray-200 bg-white text-sm d-flex align-items-center gap-8 actions"
                     >
                       <!-- <div
-                        class="edit-action cursor-pointer"
-                        @click="
-                          selectRequest(request);
-                          openEditModal();
-                        "
-                      >
-                        <div class="svg-holder">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                          >
-                            <g
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
+                          class="edit-action cursor-pointer"
+                          @click="
+                            selectRequest(request);
+                            openEditModal();
+                          "
+                        >
+                          <div class="svg-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
                             >
-                              <path
-                                d="M7 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-1"
-                              />
-                              <path
-                                d="M20.385 6.585a2.1 2.1 0 0 0-2.97-2.97L9 12v3h3zM16 5l3 3"
-                              />
-                            </g>
-                          </svg>
-                        </div>
-                      </div> -->
+                              <g
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                              >
+                                <path
+                                  d="M7 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-1"
+                                />
+                                <path
+                                  d="M20.385 6.585a2.1 2.1 0 0 0-2.97-2.97L9 12v3h3zM16 5l3 3"
+                                />
+                              </g>
+                            </svg>
+                          </div>
+                        </div> -->
                       <div
                         class="delete-action cursor-pointer"
                         @click="
@@ -227,7 +227,9 @@
                         />
                       </svg>
                     </div>
-                    <h2>{{ $t("Are you sure you want to delete the request?") }}</h2>
+                    <h2>
+                      {{ $t("Are you sure you want to delete the request?") }}
+                    </h2>
                   </div>
                 </div>
 

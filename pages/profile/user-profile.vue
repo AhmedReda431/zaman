@@ -65,8 +65,8 @@
           </div>
         </div>
         <div class="user-controls bg-white my-10 p-3 rounded py-24 px-8">
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-16">
-            <nuxt-link
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-16 justify-center">
+            <!-- <nuxt-link
               :to="{ path: '/' }"
               class="box text-white d-flex justify-content-center align-items-center flex-column p-5 rounded"
             >
@@ -81,7 +81,7 @@
                   {{ $t("control panel") }}
                 </h1>
               </div>
-            </nuxt-link>
+            </nuxt-link> -->
             <nuxt-link
               :to="{ path: '/profile/requests' }"
               class="box text-white d-flex justify-content-center align-items-center flex-column p-5 rounded"
@@ -96,7 +96,7 @@
               </div>
             </nuxt-link>
             <nuxt-link
-              :to="{ path: '/' }"
+              :to="{ path: '/profile/financial-requests' }"
               class="box text-white d-flex justify-content-center align-items-center flex-column p-5 rounded"
             >
               <div class="icon-holder">
@@ -112,7 +112,7 @@
               </div>
             </nuxt-link>
             <nuxt-link
-              :to="{ path: '/' }"
+              :to="{ path: '/profile/inspection-requests' }"
               class="box text-white d-flex justify-content-center align-items-center flex-column p-5 rounded"
             >
               <div class="icon-holder">
