@@ -30,7 +30,7 @@ if (!i18n.value) {
   setLocale("ar");
 }
 const route = useRoute();
-const isLoading = ref(true);
+const isLoading = ref(false);
 
 // Watch for changes in the locale
 watch(locale, (newValue, oldValue) => {
@@ -95,7 +95,7 @@ function getSettingData() {
 }
 
 getSettingData();
-useNuxtApp().hook("app:mounted", () => (isLoading.value = false));
+// useNuxtApp().hook("app:mounted", () => (isLoading.value = false));
 </script>
 
 <style>

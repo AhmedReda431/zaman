@@ -58,27 +58,34 @@
                     <td
                       class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
                     >
-                      Reference number - {{ index + 1 }}
+                      <span v-if="request?.license_number">
+                        {{ request?.license_number }}
+                      </span>
                     </td>
                     <td
                       class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
                     >
-                      The property - {{ index + 1 }}
+                      <span v-if="request?.category?.title">
+                        {{ request.category.title }}
+                      </span>
                     </td>
                     <td
                       class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
                     >
-                      Advertiser - {{ index + 1 }}
+                      {{ request.marketer_name }}
                     </td>
                     <td
                       class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
                     >
-                      Displayed price - {{ index + 1 }}
+                      <span v-if="request?.price_from && request?.price_to">
+                        {{ request.price_from }} - {{ request.price_to }}
+                        {{ $t("riyal") }}</span
+                      >
                     </td>
                     <td
                       class="px-5 py-5 border-b border-gray-200 bg-white text-sm d-flex align-items-center gap-8 actions"
                     >
-                      <div
+                      <!-- <div
                         class="edit-action cursor-pointer"
                         @click="
                           selectRequest(request);
@@ -108,7 +115,7 @@
                             </g>
                           </svg>
                         </div>
-                      </div>
+                      </div> -->
                       <div
                         class="delete-action cursor-pointer"
                         @click="
@@ -201,12 +208,29 @@
                   </div>
                 </DialogTitle>
                 <div class="mt-2 p-4">
-                  delete selected data : {{ selectedRequest }}
+                  <div
+                    class="text-center d-flex flex-column gap-5 justify-content-center align-items-center"
+                  >
+                    <div class="svg-holder">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="60"
+                        height="60"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fill="red"
+                          d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"
+                        />
+                      </svg>
+                    </div>
+                    <h2>{{ $t("are you shour to delete this reques") }}</h2>
+                  </div>
                 </div>
 
                 <div class="mt-4 p-4 d-flex justify-content-center mb-3">
                   <button
-                    @click.stop="bookApiCall"
+                    @click.stop="deleteRequest"
                     class="px-6 py-2 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring focus:ring-gray-300 d-flex gap-3 py-3"
                     style="background-color: #264642; color: white"
                   >
@@ -331,6 +355,11 @@ function openDeleteModal() {
 const selectRequest = (request) => {
   selectedRequest.value = request;
 };
+const { $toastMessage } = useNuxtApp();
+const showToast = (message, type) => {
+  $toastMessage(message, type); // Use type 'success', 'error', 'info', etc.
+};
+
 const handlePageChange = async (page) => {
   // Check if the query object has at least one key-value pair
   const hasFilters = Object.keys(query).length > 0;
@@ -373,6 +402,27 @@ const fetchRequests = (page) => {
       loading.value = false;
     });
 };
+function deleteRequest() {
+  $api
+    .delete(`/request-real-estates/${selectedRequest.value.id}`)
+    .then((res) => {
+      showToast(res?.data?.message, "success");
+    })
+    .catch((err) => {
+      if (err?.response?.data?.message) {
+        showToast(err?.response?.data?.message, "danger");
+      }
+    })
+    .finally(() => {
+      closeDeleteModal();
+      fetchRequests(page);
+      window.scrollTo({
+        x: 0,
+        y: 0,
+        behavior: "smooth",
+      });
+    });
+}
 onMounted(async () => {
   await fetchRequests(query);
 });

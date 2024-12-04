@@ -547,5 +547,6 @@
    "delete":"حذف",
   "edit":"تعديل",
   "Delete Request":"حذف طلب",
-  "Edit Request":"تعديل طلب"
+  "Edit Request":"تعديل طلب",
+  "Are you sure you want to delete the request?":"هل انت متاكد من حذف الطلب"
 }
