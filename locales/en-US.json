@@ -543,5 +543,6 @@
   "edit":"Edit",
   "Delete Request":"Delete Request",
   "Edit Request":"Edit Request",
-  "Are you sure you want to delete the request?":"Are you sure you want to delete the request?"
+  "Are you sure you want to delete the request?":"Are you sure you want to delete the request?",
+  "save changes":"save changes"
 }

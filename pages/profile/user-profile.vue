@@ -32,8 +32,8 @@
             class="delete-notification cursor-pointer"
             @click="editProfile(index)"
           >
-            <button
-              class="d-flex align-items-center gap-2 bg-main text-white no-border rounded shadow px-5 py-2"
+            <nuxt-link :to="{path:'/profile/profile-update'}"
+              class="d-flex text-white align-items-center gap-2 bg-main text-white no-border rounded shadow px-5 py-2"
             >
               <span>
                 {{ $t("edit profile") }}
@@ -61,11 +61,11 @@
                   </g>
                 </svg>
               </span>
-            </button>
+            </nuxt-link>
           </div>
         </div>
         <div class="user-controls bg-white my-10 p-3 rounded py-24 px-8">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-16 justify-center">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-16 justify-center">
             <!-- <nuxt-link
               :to="{ path: '/' }"
               class="box text-white d-flex justify-content-center align-items-center flex-column p-5 rounded"
@@ -95,7 +95,7 @@
                 </h1>
               </div>
             </nuxt-link>
-            <nuxt-link
+            <!-- <nuxt-link
               :to="{ path: '/profile/financial-requests' }"
               class="box text-white d-flex justify-content-center align-items-center flex-column p-5 rounded"
             >
@@ -110,7 +110,7 @@
                   {{ $t("Financing requests") }}
                 </h1>
               </div>
-            </nuxt-link>
+            </nuxt-link> -->
             <nuxt-link
               :to="{ path: '/profile/inspection-requests' }"
               class="box text-white d-flex justify-content-center align-items-center flex-column p-5 rounded"
