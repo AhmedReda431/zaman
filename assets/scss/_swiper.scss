@@ -45,6 +45,9 @@
         color: #333 !important;
         font-size: 20px !important;
     }
+    background-color: #fff;
+    opacity: .9 !important;
+    z-index: 99;
 }
 .swiper-slide {
     a {
@@ -83,4 +86,12 @@
         bottom: -15px !important;
     }
 }
+.swiper-button-disabled{
+    opacity: .2 !important;
+}
 
+.home-large-swiper{
+    .swiper-pagination {
+        bottom: 2% !important;
+    }
+}

@@ -263,7 +263,53 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M22 4.01c-1 .49-1.98.689-3 .99c-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4c0 0-4.182 7.433 4 11c-1.872 1.247-3.739 2.088-6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58-1.04 6.522-3.723 7.651-7.742a13.8 13.8 0 0 0 .497-3.753c0-.249 1.51-2.772 1.818-4.013z"
+                    d="m4 4l11.733 16H20L8.267 4zm0 16l6.768-6.768m2.46-2.46L20 4"
+                  />
+                </svg>
+              </a>
+              <a
+                :href="snapchatSettingValue"
+                target="_blank"
+                class="text-gray-500 hover:text-gray-400 social-icons"
+                v-if="snapchatSettingValue"
+              >
+                <!-- <span class="sr-only">{{ item.name }}</span> -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="none"
+                    stroke="#fff"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16.882 7.842a4.882 4.882 0 0 0-9.764 0c0 4.273-.213 6.409-4.118 8.118c2 .882 2 .882 3 3c3 0 4 2 6 2s3-2 6-2c1-2.118 1-2.118 3-3c-3.906-1.709-4.118-3.845-4.118-8.118M3 15.961c4-2.118 4-4.118 1-7.118m17 7.118c-4-2.118-4-4.118-1-7.118"
+                  />
+                </svg>
+              </a>
+              <a
+                :href="tikTokSettingValue"
+                target="_blank"
+                class="text-gray-500 hover:text-gray-400 social-icons"
+                v-if="tikTokSettingValue"
+              >
+                <!-- <span class="sr-only">{{ item.name }}</span> -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="none"
+                    stroke="#fff"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 7.917v4.034A9.95 9.95 0 0 1 16 10v4.5a6.5 6.5 0 1 1-8-6.326V12.5a2.5 2.5 0 1 0 4 2V3h4.083A6.005 6.005 0 0 0 21 7.917"
                   />
                 </svg>
               </a>
@@ -322,14 +368,14 @@
                       {{ $t("addWorkspace") }}
                     </NuxtLink>
                   </li>
-                  <li>
+                  <!-- <li>
                     <NuxtLink
                       :to="{ path: '/join' }"
                       class="text-sm leading-6 text-gray-300 hover:text-white"
                     >
                       {{ $t("common.joinAsHost") }}
                     </NuxtLink>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </div>
@@ -471,11 +517,16 @@ const facebookSetting = useCookie("setting-fb_link");
 const instaSetting = useCookie("setting-inst_link");
 const linkedinSetting = useCookie("setting-linkedin_link");
 const twitterSetting = useCookie("setting-tw_link");
+const snapchatSetting =
+  useCookie("setting-snapchat_link") || useCookie("setting-snap_link");
+const tikTokSetting = useCookie("setting-tiktok_link");
 
 const facebookSettingValue = facebookSetting?.value;
 const instaSettingValue = instaSetting?.value;
 const linkedinSettingValue = linkedinSetting?.value;
 const twitterSettingValue = twitterSetting?.value;
+const snapchatSettingValue = snapchatSetting?.value;
+const tikTokSettingValue = snapchatSetting?.value;
 </script>
 <style lang="scss" scoped>
 .title {
@@ -490,6 +541,7 @@ ul {
   p.main-color {
     font-size: 20px;
     color: $main-color !important;
+    line-height: 1.4;
   }
 }
 .description {

@@ -200,7 +200,7 @@ function reportApiCall() {
       <div class="md:col-span-2">
         <div class="location bg-white p-2 shadow-sm rounded mb-5">
           <div
-            class="flex items-center justify-content-between liang-items-center"
+            class="flex items-center justify-content-between liang-items-center flex-sm-column"
           >
             <span class="font-semibold">{{ realState?.name }}</span>
             <span class="font-semibold d-flex gap-2 align-items-center">
@@ -250,7 +250,7 @@ function reportApiCall() {
       <div class="w-full mx-auto rounded-lg overflow-hidden md:col-span-1 mb-3">
         <div class="location bg-white p-2 shadow-sm rounded mb-5">
           <div
-            class="flex items-center justify-content-between liang-items-center"
+            class="flex items-center justify-content-between liang-items-center flex-sm-column"
           >
             <!-- <div class="font-semibold">
               <div class="flex items-center space-x-2 rtl:space-x-reverse">
@@ -399,7 +399,7 @@ function reportApiCall() {
       >
         {{ $t("propertyInfo") }}
       </h2>
-      <div class="d-flex gap-4 align-items-center flex-wrap">
+      <div class="d-flex gap-4 align-items-center flex-wrap flex-sm-column">
         <div
           v-for="(item, index) in propertyInfo"
           :key="index"
@@ -422,7 +422,7 @@ function reportApiCall() {
       >
         {{ $t("location") }}
       </h2>
-      <div class="d-flex gap-4 align-items-center flex-wrap">
+      <div class="d-flex gap-4 align-items-center flex-wrap flex-sm-column">
         <iframe
           :src="realState?.location"
           frameborder="0"
@@ -441,7 +441,7 @@ function reportApiCall() {
       >
         {{ $t("Street information") }}
       </h2>
-      <div class="flex flex-col md:flex-row gap-4 flex-wrap">
+      <div class="flex flex-col md:flex-row gap-4 flex-wrap flex-sm-column-centered">
         <div
           v-for="(item, index) in streetInfo"
           :key="index"

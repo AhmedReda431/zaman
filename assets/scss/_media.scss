@@ -2,6 +2,12 @@
     .flex-sm-column {
         display: flex;
         flex-direction: column;
+        gap: 10px;
+    }
+    .flex-sm-column-centered{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     .sm-mb-0 {
         margin-bottom: 0 !important;

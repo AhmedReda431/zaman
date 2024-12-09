@@ -291,7 +291,7 @@ const route = useRoute();
                 </button>
               </div>
               <div class="mt-6 flow-root">
-                <div class="-my-6 divide-y divide-gray-500/10">
+                <div class="-my-6 divide-y divide-gray-500/10 side-link">
                   <div class="py-6">
                     <NuxtLink
                       :to="{ path: '/' }"
@@ -303,7 +303,7 @@ const route = useRoute();
                     </NuxtLink>
                   </div>
                 </div>
-                <div class="-my-6 divide-y divide-gray-500/10">
+                <div class="-my-6 divide-y divide-gray-500/10 side-link">
                   <div class="py-6">
                     <NuxtLink
                       :to="{ path: '/real-states' }"
@@ -315,7 +315,7 @@ const route = useRoute();
                     </NuxtLink>
                   </div>
                 </div>
-                <div class="-my-6 divide-y divide-gray-500/10">
+                <div class="-my-6 divide-y divide-gray-500/10 side-link">
                   <div class="py-6">
                     <NuxtLink
                       :to="{ path: '/about-us' }"
@@ -327,7 +327,7 @@ const route = useRoute();
                     </NuxtLink>
                   </div>
                 </div>
-                <div class="-my-6 divide-y divide-gray-500/10">
+                <div class="-my-6 divide-y divide-gray-500/10 side-link">
                   <div class="py-6">
                     <NuxtLink
                       :to="{ path: '/contact-us' }"
@@ -339,7 +339,7 @@ const route = useRoute();
                     </NuxtLink>
                   </div>
                 </div>
-                <div class="-my-6 divide-y divide-gray-500/10">
+                <div class="-my-6 divide-y divide-gray-500/10 side-link">
                   <div class="py-6">
                     <NuxtLink
                       :to="{ path: '/real-states/create' }"
@@ -353,7 +353,7 @@ const route = useRoute();
                     </NuxtLink>
                   </div>
                 </div>
-                <div class="-my-6 divide-y divide-gray-500/10">
+                <div class="-my-6 divide-y divide-gray-500/10 side-link">
                   <div class="py-6">
                     <NuxtLink
                       :to="{ path: '/order-state' }"
@@ -368,7 +368,7 @@ const route = useRoute();
                   </div>
                 </div>
                 <div
-                  class="-my-6 divide-y divide-gray-500/10"
+                  class="-my-6 divide-y divide-gray-500/10 side-link"
                   v-if="!isAuthenticated"
                 >
                   <div class="py-6">
@@ -395,5 +395,8 @@ const route = useRoute();
 <style lang="scss" scoped>
 .profile-menu{
   position: fixed;
+}
+.side-link{
+  text-transform: capitalize;
 }
 </style>
