@@ -11,7 +11,7 @@
                 <img
                   class="inline-block h-20 w-20 rounded-full"
                   style="object-fit: cover"
-                  :src="user?.avatar || defaultAvatar"
+                  :src="user?.profileImage || defaultAvatar"
                   alt="User avatar"
                 />
               </div>
@@ -35,19 +35,19 @@
             <nuxt-link :to="{path:'/profile/profile-update'}"
               class="d-flex text-white align-items-center gap-2 bg-main text-white no-border rounded shadow px-5 py-2"
             >
-              <span>
+              <span class="text-white">
                 {{ $t("edit profile") }}
               </span>
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="28"
-                  height="28"
+                  width="25"
+                  height="25"
                   viewBox="0 0 24 24"
                 >
                   <g
                     fill="none"
-                    stroke="currentColor"
+                    stroke="#fff"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"

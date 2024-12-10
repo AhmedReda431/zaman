@@ -8,17 +8,20 @@
             <div class="w-full mt-5">
               <h1
                 class="font-bold text-secondary mb-4 border-b-2 border-secondary inline-block title mt-2 mb-8"
+                v-if="aboutUs?.title"
               >
-                {{ $t("about zaman") }}
+                {{ aboutUs.title }}
               </h1>
-              <p class="text-gray-700 leading-relaxed description">
-                {{ $t("zaman description") }}
-              </p>
+              <p
+                class="text-gray-700 leading-relaxed description"
+                v-if="aboutUs?.description"
+                v-html="aboutUs.description"
+              ></p>
             </div>
           </div>
-          <div class="img-holder w-50">
+          <div class="img-holder w-50" v-if="aboutUs.image">
             <img
-              src="~/assets/img/about/about-us-img.jpg"
+              :src="aboutUs.image"
               alt="House Image"
               class="w-full h-full object-cover w-100"
             />
@@ -195,60 +198,61 @@
       </div>
     </div>
   </div>
+  <LoadingScreen v-if="loading" />
 </template>
 
-<script>
+<script setup>
 // Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from "swiper/vue";
+// import { Swiper, SwiperSlide } from "swiper/vue";
 // import { onMounted } from "vue";
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import "swiper/css/pagination";
 // Import required modules
-import { Navigation, Pagination } from "swiper/modules";
+// import { Navigation, Pagination } from "swiper/modules";
+const { $app } = useNuxtApp();
+const { fetchAboutUs, aboutUs, loading } = useAboutUs();
+import { ref, onMounted } from "vue";
+// const slides = ref([
+//   { number: "1", text: this.$t("sentence1") },
+//   { number: "2", text: this.$t("sentence2") },
+//   { number: "3", text: this.$t("sentence3") },
+//   { number: "4", text: this.$t("sentence4") },
+//   { number: "5", text: this.$t("sentence5") },
+// ]);
+// const breakpoints = ref({
+//   // when window width is >= 640px
+//   640: {
+//     slidesPerView: 1,
+//   },
+//   // when window width is >= 768px
+//   768: {
+//     slidesPerView: 2,
+//   },
+//   // when window width is >= 1024px
+//   1024: {
+//     slidesPerView: 3,
+//   },
+// });
 
-export default {
-  components: {
-    // Swiper,
-    // SwiperSlide,
-  },
-  data() {
-    return {
-      slides: [
-        { number: "1", text: this.$t("sentence1") },
-        { number: "2", text: this.$t("sentence2") },
-        { number: "3", text: this.$t("sentence3") },
-        { number: "4", text: this.$t("sentence4") },
-        { number: "5", text: this.$t("sentence5") },
-      ],
-      breakpoints: {
-        // when window width is >= 640px
-        640: {
-          slidesPerView: 1,
-        },
-        // when window width is >= 768px
-        768: {
-          slidesPerView: 2,
-        },
-        // when window width is >= 1024px
-        1024: {
-          slidesPerView: 3,
-        },
-      },
-    };
-  },
-  name: "ResponsiveSection",
-  setup() {
-    definePageMeta({
-      description: "Your real-state has been created successfully",
-      layout: "default",
-    });
-
-    const modules = [Navigation, Pagination];
-    return { modules: modules };
-  },
-};
+// name: "ResponsiveSection";
+// const fetchAboutUsFunction = () => {
+//   fetchAboutUs()
+//     .then((res) => {
+//       console.log("res", res);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// };
+definePageMeta({
+  description: "Your real-state has been created successfully",
+  layout: "default",
+});
+onMounted(() => {
+  fetchAboutUs();
+});
 </script>
 
 <style scoped lang="scss">

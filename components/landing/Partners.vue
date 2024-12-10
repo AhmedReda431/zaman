@@ -6,21 +6,18 @@
           <h2
             class="text-2xl font-semibold leading-7 mb-6 abolute-bottom-border"
           >
-            {{ $t("Certificates") }}
+            {{ $t("partners") }}
           </h2>
           <!-- <nuxt-link to="/real-states" class="all-offers gray">
             <h1 class="title">
-              <span>{{ $t("View all Certificates") }}</span>
+              <span>{{ $t("View all partners") }}</span>
               <span
                 ><Icon name="material-symbols:arrow-outward" color="black"
               /></span>
             </h1>
           </nuxt-link> -->
         </div>
-        <div
-          class="certificates-holder mt-24 text-center"
-          v-if="certificates?.length"
-        >
+        <div class="partners-holder mt-24 text-center" v-if="partners?.length">
           <!-- Swiper Component -->
           <div>
             <ClientOnly>
@@ -37,16 +34,18 @@
                 }"
               >
                 <swiper-slide
-                  v-for="(certificate, index) in certificates"
+                  v-for="(partner, index) in partners"
                   :key="index"
                 >
                   <img
-                    :src="certificate.image"
+                    :src="partner.image"
                     class="h-14 w-auto"
-                    alt="certificate-img"
-                    v-if="certificate?.image"
-                    
+                    alt="partner-img"
+                    v-if="partner?.image"
                   />
+                  <h2 class="partner-title mt-3">
+                    {{ partner.title }}
+                  </h2>
                 </swiper-slide>
               </swiper>
             </ClientOnly>
@@ -78,11 +77,22 @@
     }
   }
 }
+.swiper-slide img {
+  width: 250px !important;
+  height: 250px !important;
+  border-radius: 50%;
+}
+.swiper-slide{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 </style>
 <script setup>
 import logo from "@/assets/img/Logo-zamn.png";
 const { $api } = useNuxtApp();
-let certificates = ref(null);
+let partners = ref(null);
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
 
@@ -104,7 +114,7 @@ const { fetchRealStates, realStates, loading, success, error } =
 // Lifecycle: Mounted
 onMounted(async () => {
   loading.value = true;
-  getCertificatesData();
+  getPartnersData();
   await fetchRealStates().finally(() => {
     loading.value = false;
 
@@ -115,11 +125,11 @@ onMounted(async () => {
   });
 });
 
-function getCertificatesData() {
+function getPartnersData() {
   $api
-    .get("/certificates")
+    .get("/partners")
     .then((res) => {
-      certificates.value = res?.data?.data;
+      partners.value = res?.data?.data;
     })
     .catch((err) => {
       if (err?.response?.data?.message) {

@@ -8,7 +8,7 @@
             <div class="relative">
               <!-- Image Preview -->
               <img
-                :src="profileImageUrl || '/images/default-profile.png'"
+                :src="user?.profileImage || defaultAvatar"
                 alt="Profile Picture"
                 class="w-24 h-24 rounded-full object-cover border-2 border-gray-300 cursor-pointer img-back"
                 @click="triggerFileInput"
@@ -104,7 +104,6 @@
             <select
               v-model="formData.city_id"
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              required
             >
               <option :value="null" disabled>{{ $t("select") }}</option>
               <option
@@ -126,7 +125,6 @@
               v-model="formData.state_id"
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               :disabled="!formData.city_id"
-              required
             >
               <option :value="null" disabled>{{ $t("select") }}</option>
               <option
@@ -137,6 +135,72 @@
                 {{ state.name }}
               </option>
             </select>
+          </div>
+          <!-- puser type  -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">{{
+              $t("Account Type")
+            }}</label>
+            <div class="relative">
+              <div class="flex flex-col">
+                <Listbox v-model="formData.account_type">
+                  <div class="relative mt-1">
+                    <ListboxButton
+                      class="w-full px-4 py-2 border rounded-md bg-white text-left flex items-center justify-between multi_select_dropdown"
+                    >
+                      <span class="block truncate">{{ AccountName }}</span>
+                      <span
+                        class="pointer-events-none absolute inset-y-0 rtl:left-0 ltr:right-0 flex items-center rtl:pl-2 pr-2"
+                      >
+                      </span>
+                      <ChevronDownIcon class="h-5 w-5 text-gray-500" />
+                    </ListboxButton>
+
+                    <transition
+                      leave-active-class="transition duration-100 ease-in"
+                      leave-from-class="opacity-100"
+                      leave-to-class="opacity-0"
+                    >
+                      <ListboxOptions
+                        class="absolute mt-1 z-20 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base ring-1 ring-black/5 focus:outline-none sm:text-sm"
+                      >
+                        <ListboxOption
+                          v-slot="{ active, selected }"
+                          v-for="role in roles"
+                          :key="role.id"
+                          :value="role.id"
+                          as="template"
+                        >
+                          <li
+                            :class="[
+                              active
+                                ? 'bg-amber-100 text-amber-900'
+                                : 'text-gray-900',
+                              'relative cursor-default select-none py-2 pl-10 pr-4',
+                            ]"
+                          >
+                            <span
+                              :class="[
+                                selected ? 'font-medium' : 'font-normal',
+                                'block truncate',
+                              ]"
+                            >
+                              {{ role.label }}
+                            </span>
+                            <span
+                              v-if="selected"
+                              class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600"
+                            >
+                              <CheckIcon class="h-5 w-5" aria-hidden="true" />
+                            </span>
+                          </li>
+                        </ListboxOption>
+                      </ListboxOptions>
+                    </transition>
+                  </div>
+                </Listbox>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -156,10 +220,19 @@
 </template>
 
 <script setup>
+const user = computed(() => useAuthStore().user);
 import { ref, onMounted, watch } from "vue";
 const { fetchCities, cities } = useCities();
 const { fetchStates, states } = useStates();
 const { $api } = useNuxtApp();
+import defaultAvatar from "@/assets/img/green.png";
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOptions,
+  ListboxOption,
+} from "@headlessui/vue";
+import { CheckIcon, ChevronDownIcon } from "@heroicons/vue/20/solid";
 // Reactive states
 const formData = ref({
   name: "",
@@ -189,13 +262,41 @@ onMounted(async () => {
       phone: response.data.phone,
       city_id: response.data.city_id,
       state_id: response.data.state_id,
+      account_type: response.data.account_type,
     };
     profileImageUrl.value = response.data.profile_image_url || ""; // Image URL from the API
   } catch (error) {
     console.error("Error fetching profile data:", error);
   }
 });
-
+const { t } = useI18n();
+const roles = ref([
+  {
+    id: 1,
+    label: t("Researcher"),
+  },
+  {
+    id: 2,
+    label: t("owner"),
+  },
+  {
+    id: 3,
+    label: t("mediator"),
+  },
+  {
+    id: 4,
+    label: t("developer"),
+  },
+]);
+const AccountName = computed(() => {
+  if (formData.value.account_type && roles.value) {
+    const obj = roles.value.find(
+      (role) => role.id == formData.value.account_type
+    );
+    return unref(obj).label;
+  }
+  return t("select account type");
+});
 // Watch for city_id changes and fetch states
 watch(
   () => formData.value.city_id, // Watching the correct reactive data
@@ -247,16 +348,18 @@ const handleSubmit = async () => {
   form.append("phone", formData.value.phone);
   form.append("city_id", formData.value.city_id);
   form.append("state_id", formData.value.state_id);
+  form.append("account_type", formData.value.account_type);
   if (imageFile.value) {
     form.append("profile_image", imageFile.value); // Append the image file
   }
   loading.value = true;
   try {
-    await $api.post("/update-profile", form, {
+    const res = await $api.post("/update-profile", form, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
+
     showToast(res?.data?.message, "success");
     loading.value = false;
   } catch (error) {
@@ -268,6 +371,21 @@ const handleSubmit = async () => {
       "danger"
     );
     loading.value = false;
+  } finally {
+    try {
+      const response = await $api.get("/profile-info"); // Replace with your API endpoint
+      formData.value = {
+        name: response.data.name,
+        email: response.data.email,
+        phone: response.data.phone,
+        city_id: response.data.city_id,
+        state_id: response.data.state_id,
+        account_type: response.data.account_type,
+      };
+      profileImageUrl.value = response.data.profile_image_url || ""; // Image URL from the API
+    } catch (error) {
+      console.error("Error fetching profile data:", error);
+    }
   }
 };
 </script>

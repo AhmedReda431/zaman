@@ -527,7 +527,7 @@
   "mediator": "Mediator",
   "developer": "Developer",
   "notifications": "Notifications",
-  "edit profile": "edit profile",
+  "edit profile": "Edit Profile",
   "control panel": "control panel",
   "My requests": "My requests",
   "Financing requests": "Financing requests",
@@ -544,5 +544,7 @@
   "Delete Request":"Delete Request",
   "Edit Request":"Edit Request",
   "Are you sure you want to delete the request?":"Are you sure you want to delete the request?",
-  "save changes":"save changes"
+  "save changes":"save changes",
+  "Account Type":"Account Type",
+  "select account type":"Select Account Type"
 }

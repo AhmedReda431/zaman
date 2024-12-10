@@ -169,7 +169,7 @@ const route = useRoute();
                   <img
                     class="inline-block h-10 w-10 rounded-full"
                     style="object-fit: cover"
-                    :src="user?.avatar || defaultAvatar"
+                    :src="user?.profileImage || defaultAvatar"
                     alt="User avatar"
                   />
                   <div class="text-gray-700 mx-3 font-semibold hidden lg:block">
