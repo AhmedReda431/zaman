@@ -16,11 +16,16 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, nextTick } from "vue";
-import { useRoute } from "vue-router";
-const LOADING_TIMEOUT_DURATION = 150; // ms
-const ALERT_DISPLAY_DURATION = 4500; // ms
-
+import {
+  ref,
+  watch,
+  computed,
+  nextTick,
+  onMounted,
+  onBeforeUnmount,
+} from "vue";
+import { useRouter, useRoute } from "vue-router";
+const router = useRouter();
 const { locale, setLocale } = useI18n();
 const localeValue = computed(() => {
   return locale.value === "ar" ? "rtl" : "ltr";
@@ -29,31 +34,10 @@ const i18n = useCookie("i18n_redirected");
 if (!i18n.value) {
   setLocale("ar");
 }
+
 const route = useRoute();
 const isLoading = ref(false);
-
-// Watch for changes in the locale
-watch(locale, (newValue, oldValue) => {
-  if (newValue !== oldValue) {
-    isLoading.value = true;
-    nextTick(() => {
-      setTimeout(() => {
-        isLoading.value = false;
-      }, LOADING_TIMEOUT_DURATION);
-    });
-  }
-});
-// watch(
-//   route,
-//   () => {
-//     isLoading.value = true;
-//     setTimeout(() => {
-//       isLoading.value = false;
-//     }, 2000);
-//   },
-//   { immediate: true },
-//   { deep: true }
-// );
+const isRefreshed = useCookie("isRefreshed"); // Cookie to track refresh state
 
 const { onAlert } = useAlert();
 const alert = ref(null);
@@ -66,14 +50,14 @@ function showAlert(newAlert) {
   alert.value = newAlert;
   setTimeout(() => {
     dismissAlert();
-  }, ALERT_DISPLAY_DURATION);
+  }, 4500); // Alert auto-dismiss after 4.5 seconds
 }
 
 function dismissAlert() {
   alert.value = null;
 }
+
 const { $api } = useNuxtApp();
-import { useCookie } from "#app";
 
 function getSettingData() {
   $api
@@ -95,7 +79,30 @@ function getSettingData() {
 }
 
 getSettingData();
-// useNuxtApp().hook("app:mounted", () => (isLoading.value = false));
+
+onMounted(() => {
+  isLoading.value = true;
+  setTimeout(() => {
+    isLoading.value = false;
+  }, 2000);
+});
+
+// Watch route changes and handle reload on 'home' route
+watch(
+  route,
+  () => {
+    if (route.name === "index" && isRefreshed.value === false) {
+      isRefreshed.value = true; // Set refresh flag to true when the route is 'index'
+      isLoading.value = true;
+      setTimeout(() => {
+        router.go(router.currentRoute); // Trigger page reload
+      }, 2000);
+    } else if (route.name !== "index") {
+      isRefreshed.value = false; // Reset isRefreshed when route is not 'index'
+    }
+  },
+  { immediate: true } // Ensure this logic runs immediately when the component is mounted
+);
 </script>
 
 <style>
@@ -113,9 +120,8 @@ getSettingData();
 .fade-leave-active {
   transition: all 0.3s;
 }
-.fade-enter-from, 
-.fade-leave-to 
-/* .fade-leave-active in <2.1.8 */ {
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
 </style>

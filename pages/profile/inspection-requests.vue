@@ -156,7 +156,7 @@
         />
       </div>
       <div
-        class="text-center"
+        class="text-center py-24 my-24"
         v-else-if="!requests?.real_estate_requests.length && !loading"
       >
         {{ $t("no requests to display") }}

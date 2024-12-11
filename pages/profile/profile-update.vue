@@ -8,7 +8,7 @@
             <div class="relative">
               <!-- Image Preview -->
               <img
-                :src="user?.profileImage || defaultAvatar"
+                :src="profileImageUrl || user?.profileImage || defaultAvatar"
                 alt="Profile Picture"
                 class="w-24 h-24 rounded-full object-cover border-2 border-gray-300 cursor-pointer img-back"
                 @click="triggerFileInput"
@@ -216,6 +216,7 @@
         </div>
       </form>
     </div>
+    <LoadingScreen v-if="loading" />
   </div>
 </template>
 
@@ -225,6 +226,7 @@ import { ref, onMounted, watch } from "vue";
 const { fetchCities, cities } = useCities();
 const { fetchStates, states } = useStates();
 const { $api } = useNuxtApp();
+const router = useRouter();
 import defaultAvatar from "@/assets/img/green.png";
 import {
   Listbox,
@@ -253,20 +255,25 @@ const showToast = (message, type) => {
 
 // Fetch profile data when the component is mounted
 onMounted(async () => {
+  loading.value = true
   await fetchCities();
+  loading.value = false
   try {
+    loading.value = true;
     const response = await $api.get("/profile-info"); // Replace with your API endpoint
     formData.value = {
-      name: response.data.name,
-      email: response.data.email,
-      phone: response.data.phone,
-      city_id: response.data.city_id,
-      state_id: response.data.state_id,
-      account_type: response.data.account_type,
+      name: response.data.data.name,
+      email: response.data.data.email,
+      phone: response.data.data.phone,
+      city_id: response.data.data.city_id,
+      state_id: response.data.data.state_id,
+      account_type: response.data.data.account_type,
     };
-    profileImageUrl.value = response.data.profile_image_url || ""; // Image URL from the API
+    profileImageUrl.value = response.data.data.profile_image_url || ""; // Image URL from the API
   } catch (error) {
     console.error("Error fetching profile data:", error);
+  } finally {
+    loading.value = false;
   }
 });
 const { t } = useI18n();
@@ -372,20 +379,8 @@ const handleSubmit = async () => {
     );
     loading.value = false;
   } finally {
-    try {
-      const response = await $api.get("/profile-info"); // Replace with your API endpoint
-      formData.value = {
-        name: response.data.name,
-        email: response.data.email,
-        phone: response.data.phone,
-        city_id: response.data.city_id,
-        state_id: response.data.state_id,
-        account_type: response.data.account_type,
-      };
-      profileImageUrl.value = response.data.profile_image_url || ""; // Image URL from the API
-    } catch (error) {
-      console.error("Error fetching profile data:", error);
-    }
+    loading.value = false;
+    router.go(0);
   }
 };
 </script>

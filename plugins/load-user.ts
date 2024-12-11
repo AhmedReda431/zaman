@@ -17,7 +17,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       } catch (error) {
         console.error("Error fetching user data:", error);
         // Handle error, e.g., clear auth data if token is invalid
-        // authStore.clearAuth();
+        authStore.clearAuth();
       }
     }
 });
