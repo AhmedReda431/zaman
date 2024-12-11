@@ -22,7 +22,7 @@ import "swiper/css/navigation";
 // Import required modules
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/vue/20/solid";
-const modules = [Navigation, Pagination , Autoplay];
+const modules = [Navigation, Pagination, Autoplay];
 const { t, locale } = useI18n();
 const { fetchCities, cities } = useCities();
 const router = useRouter();
@@ -75,20 +75,23 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="relative overflow-hidden hero-section w-full home-large-swiper">
-    <ClientOnly>
-      <swiper
-        :navigation="false"
-        :pagination="{
-          clickable: true,
-        }"
-        :autoplay="false"
-        :loop="true"
-        :modules="modules"
-        class="mySwiper"
-        :dir="$i18n.locale == 'en' ? 'ltr' : 'rtl'"
-      >
-        <swiper-slide v-for="(banner, index) in banners" :key="index">
+  <ClientOnly>
+    <swiper
+      :navigation="false"
+      :pagination="{
+        clickable: true,
+      }"
+      :autoplay="false"
+      :loop="true"
+      :modules="modules"
+      class="mySwiper"
+      :dir="$i18n.locale == 'en' ? 'ltr' : 'rtl'"
+    >
+      <swiper-slide v-for="(banner, index) in banners" :key="index">
+        <div
+          class="relative overflow-hidden hero-section w-full home-large-swiper"
+          v-bind:style="{ 'background-image': 'url(' + banner.image + ')' }"
+        >
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div
               class="grid grid-cols-1 sm:gap-x-4 gap-y-2 items-center justify-center"
@@ -286,15 +289,15 @@ onMounted(async () => {
               </div>
             </div>
           </div>
-        </swiper-slide>
-      </swiper>
-    </ClientOnly>
-  </div>
+        </div>
+      </swiper-slide>
+    </swiper>
+  </ClientOnly>
 </template>
 <style scoped lang="scss">
 .hero-section {
   height: 700px;
-  background-image: url("~/assets/img/hero-main.png");
+  //background-image: url("~/assets/img/hero-main.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
