@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
-import { useCookie } from "#app";
+
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    token: useCookie('token') || null,
-    user: useCookie('user') || null,
+    token: null,
+    user: null,
     redirectRoute: null,
   }),
   getters: {
