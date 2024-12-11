@@ -13,32 +13,32 @@
               {{ $t("app description") }}
             </h4>
             <div class="applications-hoder d-flex gap-5 mt-5">
-              <div class="application">
-                <NuxtLink to="/">
+              <div class="application appstore" title="app store">
+                <a :href="appstoreSettingValue" target="_blank">
                   <img
                     src="~/assets/img/home/app-store-17122018.png"
                     alt="app-img"
                     class="w-100"
                   />
-                </NuxtLink>
+                </a>
               </div>
-              <div class="application">
-                <NuxtLink to="/">
+              <div class="application googleplay" title="google play">
+                <a :href="googleplaySettingValue" target="_blank">
                   <img
                     src="~/assets/img/home/apple-android-store-icons.png"
                     alt="app-img"
                     class="w-100"
                   />
-                </NuxtLink>
+                </a>
               </div>
-              <div class="application">
-                <NuxtLink to="/">
+              <div class="application appgallery" title="app gallery">
+                <a :href="appgallerySettingValue" target="_blank">
                   <img
                     src="~/assets/img/home/ExTweChWYAAeGfy.png"
                     alt="app-img"
                     class="w-100"
                   />
-                </NuxtLink>
+                </a>
               </div>
             </div>
           </div>
@@ -81,6 +81,7 @@
 }
 </style>
 <script>
+import { useCookie } from "#app";
 export default {
   methods: {
     getSettingData() {
@@ -107,10 +108,20 @@ export default {
   data() {
     return {
       settingData: null,
+      googleplaySettingValue: null,
+      appstoreSettingValue: null,
+      appgallerySettingValue: null,
     };
   },
   mounted() {
     // this.getSettingData();
+    const googleplaySetting = useCookie("setting-link_googleplay");
+    const appstoreSetting = useCookie("setting-link_appstore");
+    const appgallerySetting = useCookie("setting-link_appgallery");
+
+    this.googleplaySettingValue = googleplaySetting?.value;
+    this.appstoreSettingValue = appstoreSetting?.value;
+    this.appgallerySettingValue = appgallerySetting?.value;
   },
 };
 </script>

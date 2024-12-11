@@ -8,20 +8,20 @@
             <div class="w-full mt-5">
               <h1
                 class="font-bold text-secondary mb-4 border-b-2 border-secondary inline-block title mt-2 mb-8"
-                v-if="aboutUs?.title"
+                v-if="aboutUsFirst?.title"
               >
-                {{ aboutUs.title }}
+                {{ aboutUsFirst.title }}
               </h1>
               <p
                 class="text-gray-700 leading-relaxed description"
-                v-if="aboutUs?.description"
-                v-html="aboutUs.description"
+                v-if="aboutUsFirst?.description"
+                v-html="aboutUsFirst.description"
               ></p>
             </div>
           </div>
-          <div class="img-holder w-50" v-if="aboutUs.image">
+          <div class="img-holder w-50" v-if="aboutUsFirst.image">
             <img
-              :src="aboutUs.image"
+              :src="aboutUsFirst.image"
               alt="House Image"
               class="w-full h-full object-cover w-100"
             />
@@ -33,26 +33,29 @@
     <!-- Icon and Description Section -->
     <div
       class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8 m-8 py-24 px-20 w-sm-full"
+      v-if="aboutUsCenter?.length"
     >
-      <div class="text-center vision-div">
-        <div class="mb-4">
+      <div class="text-center vision-div" v-for="(data , index) in aboutUsCenter" :key="index">
+        <div class="mb-4" v-if="data?.image">
           <img
-            src="~/assets/img/about/vision.svg"
+            :src="data.image"
             alt="Vision Icon"
             class="mx-auto w-35 h-35"
+            
           />
         </div>
         <h3
           class="text-m font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block title mt-2 mb-8"
+          v-if="data?.title"
         >
-          {{ $t("our vision") }}
+          {{ data.title }}
         </h3>
-        <p class="text-gray-700 leading-relaxed text-center">
-          {{ $t("vision desc") }}
+        <p class="text-gray-700 leading-relaxed text-center" v-if="data?.description">
+          {{ data.description }}
         </p>
       </div>
 
-      <div class="text-center mission-div">
+      <!-- <div class="text-center mission-div">
         <div class="mb-4">
           <img
             src="~/assets/img/about/mission.svg"
@@ -86,7 +89,7 @@
         <p class="text-gray-700 leading-relaxed text-center">
           {{ $t("values desc") }}
         </p>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -128,7 +131,7 @@
     </div>
   </div> -->
   <!-- Cards Section -->
-  <div class="care-section">
+  <div class="care-section" v-if="aboutUsLast?.length">
     <div class="care-section-holder">
       <div class="text-center mb-8">
         <h2
@@ -140,26 +143,26 @@
 
       <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Card 1 -->
-        <div class="flex items-center text-right p-4">
-          <div class="w-1/4">
+        <div class="flex items-center text-right p-4" v-for="(data , index) in aboutUsLast" :key="index">
+          <div class="w-1/4" v-if="data?.image">
             <img
-              src="~/assets/img/about/care/1.svg"
+              :src="data.image"
               alt="Innovation Icon"
               class="mx-auto w-20 h-20 rounded-full"
             />
           </div>
           <div class="w-3/4 pl-4 text-start">
-            <h3 class="text-lg font-semibold main-color mb-2 inline-block">
-              {{ $t("Innovation") }}
+            <h3 class="text-lg font-semibold main-color mb-2 inline-block" v-if="data?.title">
+              {{ data?.title }}
             </h3>
-            <p class="text-gray-700 leading-relaxed">
-              {{ $t("innovation desc") }}
+            <p class="text-gray-700 leading-relaxed" v-if="data?.description">
+              {{ data.description }}
             </p>
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="flex items-center text-right p-4">
+
+        <!-- <div class="flex items-center text-right p-4">
           <div class="w-1/4">
             <img
               src="~/assets/img/about/care/2.svg"
@@ -175,10 +178,10 @@
               {{ $t("commitment desc") }}
             </p>
           </div>
-        </div>
+        </div> -->
 
-        <!-- Card 3 -->
-        <div class="flex items-center text-right p-4">
+
+        <!-- <div class="flex items-center text-right p-4">
           <div class="w-1/4">
             <img
               src="~/assets/img/about/care/3.svg"
@@ -194,7 +197,7 @@
               {{ $t("Building reputation desc") }}
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -212,7 +215,8 @@
 // Import required modules
 // import { Navigation, Pagination } from "swiper/modules";
 const { $app } = useNuxtApp();
-const { fetchAboutUs, aboutUs, loading } = useAboutUs();
+const { fetchAboutUs, aboutUsFirst, aboutUsCenter, aboutUsLast, loading } =
+  useAboutUs();
 import { ref, onMounted } from "vue";
 // const slides = ref([
 //   { number: "1", text: this.$t("sentence1") },

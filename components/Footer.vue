@@ -517,16 +517,15 @@ const facebookSetting = useCookie("setting-fb_link");
 const instaSetting = useCookie("setting-inst_link");
 const linkedinSetting = useCookie("setting-linkedin_link");
 const twitterSetting = useCookie("setting-tw_link");
-const snapchatSetting =
-  useCookie("setting-snapchat_link") || useCookie("setting-snap_link");
-const tikTokSetting = useCookie("setting-tiktok_link");
+const snapchatSetting = useCookie("setting-snapchat");
+const tikTokSetting = useCookie("setting-tiktok");
 
 const facebookSettingValue = facebookSetting?.value;
 const instaSettingValue = instaSetting?.value;
 const linkedinSettingValue = linkedinSetting?.value;
 const twitterSettingValue = twitterSetting?.value;
 const snapchatSettingValue = snapchatSetting?.value;
-const tikTokSettingValue = snapchatSetting?.value;
+const tikTokSettingValue = tikTokSetting?.value;
 </script>
 <style lang="scss" scoped>
 .title {
