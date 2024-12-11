@@ -99,7 +99,7 @@ onMounted(async () => {
               <h1
                 class="text-white font-semibold text-5xl text-center mt-24 mb-28 sm-mb-0 sm-fs-26"
               >
-                {{ $t("heroSectionMain") }}
+                {{ banner.title }}
               </h1>
               <div class="mt-10 sm-mt-0">
                 <div class="px-4 sm:p-6 col-span-2">
