@@ -73,7 +73,7 @@
 .swiper-pagination-custom,
 .swiper-horizontal > .swiper-pagination-bullets,
 .swiper-pagination-bullets.swiper-pagination-horizontal {
-    bottom: -50px !important;
+    bottom: 30px !important;
 }
 @media (max-width: 992px) {
     .swiper-wrapper {
@@ -83,7 +83,7 @@
     .swiper-pagination-custom,
     .swiper-horizontal > .swiper-pagination-bullets,
     .swiper-pagination-bullets.swiper-pagination-horizontal {
-        bottom: -15px !important;
+        bottom: 30px !important;
     }
 }
 .swiper-button-disabled{
