@@ -192,10 +192,11 @@ const list_order = ref(ordersList[0]);
 watch(list_order, (newVal) => {
   console.log("newVal", newVal);
   if (newVal?.value) {
-    let query = {
+    let payload = {
       list_order: newVal.value,
+      ...route.query
     };
-    fetchRealStates(query);
+    fetchRealStates(payload);
   }
 });
 </script>
