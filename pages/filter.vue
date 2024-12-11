@@ -127,10 +127,14 @@
         </div>
         <!-- Property Type Selection -->
         <div class="space-y-2">
-          <label class="block text-sm font-medium text-gray-700">نوع العقار</label>
+          <label class="block text-sm font-medium text-gray-700">
+            {{ $t('propertyType') }}
+          </label>
           <div class="relative">
             <select class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-              <option>اختر نوع العقار</option>
+              <option>
+                {{ $t('select building type') }}
+              </option>
               <option v-for="type in propertyTypes" :key="type" :value="type">{{ type }}</option>
             </select>
             <ChevronDown class="absolute right-2 top-2 h-5 w-5 text-gray-400" />

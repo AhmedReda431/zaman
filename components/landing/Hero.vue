@@ -20,9 +20,9 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // Import required modules
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/vue/20/solid";
-const modules = [Navigation, Pagination];
+const modules = [Navigation, Pagination , Autoplay];
 const { t, locale } = useI18n();
 const { fetchCities, cities } = useCities();
 const router = useRouter();
@@ -82,9 +82,11 @@ onMounted(async () => {
         :pagination="{
           clickable: true,
         }"
+        :autoplay="false"
         :loop="true"
         :modules="modules"
         class="mySwiper"
+        :dir="$i18n.locale == 'en' ? 'ltr' : 'rtl'"
       >
         <swiper-slide v-for="(banner, index) in banners" :key="index">
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -546,5 +546,8 @@
   "Are you sure you want to delete the request?":"Are you sure you want to delete the request?",
   "save changes":"save changes",
   "Account Type":"Account Type",
-  "select account type":"Select Account Type"
+  "select account type":"Select Account Type",
+  "Reset":"Reset",
+  "partners":"Partners",
+  "zaman application":"Zaman application"
 }

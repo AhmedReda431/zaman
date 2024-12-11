@@ -93,7 +93,7 @@ const neighborhoodName = computed(() => {
 const categoryName = computed(() => {
   if (category_id.value) {
     const obj = categories.value.find((cat) => cat.id == category_id.value);
-    return unref(obj).name;
+    return unref(obj).title;
   }
   return t("select building type");
 });
@@ -167,6 +167,10 @@ const toggleGrid = () => {
 
 const ordersList = [
   {
+    value: "new",
+    name: t("newest"),
+  },
+  {
     value: "high_price",
     name: t("highest price"),
   },
@@ -174,10 +178,7 @@ const ordersList = [
     value: "low_price",
     name: t("lowest price"),
   },
-  {
-    value: "new",
-    name: t("newest"),
-  },
+
   {
     value: "old",
     name: t("oldest"),
@@ -187,7 +188,16 @@ const ordersList = [
     name: t("favourite"),
   },
 ];
-const selectedOrder = ref(ordersList[0]);
+const list_order = ref(ordersList[0]);
+watch(list_order, (newVal) => {
+  console.log("newVal", newVal);
+  if (newVal?.value) {
+    let query = {
+      list_order: newVal.value,
+    };
+    fetchRealStates(query);
+  }
+});
 </script>
 <template>
   <div class="max-w--6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -210,7 +220,9 @@ const selectedOrder = ref(ordersList[0]);
           class="bg-zaman text-white px-3 py-2.5 rounded-md flex items-center"
         >
           <Icon name="mdi:filter" class="w-4 h-4" />
-          <span class="text-sm">Reset</span>
+          <span class="text-sm">
+            {{ $t("Reset") }}
+          </span>
         </button>
 
         <!-- Search Bar -->
@@ -249,15 +261,15 @@ const selectedOrder = ref(ordersList[0]);
               </span>
             </div>
             <!-- sortBy Filter -->
-            <Listbox v-model="selectedOrder">
+            <Listbox v-model="list_order">
               <div class="relative mt-1 cursor-pointer">
                 <ListboxButton
                   class="cursor-pointer relative w-full cursor-default rounded-lg text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 sm:text-sm sortByBtn"
                 >
-                  <span class="block truncate">{{ selectedOrder.name }}</span>
+                  <span class="block truncate">{{ list_order.name }}</span>
                   <span
                     class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
-                    :class="{ 'grid-icon-holder': selectedOrder }"
+                    :class="{ 'grid-icon-holder': list_order }"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -540,7 +552,7 @@ const selectedOrder = ref(ordersList[0]);
                                 'block truncate',
                               ]"
                             >
-                              {{ category.name }}
+                              {{ category.title }}
                             </span>
                             <span
                               v-if="selected"
@@ -1031,8 +1043,5 @@ input[type="range"]::-ms-thumb {
       fill: rgb(189 154 96 / var(--tw-bg-opacity, 1));
     }
   }
-}
-.filter-btn {
-  height: 49px;
 }
 </style>

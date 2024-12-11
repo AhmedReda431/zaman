@@ -551,5 +551,8 @@
   "Are you sure you want to delete the request?":"هل انت متاكد من حذف الطلب",
   "save changes":"حفظ التغييرات",
   "Account Type":"نوع الحساب",
-  "select account type":"حدد نوع الحساب"
+  "select account type":"حدد نوع الحساب",
+  "Reset":"إعادة ضبط",
+  "partners":"الشركاء",
+  "zaman application":"تطبيق زمن"
 }

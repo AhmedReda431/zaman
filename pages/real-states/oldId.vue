@@ -93,7 +93,7 @@ onMounted(async () => {
   // ]
   if (realState.value.category.name)
     info.value.push({
-      label: "نوع العقار",
+      label: t('Building type'),
       value: `${realState.value.category.name} `,
       icon: "mdi mdi-vector-square",
     });
