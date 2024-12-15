@@ -42,12 +42,12 @@
               </div>
             </div>
           </div>
-          <div class="mobile-ing-holder">
+          <!-- <div class="mobile-ing-holder">
             <img
               src="~/assets/img/contact_mobile.png"
               alt="application-mobile"
             />
-          </div>
+          </div> -->
         </div>
       </section>
     </div>
