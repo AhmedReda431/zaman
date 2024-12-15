@@ -299,7 +299,7 @@ function reportApiCall() {
           class="grid grid-cols-1 p-4 gap-2 border-t border-b border-gray-200 d-flex align-items-center flex-wrap gap-2"
         >
           <a
-            :href="`tel:00966920014847`"
+            :href="`tel:+966920014847`"
             
             class="text-gray-600 hover:text-green-600 flex items-center bg-white p-2 rounded"
           >
@@ -312,8 +312,9 @@ function reportApiCall() {
           </a>
 
           <a
-            :href="`whatsapp://send?abid=00966920014847&text=Hello`"
+            href="https://wa.me/+966920014847"
             class="text-gray-600 hover:text-green-600 flex items-center bg-white p-2 rounded connect-link"
+            target="_blank"
           >
             <!-- <PhoneIcon size="24" /> -->
             <span class="mx-2 text-sm">

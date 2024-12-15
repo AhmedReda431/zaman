@@ -335,7 +335,7 @@
                 <h3 class="title">{{ $t("Useful links") }}</h3>
               </div> -->
               <div>
-                <ul role="list" class="mt-6 space-y-4">
+                <ul role="list" class="mt-6 space-y-4 ul-links-holder">
                   <li>
                     <NuxtLink
                       :to="{ path: '/' }"
@@ -362,10 +362,10 @@
                   </li>
                   <li>
                     <NuxtLink
-                      :to="{ path: '/real-states/create' }"
+                      :to="{ path: '/order-state' }"
                       class="text-sm leading-6 text-gray-300 hover:text-white"
                     >
-                      {{ $t("addWorkspace") }}
+                      {{ $t("requistBuilding") }}
                     </NuxtLink>
                   </li>
                   <!-- <li>
@@ -546,5 +546,10 @@ ul {
 .description {
   width: 55%;
   font-size: 20px;
+}
+.ul-links-holder{
+  a {
+    text-decoration: underline !important;
+  }
 }
 </style>

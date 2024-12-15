@@ -39,6 +39,7 @@ const props = defineProps({
       </span>
       <span
         class="absolute top-5 left-5 w-8 h-8 bg-opacity-75 flex items-center justify-center rounded-full bg-secondary text-white"
+        :class="{'favourite-holder': isGrid}"
       >
         <Icon size="20" name="ph:heart-bold" />
       </span>
@@ -55,8 +56,9 @@ const props = defineProps({
         </nuxt-link>
         <div class="flex gap-2 items-start">
           <a
-            :href="`whatsapp://send?abid=00966920014847&text=Hello`"
+            href="https://wa.me/+966920014847"
             class="text-gray-600 hover:text-green-600 flex items-center bg-white rounded connect-link"
+            target="_blank"
           >
             <!-- <PhoneIcon size="24" /> -->
             <span class="mx-2 text-sm">
@@ -65,7 +67,7 @@ const props = defineProps({
             <!-- {{ realState.whatsup }} -->
           </a>
           <a
-            :href="`tel:00966920014847`"
+            :href="`tel:+966920014847`"
             class="text-gray-600 hover:text-green-600 flex items-center bg-white rounded connect-link"
           >
             <!-- <PhoneIcon size="24" /> -->
@@ -135,5 +137,8 @@ const props = defineProps({
 }
 .connect-link {
   z-index: 99;
+}
+.favourite-holder{
+  top: 75%;
 }
 </style>
