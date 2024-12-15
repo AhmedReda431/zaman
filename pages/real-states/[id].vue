@@ -324,8 +324,8 @@ function reportApiCall() {
             <!-- {{ realState.whatsup }} -->
           </a>
           <a
-            :href="`mianto:${realState.email}`"
-            v-if="realState?.email"
+            :href="`mailto:Info@zman.sa`"
+            
             class="text-gray-600 hover:text-green-600 flex items-center bg-white p-2 rounded connect-link"
           >
             <!-- <MailIcon size="24" /> -->
