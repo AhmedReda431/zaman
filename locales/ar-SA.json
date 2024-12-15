@@ -485,7 +485,7 @@
   "Paste your location URL or iframe embed code here": "الصق عنوان URL لموقعك أو كود تضمين iframe لها",
   "whatsapp number": "رقم واتس اب",
   "There is no information to deal with the property": "لا توجد معلومات للتعامل مع العقار",
-  "additional informations": "معلومات إضافية",
+  "additional informations": "المميزات",
   "Street information": "معلومات الشارع",
   "Preview type": "نوع المعاينة",
   "Inspection date": "تاريخ المعاينة",
@@ -512,7 +512,7 @@
   "features": "المميزات",
   "Remember me": "تذكرني",
   "language": "اللغة",
-  "Property category": "نوع العقار",
+  "Property category": "فئة العقار",
   "Land area": "مساحة الأرض",
   "price from": "السعر من",
   "price to": "السعر الى",
@@ -553,6 +553,6 @@
   "Account Type":"نوع الحساب",
   "select account type":"حدد نوع الحساب",
   "Reset":"إعادة ضبط",
-  "partners":"الشركاء",
+  "partners":"شركائنا فى النجاح",
   "zaman application":"تطبيق زمن"
 }

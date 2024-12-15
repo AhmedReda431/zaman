@@ -135,7 +135,7 @@ onMounted(async () => {
 
                   <ClientOnly>
                     <div
-                      class="mt-5 grid grid-cols-12 gap-3 bg-white rounded-lg p-3 flex-sm-column"
+                      class="mt-5 grid grid-cols-12 gap-3 bg-white rounded-lg p-3 flex-sm-column text-start"
                     >
                       <Listbox v-model="type" class="col-span-5">
                         <div class="relative w-full">

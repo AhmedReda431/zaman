@@ -19,9 +19,9 @@ definePageMeta({
 let isSubmitted = ref(false);
 let requestErrorMessage = ref(null);
 let responseMessage = ref(null);
-let featuresArray = ref([]);
-const features = ref([]);
-let features_id = ref([]);
+// let featuresArray = ref([]);
+// const features = ref([]);
+// let features_id = ref([]);
 const category_id = ref(null);
 const type_id = ref(null);
 const number_of_rooms = ref(null);
@@ -33,16 +33,16 @@ const city_id = ref(null);
 const state_id = ref(null);
 const note = ref(null);
 const { $api } = useNuxtApp();
-function getFeatures() {
-  $api
-    .get(`/features`)
-    .then((res) => {
-      features.value = res.data.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
+// function getFeatures() {
+//   $api
+//     .get(`/features`)
+//     .then((res) => {
+//       features.value = res.data.data;
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// }
 const handleSubmit = async () => {
   try {
     const payload = {
@@ -56,10 +56,10 @@ const handleSubmit = async () => {
       price_from: price_from.value,
       price_to: price_to.value,
       bathrooms_of_rooms: bathrooms_of_rooms.value,
-      features: features_id.value, // Array of selected feature IDs
+      // features: features_id.value, // Array of selected feature IDs
     };
 
-    const response = await $api.post("/request-real-estates", payload);
+    const response = await $api.post("/real-estates", payload);
     responseMessage.value =
       response?.data?.message || t("Request submitted successfully");
     isSubmitted.value = true;
@@ -73,14 +73,14 @@ const handleSubmit = async () => {
   }
 };
 // Watch for changes in `featuresArray` and update `features_id` accordingly
-watch(
-  featuresArray,
-  (newVal) => {
-    // Reset `features_id` before pushing new values
-    features_id.value = newVal.map((feature) => feature.id);
-  },
-  { immediate: true }
-); // Use immediate to run the watch on initial load
+// watch(
+//   featuresArray,
+//   (newVal) => {
+//     // Reset `features_id` before pushing new values
+//     features_id.value = newVal.map((feature) => feature.id);
+//   },
+//   { immediate: true }
+// ); // Use immediate to run the watch on initial load
 // Watch for changes in `city_id` and fetch states
 watch(
   city_id,
@@ -91,7 +91,7 @@ watch(
 );
 
 onMounted(async () => {
-  await getFeatures();
+  // await getFeatures();
   await fetchCategories();
   await fetchCities();
 });
@@ -113,7 +113,7 @@ const categoryName = computed(() => {
         <div class="form-holder rounded-custom" v-if="!isSubmitted || isSubmitted && requestErrorMessage">
           <div class="mt-10">
             <form @submit.prevent="handleSubmit" class="space-y-4">
-              <div class="flex flex-col" v-if="features?.length">
+              <!-- <div class="flex flex-col" v-if="features?.length">
                 <label for="features" class="mb-2">{{ $t("features") }}</label>
 
                 <Listbox v-model="featuresArray" multiple>
@@ -125,7 +125,6 @@ const categoryName = computed(() => {
                     }}</span>
                     <ChevronDownIcon class="h-5 w-5 text-gray-500" />
                   </ListboxButton>
-                  <!-- Use Vue's built-in `transition` component to add transitions. -->
                   <transition
                     enter-active-class="transition duration-100 ease-out"
                     enter-from-class="transform scale-95 opacity-0"
@@ -150,7 +149,7 @@ const categoryName = computed(() => {
                     </ListboxOptions>
                   </transition>
                 </Listbox>
-              </div>
+              </div> -->
               <!-- Property category -->
               <div class="space-y-2">
                 <label class="block text-sm font-medium text-gray-700">{{
@@ -237,7 +236,7 @@ const categoryName = computed(() => {
                       {{ $t("sell") }}
                     </option>
                     <option value="1">
-                      {{ $t("rent") }}
+                      {{ $t("categories.rent") }}
                     </option>
                   </select>
                 </div>

@@ -949,14 +949,14 @@ watch(list_order, (newVal) => {
       class="mt-8 rent-page-cards-holder w-full m-0"
       v-if="realStates.real_estates && realStates.real_estates.length > 0"
     >
-      <NuxtLink
+      <div
         v-for="item in realStates.real_estates"
         :key="item.id"
         :to="`/real-states/${item.id}`"
         class="card-holder w-full"
       >
         <OfferCard :offer="item" class="my-4 w-full" :isGrid="isGrid" />
-      </NuxtLink>
+      </div>
     </div>
     <!-- Pagination Component -->
     <Pagination

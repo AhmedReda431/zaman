@@ -13,5 +13,6 @@ definePageMeta({
     <LandingOffers class="my-2"/>
     <LandingWithUs />
     <LandingPartners />
+    <LandingCertificates />
   </div>
 </template>

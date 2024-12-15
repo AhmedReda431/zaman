@@ -39,7 +39,7 @@ const formData = ref({
   //   whatsup: "",
   //   license_number: "",
   //   real_estate_characteristics: "",
-    depth: "",
+  depth: "",
   water: 0,
   electricity: 0,
   street_facing: "",
@@ -136,6 +136,10 @@ const submit = async () => {
         formDataSend.append(key, val);
       }
     });
+    // Ensure featuresArray is included in the FormData
+    features_id.value.forEach((featureId) => {
+      formDataSend.append("features[]", featureId); // Append each feature ID to the FormData
+    });
     emit("submit", formDataSend);
   }
 };
@@ -148,8 +152,8 @@ const showToast = (message, type) => {
   $toastMessage(message, type); // Use type 'success', 'error', 'info', etc.
 };
 definePageMeta({
-    middleware: "auth"
-})
+  middleware: "auth",
+});
 // Watch for changes in `featuresArray` and update `features_id` accordingly
 watch(
   featuresArray,
@@ -403,16 +407,12 @@ onMounted(async () => {
               <label class="block text-sm font-medium text-gray-700">{{
                 $t("Number of streets")
               }}</label>
-              <select
+              <input
                 v-model="formData.number_of_streets"
+                type="number"
+                min="0"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              >
-                <option value="" disabled>{{ $t("select") }}</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
+              />  
             </div>
             <div class="md:col-span-2">
               <label class="block text-sm font-medium text-gray-700">
@@ -441,13 +441,13 @@ onMounted(async () => {
         <!-- Additional Information -->
         <div class="mt-8">
           <h2 class="text-sm font-semibold leading-6 text-secondary">
-           {{$t('Additional information')}}
+            {{ $t("Additional information") }}
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 m-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700"
-                >{{$t('water')}}</label
-              >
+              <label class="block text-sm font-medium text-gray-700">{{
+                $t("water")
+              }}</label>
               <div class="mt-1 flex items-center space-x-4">
                 <label class="inline-flex items-center">
                   <input
@@ -456,7 +456,7 @@ onMounted(async () => {
                     :value="1"
                     class="form-radio"
                   />
-                  <span class="mr-2 ml-8">{{$t('yes')}}</span>
+                  <span class="mr-2 ml-8">{{ $t("yes") }}</span>
                 </label>
                 <label class="inline-flex items-center">
                   <input
@@ -465,14 +465,14 @@ onMounted(async () => {
                     :value="0"
                     class="form-radio"
                   />
-                  <span class="mr-2">{{$t('no')}}</span>
+                  <span class="mr-2">{{ $t("no") }}</span>
                 </label>
               </div>
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700"
-                >{{$t('electrecity')}}</label
-              >
+              <label class="block text-sm font-medium text-gray-700">{{
+                $t("electrecity")
+              }}</label>
               <div class="mt-1 flex items-center space-x-4">
                 <label class="inline-flex items-center">
                   <input
@@ -481,7 +481,7 @@ onMounted(async () => {
                     :value="1"
                     class="form-radio"
                   />
-                  <span class="mr-2 ml-8">{{$t('yes')}}</span>
+                  <span class="mr-2 ml-8">{{ $t("yes") }}</span>
                 </label>
                 <label class="inline-flex items-center">
                   <input
@@ -490,30 +490,30 @@ onMounted(async () => {
                     :value="0"
                     class="form-radio"
                   />
-                  <span class="mr-2">{{$t('no')}}</span>
+                  <span class="mr-2">{{ $t("no") }}</span>
                 </label>
               </div>
             </div>
-            <div class="md:col-span-">
-              <label class="block text-sm font-medium text-gray-700"
-                >{{$t('height')}}</label
-              >
+            <!-- <div class="md:col-span-">
+              <label class="block text-sm font-medium text-gray-700">{{
+                $t("height")
+              }}</label>
               <input
                 v-model="formData.length"
                 type="number"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
-            </div>
-            <div class="md:col-span-1">
-              <label class="block text-sm font-medium text-gray-700"
-                >{{$t('Depth')}}</label
-              >
+            </div> -->
+            <!-- <div class="md:col-span-1">
+              <label class="block text-sm font-medium text-gray-700">{{
+                $t("Depth")
+              }}</label>
               <input
                 v-model="formData.depth"
                 type="number"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
-            </div>
+            </div> -->
           </div>
         </div>
 
@@ -651,9 +651,12 @@ onMounted(async () => {
                 </section> -->
 
         <h2 class="text-sm font-semibold leading-6 text-secondary mt-5">
-          {{ $t('building location') }}
+          {{ $t("building location") }}
         </h2>
-        <LocationViewer class="mt-3" @updateLocation="formData.location = $event" />
+        <LocationViewer
+          class="mt-3"
+          @updateLocation="formData.location = $event"
+        />
 
         <!-- plans Image Upload Section -->
         <h2 class="text-sm font-semibold leading-6 text-secondary mt-5">

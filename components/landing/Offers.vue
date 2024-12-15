@@ -67,9 +67,9 @@ onMounted(async () => {
               v-for="item in realStates.real_estates"
               :key="item.id"
             >
-              <NuxtLink :to="`/real-states/${item.id}`">
+              <div >
                 <OfferCard :offer="item" class="my-4" />
-              </NuxtLink>
+              </div>
             </swiper-slide>
           </swiper>
         </ClientOnly>

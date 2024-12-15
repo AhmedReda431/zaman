@@ -299,8 +299,8 @@ function reportApiCall() {
           class="grid grid-cols-1 p-4 gap-2 border-t border-b border-gray-200 d-flex align-items-center flex-wrap gap-2"
         >
           <a
-            :href="`tel:${realState?.phone}`"
-            v-if="realState?.phone"
+            :href="`tel:00966920014847`"
+            
             class="text-gray-600 hover:text-green-600 flex items-center bg-white p-2 rounded"
           >
             <!-- <PhoneIcon size="24" /> -->
@@ -312,9 +312,8 @@ function reportApiCall() {
           </a>
 
           <a
-            :href="`whatsapp://send?abid=${realState?.whatsup}&text=Hello`"
-            v-if="realState?.whatsup"
-            class="text-gray-600 hover:text-green-600 flex items-center bg-white p-2 rounded"
+            :href="`whatsapp://send?abid=00966920014847&text=Hello`"
+            class="text-gray-600 hover:text-green-600 flex items-center bg-white p-2 rounded connect-link"
           >
             <!-- <PhoneIcon size="24" /> -->
             <span class="mx-2 text-sm">
@@ -326,7 +325,7 @@ function reportApiCall() {
           <a
             :href="`mianto:${realState.email}`"
             v-if="realState?.email"
-            class="text-gray-600 hover:text-green-600 flex items-center bg-white p-2 rounded"
+            class="text-gray-600 hover:text-green-600 flex items-center bg-white p-2 rounded connect-link"
           >
             <!-- <MailIcon size="24" /> -->
             <span class="mx-2 text-sm">
@@ -423,13 +422,7 @@ function reportApiCall() {
         {{ $t("location") }}
       </h2>
       <div class="d-flex gap-4 align-items-center flex-wrap flex-sm-column">
-        <iframe
-          :src="realState?.location"
-          frameborder="0"
-          allowfullscreen
-          loading="lazy"
-          class="w-full h-96"
-        ></iframe>
+        <div class="" v-html="realState?.location"></div>
       </div>
     </div>
 
@@ -458,7 +451,7 @@ function reportApiCall() {
 
     <div
       class="p-4 md:p-8 bg-white rounded-lg shadow-lg border border-gray-300 m-3"
-      v-if="realState?.features"
+      v-if="realState?.features?.length"
     >
       <h2
         class="text-lg md:text-xl font-semibold text-gray-700 mb-4 text-start"
@@ -859,5 +852,8 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.connect-link{
+  z-index: 99;
 }
 </style>

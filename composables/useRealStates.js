@@ -98,7 +98,7 @@ export const useRealStates = () => {
     loading.value = true;
 
     try {
-      const response = await $api.post("/request-real-estates", data);
+      const response = await $api.post("/real-estates", data);
       realState.value = response.data.data
       success.value = true;
     } catch (err) {

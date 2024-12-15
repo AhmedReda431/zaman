@@ -1,5 +1,5 @@
 <template>
-  <div class="download-our-app-holder w-full h-full">
+  <div class="download-our-app-holder w-full h-full"  v-bind:style="{ 'background-image': 'url(' + imageAppSettingValue + ')' }">
     <div class="container-holder">
       <section class="container mx-auto mx-8 px-4">
         <div
@@ -55,7 +55,9 @@
 </template>
 <style lang="scss" scoped>
 .download-our-app-holder {
-  background: url("~/assets/img/contact_back.jpg") no-repeat center center;
+  background: url("~/assets/img/contact_back.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: cover;
   margin-top: 8%;
   .container-holder {
@@ -118,10 +120,12 @@ export default {
     const googleplaySetting = useCookie("setting-link_googleplay");
     const appstoreSetting = useCookie("setting-link_appstore");
     const appgallerySetting = useCookie("setting-link_appgallery");
+    const imageAppSetting = useCookie("setting-image_app");
 
     this.googleplaySettingValue = googleplaySetting?.value;
     this.appstoreSettingValue = appstoreSetting?.value;
     this.appgallerySettingValue = appgallerySetting?.value;
+    this.imageAppSettingValue = imageAppSetting?.value;
   },
 };
 </script>

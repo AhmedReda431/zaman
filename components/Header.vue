@@ -322,7 +322,7 @@ const route = useRoute();
                       class="text-xl font-semibold leading-6 text-gray-900 hover:text-gray-500"
                     >
                       <div class="flex items-center gap-x-1">
-                        {{ $t("about-us") }}
+                        {{ $t("about Us") }}
                       </div>
                     </NuxtLink>
                   </div>
