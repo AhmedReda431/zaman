@@ -64,7 +64,7 @@ const route = useRoute();
             </NuxtLink>
           </div>
 
-          <div class="flex items-center gap-x-12">
+          <div class="flex items-center gap-x-4">
             <div
               class="hidden lg:flex lg:gap-x-12 lg:items-center text-gray-600 links-holder"
             >

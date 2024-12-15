@@ -25,6 +25,7 @@ import { CheckIcon, ChevronDownIcon } from "@heroicons/vue/20/solid";
 const modules = [Navigation, Pagination, Autoplay];
 const { t, locale } = useI18n();
 const { fetchCities, cities } = useCities();
+const { fetchStates, states } = useStates();
 const router = useRouter();
 const categories = ref([
   { value: "sell", label: t("categories.sell") },
@@ -32,7 +33,8 @@ const categories = ref([
   //{ value: "requests", label: t("categories.requests") },
 ]);
 const type = ref("");
-const city_id = ref("");
+const city_id = ref(null);
+const state_id = ref(null);
 const banners = ref([]);
 const { $api } = useNuxtApp();
 const getBanners = () => {
@@ -64,10 +66,18 @@ const searchButton = () => {
     path: "/real-states",
     query: {
       city_id: city_id.value,
+      state_id: state_id.value,
       type: type.value,
     },
   });
 };
+watch(
+  city_id,
+  async (newCityId) => {
+    await fetchStates(newCityId);
+  },
+  { immediate: true }
+);
 onMounted(async () => {
   getBanners();
   fetchCities();
@@ -137,7 +147,7 @@ onMounted(async () => {
                     <div
                       class="mt-5 grid grid-cols-12 gap-3 bg-white rounded-lg p-3 flex-sm-column text-start"
                     >
-                      <Listbox v-model="type" class="col-span-5">
+                      <Listbox v-model="type" class="col-span-4">
                         <div class="relative w-full">
                           <ListboxButton
                             class="relative w-full cursor-default rounded-lg bg-white py-3 rtl:pr-3 pl-3 rtl:pl-10 pr-10 text-left rtl:text-right shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
@@ -202,7 +212,7 @@ onMounted(async () => {
                           </transition>
                         </div>
                       </Listbox>
-                      <Listbox v-model="city_id" class="col-span-5">
+                      <!-- <Listbox v-model="city_id" class="col-span-5">
                         <div class="relative w-full">
                           <ListboxButton
                             class="relative w-full cursor-default rounded-lg bg-white py-3 rtl:pr-3 pl-3 rtl:pl-10 pr-10 text-left rtl:text-right shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
@@ -266,7 +276,42 @@ onMounted(async () => {
                             </ListboxOptions>
                           </transition>
                         </div>
-                      </Listbox>
+                      </Listbox> -->
+                      <div class="col-span-3">
+                        <select
+                          v-model="city_id"
+                          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        >
+                          <option :value="null" selected disabled>
+                            {{ $t("city") }}
+                          </option>
+                          <option
+                            :value="city.id"
+                            v-for="(city, index) in cities"
+                            :key="index"
+                          >
+                            {{ city.name }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="col-span-3">
+                        <select
+                          v-model="state_id"
+                          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          :disabled="!city_id"
+                        >
+                          <option :value="null" selected disabled>
+                            {{ $t("The neighborhood") }}
+                          </option>
+                          <option
+                            :value="state.id"
+                            v-for="(state, index) in states"
+                            :key="index"
+                          >
+                            {{ state.name }}
+                          </option>
+                        </select>
+                      </div>
                       <!-- <button @click="search"
                         class="mt-4 col-span-2 gap-x-2 flex flex-nowrap border-2 border-secondary items-center justify-center rounded-md bg-secondary px-2 min-w-max  text-sm font-semibold text-white shadow-sm hover:text-secondary hover:bg-white sm:mt-0">
                         <Icon name="tdesign:map-search-1" size="22" />
