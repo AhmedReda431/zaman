@@ -66,7 +66,7 @@ const route = useRoute();
 
           <div class="flex items-center gap-x-4">
             <div
-              class="hidden lg:flex lg:gap-x-12 lg:items-center text-gray-600 links-holder"
+              class="hidden lg:flex lg:gap-x-8 lg:items-center text-gray-600 links-holder"
             >
               <NuxtLink
                 :to="{ path: '/' }"
@@ -118,6 +118,18 @@ const route = useRoute();
                   {{ $t("contact-us") }}
                 </div>
               </NuxtLink>
+              <NuxtLink
+                :to="{ path: '/news' }"
+                class="text-sm font-semibold leading-6 text-gray-600 hover:text-gray-500"
+                :class="{
+                  'border-b-2 border-b-zaman text-zaman-900':
+                    route.path.includes('/news'),
+                }"
+              >
+                <div class="flex items-center gap-x-1">
+                  {{ $t("news") }}
+                </div>
+              </NuxtLink>
 
               <NuxtLink
                 :to="{ path: '/login' }"
@@ -130,7 +142,7 @@ const route = useRoute();
                   {{ $t("authentication.login") }}
                 </div>
               </NuxtLink>
-              <div class="d-flex gap-3 align-items-center">
+              <div class="d-flex gap-3 align-items-center strange-buttons">
                 <NuxtLink
                   :to="{ path: '/real-states/create' }"
                   class="rounded-md bg-zaman px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-zaman-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zaman-700 large-btn-a"
@@ -398,5 +410,8 @@ const route = useRoute();
 }
 .side-link{
   text-transform: capitalize;
+}
+.strange-buttons a{
+  font-size: 14px !important;
 }
 </style>

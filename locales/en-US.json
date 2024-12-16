@@ -549,5 +549,6 @@
   "select account type":"Select Account Type",
   "Reset":"Reset",
   "partners":"Partners",
-  "zaman application":"Zaman application"
+  "zaman application":"Zaman application",
+  "no data available":"No Data Available"
 }
