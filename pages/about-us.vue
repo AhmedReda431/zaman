@@ -351,4 +351,9 @@ onMounted(() => {
 .care-section {
   margin: 5% 2%;
 }
+@media(max-width:767px){
+  .px-16 , .px-24{
+    padding-inline: 20px !important;
+  }
+}
 </style>
