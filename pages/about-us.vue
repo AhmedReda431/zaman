@@ -1,10 +1,10 @@
 <template>
   <div class="page-holder">
     <!-- Section with Image and Text Side by Side -->
-    <div class="mb-8 bg-white p-4 shadow-sm m-h-400 px-24">
+    <div class="bg-whiteshadow-sm m-h-400 p-0 pt-10">
       <div class="intro-holder">
-        <div class="d-flex align-items-start justify-content-between">
-          <div class="data w-50">
+        <div class="align-items-start justify-content-between">
+          <div class="data px-24 pb-5">
             <div class="w-full mt-5">
               <h1
                 class="font-bold text-secondary mb-4 border-b-2 border-secondary inline-block title mt-2 mb-8"
@@ -19,11 +19,11 @@
               ></p>
             </div>
           </div>
-          <div class="img-holder w-50" v-if="aboutUsFirst.image">
+          <div class="img-holder w-100 p-0" v-if="aboutUsFirst.image">
             <img
               :src="aboutUsFirst.image"
               alt="House Image"
-              class="w-full h-full object-cover w-100"
+              class="w-full h-full object-cover w-100 p-0"
             />
           </div>
         </div>
@@ -31,28 +31,29 @@
     </div>
 
     <!-- Icon and Description Section -->
-    <div
-      class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8 m-8 py-24 px-20 w-sm-full"
-      v-if="aboutUsCenter?.length"
-    >
-      <div class="text-center vision-div" v-for="(data , index) in aboutUsCenter" :key="index">
-        <div class="mb-4" v-if="data?.image">
-          <img
-            :src="data.image"
-            alt="Vision Icon"
-            class="mx-auto w-35 h-35"
-            
-          />
+    <div class="" v-if="aboutUsCenter?.length">
+      <div
+        class="text-start vision-div mb-8 py-24 px-24 w-sm-full d-flex gap-24 flex-sm-column"
+        v-for="(data, index) in aboutUsCenter"
+        :key="index"
+      >
+        <div class="data">
+          <h3
+            class="text-m font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block title mt-2 mb-8"
+            v-if="data?.title"
+          >
+            {{ data.title }}
+          </h3>
+          <p
+            class="text-gray-700 leading-relaxed text-start"
+            v-if="data?.description"
+          >
+            {{ data.description }}
+          </p>
         </div>
-        <h3
-          class="text-m font-semibold text-secondary mb-2 border-b-2 border-secondary inline-block title mt-2 mb-8"
-          v-if="data?.title"
-        >
-          {{ data.title }}
-        </h3>
-        <p class="text-gray-700 leading-relaxed text-center" v-if="data?.description">
-          {{ data.description }}
-        </p>
+        <div class="d-flex justify-content-end" v-if="data?.image">
+          <img :src="data.image" alt="Vision Icon" class="mx-auto w-35 h-35" />
+        </div>
       </div>
 
       <!-- <div class="text-center mission-div">
@@ -131,9 +132,9 @@
     </div>
   </div> -->
   <!-- Cards Section -->
-  <div class="care-section" v-if="aboutUsLast?.length">
+  <div class="care-section px-16" v-if="aboutUsLast?.length">
     <div class="care-section-holder">
-      <div class="text-center mb-8">
+      <div class="text-start mb-8">
         <h2
           class="text-m font-semibold text-secondary mb-4 border-b-2 border-secondary inline-block title"
         >
@@ -141,18 +142,25 @@
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8 px-0">
         <!-- Card 1 -->
-        <div class="flex items-center text-right p-4" v-for="(data , index) in aboutUsLast" :key="index">
-          <div class="w-1/4" v-if="data?.image">
+        <div
+          class="flex items-center text-right px-0"
+          v-for="(data, index) in aboutUsLast"
+          :key="index"
+        >
+          <!-- <div class="w-1/4" v-if="data?.image">
             <img
               :src="data.image"
               alt="Innovation Icon"
               class="mx-auto w-20 h-20 rounded-full"
             />
-          </div>
+          </div> -->
           <div class="w-3/4 pl-4 text-start">
-            <h3 class="text-lg font-semibold main-color mb-2 inline-block" v-if="data?.title">
+            <h3
+              class="text-lg font-semibold main-color mb-2 inline-block"
+              v-if="data?.title"
+            >
               {{ data?.title }}
             </h3>
             <p class="text-gray-700 leading-relaxed" v-if="data?.description">
@@ -160,7 +168,6 @@
             </p>
           </div>
         </div>
-
 
         <!-- <div class="flex items-center text-right p-4">
           <div class="w-1/4">
@@ -179,7 +186,6 @@
             </p>
           </div>
         </div> -->
-
 
         <!-- <div class="flex items-center text-right p-4">
           <div class="w-1/4">
@@ -306,8 +312,7 @@ onMounted(() => {
   img {
     height: 100%;
     width: 100%;
-    padding: 20px;
-    border-radius: 42px !important;
+    margin: 20px 0;
   }
 }
 .description {

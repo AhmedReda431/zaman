@@ -106,4 +106,16 @@ onMounted(() => {
   outline: none;
   box-shadow: none;
 }
+@media (max-width: 767px) {
+  .mb-8.m-h-400.px-24.my-10 {
+    padding: 20px 15px !important;
+  }
+  .page-background , .full-width-video{
+    min-height: 250px;
+  }
+  .grid.grid-cols-1{
+    padding: 0;
+    margin: 0;
+  }
+}
 </style>

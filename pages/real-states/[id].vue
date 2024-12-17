@@ -422,7 +422,7 @@ function reportApiCall() {
       >
         {{ $t("location") }}
       </h2>
-      <div class="d-flex gap-4 align-items-center flex-wrap flex-sm-column">
+      <div class="iframe-container">
         <div class="" v-html="realState?.location"></div>
       </div>
     </div>

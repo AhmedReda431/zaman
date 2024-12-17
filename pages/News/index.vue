@@ -1,6 +1,6 @@
 <template>
   <div class="page-holder">
-    <div class="mb-8 bg-white p-4 shadow-sm m-h-400 px-24">
+    <div class="bg-white p-4 m-h-400 px-24">
       <NewsComponent />
     </div>
   </div>
@@ -10,4 +10,10 @@
 export default {};
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@media(max-width:767px){
+  .bg-white.p-4.m-h-400.px-24{
+    padding: 20px 10px !important;
+  }
+}
+</style>

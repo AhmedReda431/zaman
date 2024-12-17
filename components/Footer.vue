@@ -352,12 +352,21 @@
                       {{ $t("about Us") }}
                     </NuxtLink>
                   </li>
+
                   <li>
                     <NuxtLink
                       :to="{ path: '/contact-us' }"
                       class="text-sm leading-6 text-gray-300 hover:text-white"
                     >
                       {{ $t("contact-us") }}
+                    </NuxtLink>
+                  </li>
+                  <li>
+                    <NuxtLink
+                      :to="{ path: '/news' }"
+                      class="text-sm leading-6 text-gray-300 hover:text-white"
+                    >
+                      {{ $t("news") }}
                     </NuxtLink>
                   </li>
                   <li>
@@ -547,7 +556,7 @@ ul {
   width: 55%;
   font-size: 20px;
 }
-.ul-links-holder{
+.ul-links-holder {
   a {
     text-decoration: underline !important;
   }

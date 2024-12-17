@@ -339,6 +339,7 @@ const route = useRoute();
                     </NuxtLink>
                   </div>
                 </div>
+
                 <div class="-my-6 divide-y divide-gray-500/10 side-link">
                   <div class="py-6">
                     <NuxtLink
@@ -347,6 +348,18 @@ const route = useRoute();
                     >
                       <div class="flex items-center gap-x-1">
                         {{ $t("contact-us") }}
+                      </div>
+                    </NuxtLink>
+                  </div>
+                </div>
+                <div class="-my-6 divide-y divide-gray-500/10 side-link">
+                  <div class="py-6">
+                    <NuxtLink
+                      :to="{ path: '/news' }"
+                      class="text-xl font-semibold leading-6 text-gray-900 hover:text-gray-500"
+                    >
+                      <div class="flex items-center gap-x-1">
+                        {{ $t("news") }}
                       </div>
                     </NuxtLink>
                   </div>
@@ -405,13 +418,13 @@ const route = useRoute();
   </div>
 </template>
 <style lang="scss" scoped>
-.profile-menu{
+.profile-menu {
   position: fixed;
 }
-.side-link{
+.side-link {
   text-transform: capitalize;
 }
-.strange-buttons a{
+.strange-buttons a {
   font-size: 14px !important;
 }
 </style>
