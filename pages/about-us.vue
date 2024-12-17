@@ -321,6 +321,9 @@ onMounted(() => {
 .title {
   font-size: 28px;
   text-transform: capitalize;
+  @media(max-width:767px){
+    font-size: 20px;
+  }
 }
 @media (max-width: 992px) {
   .intro-holder {

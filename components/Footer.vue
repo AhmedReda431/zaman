@@ -395,7 +395,7 @@
             >
               <div class="md:grid md:grid-cols-1 md:gap-8">
                 <div>
-                  <section role="list" class="mt-6 flex items-center">
+                  <section role="list" class="mt-6 flex items-center gap-4">
                     <div>
                       <div
                         class="text-sm leading-6 text-gray-300 hover:text-white flex items-center"
