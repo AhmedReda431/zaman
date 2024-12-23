@@ -4,6 +4,15 @@ import { defineNuxtConfig } from "nuxt/config";
 export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page", mode: "out-in" },
+    head: {
+      link: [
+        {
+          rel: "icon",
+          type: "image/png",
+          href: "/_nuxt/assets/img/Logo-zamn.png",
+        },
+      ],
+    },
     // layoutTransition: { name: "page", mode: "out-in" },
   },
   build: {
@@ -43,11 +52,12 @@ export default defineNuxtConfig({
   i18n: {
     lazy: true,
     langDir: "locales",
-    strategy: "no_prefix",
+    strategy: "no_prefix", // No language prefix for default locale
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: "i18n_redirected",
-      redirectOn: "root",
+      redirectOn: "root", // Redirect to root if no preference is set
+      fallbackLocale: "ar", // Fallback to Arabic
     },
     locales: [
       {
@@ -63,8 +73,9 @@ export default defineNuxtConfig({
         file: "en-US.json",
       },
     ],
-    defaultLocale: "ar",
+    defaultLocale: "ar", // Default to Arabic
   },
+
   css: [
     "swiper/swiper-bundle.css",
     "~/assets/css/main.css",

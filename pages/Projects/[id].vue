@@ -1,12 +1,11 @@
 <template>
   <div class="page-holder" v-if="pageData">
-    <div class="mb-8 m-h-400 my-24">
-      <div class="news-title">
+    <div class="mb-0 m-h-400 ">
+      <div class="news-title my-12">
         <h1 class="page-title px-24">{{ pageData.title }}</h1>
-        <h5 class="page-date mb-2 mt-4 px-24">{{ pageData.date }}</h5>
 
         <!-- Page Image Section -->
-        <div class="page-image" v-if="pageData?.image">
+        <div class="page-image mt-12" v-if="pageData?.image">
           <img :src="pageData.image" alt="" class="page-background" />
         </div>
         <!-- Description Section -->
@@ -20,7 +19,10 @@
         </div>
       </div>
       <div class="gallery-holder" v-if="images?.length">
-        <Gallery :imgs="images" title="Images Gallery" />
+        <Gallery :imgs="images" :title="$t('images gallery')" />
+      </div>
+      <div class="projects-form px-24">
+        <ProjectsForm />
       </div>
     </div>
   </div>
@@ -122,7 +124,7 @@ onMounted(() => {
 }
 
 .full-width-video:hover {
-  transform: scale(1.02);
+  //transform: scale(1.02);
   transition: transform 0.3s ease;
   border: none;
   outline: none;
@@ -140,5 +142,8 @@ onMounted(() => {
     padding: 0;
     margin: 0;
   }
+}
+.projects-form {
+  background: #ebebeb;
 }
 </style>
