@@ -20,6 +20,7 @@
     "autoprefixer": "^10.4.20",
     "fast-deep-equal": "^3.1.3",
     "nuxt": "^3.13.1",
+    "nuxt-easy-lightbox": "^1.0.2",
     "nuxt-icon": "^0.6.10",
     "postcss": "^8.4.45",
     "sass": "^1.81.0",

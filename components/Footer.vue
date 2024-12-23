@@ -371,6 +371,14 @@
                   </li>
                   <li>
                     <NuxtLink
+                      :to="{ path: '/projects' }"
+                      class="text-sm leading-6 text-gray-300 hover:text-white"
+                    >
+                      {{ $t("projects") }}
+                    </NuxtLink>
+                  </li>
+                  <li>
+                    <NuxtLink
                       :to="{ path: '/order-state' }"
                       class="text-sm leading-6 text-gray-300 hover:text-white"
                     >

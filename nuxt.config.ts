@@ -25,6 +25,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "nuxt-swiper",
     "@nuxtjs/google-fonts",
+    "nuxt-easy-lightbox",
   ],
   googleFonts: {
     families: {

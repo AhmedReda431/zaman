@@ -130,6 +130,18 @@ const route = useRoute();
                   {{ $t("news") }}
                 </div>
               </NuxtLink>
+              <NuxtLink
+                :to="{ path: '/projects' }"
+                class="text-sm font-semibold leading-6 text-gray-600 hover:text-gray-500"
+                :class="{
+                  'border-b-2 border-b-zaman text-zaman-900':
+                    route.path.includes('/projects'),
+                }"
+              >
+                <div class="flex items-center gap-x-1">
+                  {{ $t("projects") }}
+                </div>
+              </NuxtLink>
 
               <NuxtLink
                 :to="{ path: '/login' }"
