@@ -403,7 +403,7 @@
             >
               <div class="md:grid md:grid-cols-1 md:gap-8">
                 <div>
-                  <section role="list" class="mt-6 flex items-center gap-4">
+                  <section role="list" class="mt-6 flex items-center gap-4 flex-sm-column flex-md-column">
                     <div>
                       <div
                         class="text-sm leading-6 text-gray-300 hover:text-white flex items-center"
@@ -567,6 +567,11 @@ ul {
 .ul-links-holder {
   a {
     text-decoration: underline !important;
+  }
+}
+@media(min-width:767px) and (max-width:1550px){
+  .flex-md-column{
+    flex-direction: column;
   }
 }
 </style>

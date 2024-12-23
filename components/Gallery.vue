@@ -4,7 +4,7 @@
       <h1 v-if="title" class="gallery-title">{{ title }}</h1>
   
       <!-- Image Grid -->
-      <div class="gallery-grid grid gap-3 grid-cols-12 lg:grid-cols-4 md:grid-cols-2">
+      <div class="gallery-grid grid gap-3 grid-cols-1 lg:grid-cols-4 md:grid-cols-2">
         <div
           v-for="(img, index) in imgs"
           :key="index"
