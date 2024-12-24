@@ -182,4 +182,9 @@ onMounted(() => {
 .text-white{
   color: #fff !important;
 }
+@media(max-width:992px){
+  .px-24{
+    padding-inline: 10px;
+  }
+}
 </style>

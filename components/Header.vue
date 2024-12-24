@@ -379,6 +379,18 @@ const route = useRoute();
                 <div class="-my-6 divide-y divide-gray-500/10 side-link">
                   <div class="py-6">
                     <NuxtLink
+                      :to="{ path: '/projects' }"
+                      class="text-xl font-semibold leading-6 text-gray-900 hover:text-gray-500"
+                    >
+                      <div class="flex items-center gap-x-1">
+                        {{ $t("projects") }}
+                      </div>
+                    </NuxtLink>
+                  </div>
+                </div>
+                <div class="-my-6 divide-y divide-gray-500/10 side-link">
+                  <div class="py-6">
+                    <NuxtLink
                       :to="{ path: '/real-states/create' }"
                       class="text-xl font-semibold leading-6 text-gray-900 hover:text-gray-500"
                     >
