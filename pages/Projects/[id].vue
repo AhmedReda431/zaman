@@ -100,7 +100,6 @@ const downloadFile = (plan) => {
   )
     .then((response) => {
       const url = window.URL.createObjectURL(new Blob([response.data]));
-      console.log("Blob URL:", url); // Debugging: Log the Blob URL
       const link = document.createElement("a");
       link.href = url;
       link.setAttribute("download", "bruchour.pdf");

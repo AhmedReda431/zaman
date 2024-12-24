@@ -91,9 +91,10 @@ onMounted(() => {
 watch(
   route,
   () => {
-    console.log('route.name' , route.name);
-    
-    if ((route.name === "index" ||  route.name === "real-states") && isRefreshed.value === false) {
+    if (
+      (route.name === "index" || route.name === "real-states") &&
+      isRefreshed.value === false
+    ) {
       isRefreshed.value = true; // Set refresh flag to true when the route is 'index'
       isLoading.value = true;
       setTimeout(() => {
@@ -103,6 +104,13 @@ watch(
     } else if (route.name !== "index" && route.name != "real-states") {
       isRefreshed.value = false; // Reset isRefreshed when route is not 'index'
       isLoading.value = false;
+    }
+    if (process.client) {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
     }
   },
   { immediate: true } // Ensure this logic runs immediately when the component is mounted
