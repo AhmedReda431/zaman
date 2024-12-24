@@ -1,46 +1,61 @@
 <template>
-  <div
-    class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-5 px-0 mx-0"
-    v-if="articles?.length"
-  >
-    <nuxt-link
-      :to="`/projects/${article.id}`"
-      v-for="(article, index) in articles"
-      :key="index"
-      class="article"
-      v-bind:style="{ 'background-image': 'url(' + article.image + ')' }"
-    >
-      <div class="overlay"></div>
-
-      <h1>
-        <span>{{ article.title }}</span>
+  <div class="hold-all-data bg-white p-4 m-h-400 px-10">
+    <div class="d-flex justify-content-between my-8 flex-sm-column">
+      <h1 class="title" v-if="projectsTitle">
+        {{ projectsTitle }}
       </h1>
-    </nuxt-link>
+      <p class="description" v-if="projectsDescription" v-html="projectsDescription"></p>
+    </div>
+
+    <div
+      class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-5 px-0 mx-0"
+      v-if="projects?.length"
+    >
+      <nuxt-link
+        :to="`/projects/${project.id}`"
+        v-for="(project, index) in projects"
+        :key="index"
+        class="project"
+        v-bind:style="{ 'background-image': 'url(' + project.main_image + ')' }"
+      >
+        <div class="overlay"></div>
+
+        <h1>
+          <span>{{ project.title }}</span>
+        </h1>
+      </nuxt-link>
+    </div>
+    <div
+      class="text-center m-h-400 d-flex align-items-center justify-content-center"
+      v-else
+    >
+      {{ $t("no data available") }}
+    </div>
+    <!-- Pagination Component -->
+    <Pagination
+      v-if="projectsMeta"
+      :meta="projectsMeta"
+      @pageChange="handlePageChange"
+    />
   </div>
-  <div
-    class="text-center m-h-400 d-flex align-items-center justify-content-center"
-    v-else
-  >
-    {{ $t("no data available") }}
-  </div>
-  <!-- Pagination Component -->
-  <Pagination
-    v-if="articles?.meta"
-    :meta="articles.meta"
-    @pageChange="handlePageChange"
-  />
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
 const { $api } = useNuxtApp();
-// Define the articles array
-const articles = ref([]);
+// Define the projects array
+const projectsTitle = ref(null);
+const projectsDescription = ref(null);
+const projectsMeta = ref(null);
+const projects = ref([]);
 const getProjects = () => {
   $api
-    .get("/blogs")
+    .get("/projects")
     .then((res) => {
-      articles.value = res.data.data;
+      projectsTitle.value = res.data.data.tile;
+      projectsDescription.value = res.data.data.description;
+      projects.value = res.data.data.projects;
+      projectsMeta.value = res.data.data.meta;
     })
     .catch((err) => {
       console.log(err);
@@ -81,7 +96,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.article {
+.project {
   display: flex;
   flex-direction: column;
   height: 500px;
@@ -110,7 +125,7 @@ onMounted(() => {
   z-index: 1;
 }
 
-.article h1 {
+.project h1 {
   font-size: 1.5em;
   margin-top: auto;
   cursor: pointer;
@@ -120,15 +135,15 @@ onMounted(() => {
   pointer-events: none;
 }
 
-.article h1 {
+.project h1 {
   transform: translateY(-20px);
 }
 
-.article h1 span {
+.project h1 span {
   color: #fff;
 }
 
-.article span.cat {
+.project span.cat {
   letter-spacing: 2px;
   font-weight: bold;
   position: relative;
@@ -145,20 +160,20 @@ onMounted(() => {
     padding: 1em;
   }
 
-  .article h1 {
+  .project h1 {
     transform: translateY(0px);
   }
 
-  .article:hover h1 {
+  .project:hover h1 {
     transform: translateY(-20px);
   }
 
-  .article span.cat {
+  .project span.cat {
     color: transparent;
   }
 
-  .article span.cat::before,
-  .article span.cat::after {
+  .project span.cat::before,
+  .project span.cat::after {
     content: attr(data-hover);
     position: absolute;
     display: inline-block;
@@ -170,25 +185,45 @@ onMounted(() => {
     transition: max-width 300ms ease-out;
   }
 
-  .article span.cat::before {
+  .project span.cat::before {
     color: yellow;
     transition-delay: 100ms;
   }
 
-  .article span.cat::after {
+  .project span.cat::after {
     color: white;
   }
 
-  .article:hover span.cat:after,
-  .article:hover span.cat:before {
+  .project:hover span.cat:after,
+  .project:hover span.cat:before {
     max-width: 100%;
   }
 
-  .article:hover span.cat:after {
+  .project:hover span.cat:after {
     transition-delay: 300ms;
   }
 }
 .m-h-400 {
   min-height: 400px !important;
+}
+
+@media (max-width: 767px) {
+  .bg-white.p-4.m-h-400.px-24 {
+    padding: 20px 10px !important;
+  }
+  .description{
+    width: 100% !important;
+  }
+  .title {
+    font-size: 25px;
+  }
+}
+.title {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+}
+.description{
+  width: 60%;
+  font-size: 20px;
 }
 </style>

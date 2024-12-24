@@ -11,14 +11,14 @@
           class="pic"
           @click="showImg(index)"
         >
-          <img :src="img.url" :alt="img.caption" />
+          <img :src="img.original" :alt="img.caption" />
         </div>
       </div>
   
       <!-- Lightbox -->
       <VueEasyLightbox
         :visible="visibleRef"
-        :imgs="imgs.map((img) => img.url)"
+        :imgs="imgs.map((img) => img.original)"
         :index="indexRef"
         @hide="onHide"
       />
@@ -72,7 +72,7 @@
   
   .pic img {
     width: 100%;
-    height: auto;
+    height: 300px;
     border-radius: 0;
     cursor: pointer;
     transition: transform 0.2s ease;

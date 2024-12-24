@@ -141,7 +141,7 @@ export default {
       // عند إرسال النموذج، نغير حالة isSubmitted إلى true
       // this.isSubmitted = true;
       this.$api
-        .post("/contact-us" , this.form)
+        .post("/booking-project" , this.form)
         .then((res) => {
           this.responseMessage = res?.data?.message ? res.data.message : null;
           this.isSubmitted = true;

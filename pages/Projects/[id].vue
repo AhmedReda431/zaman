@@ -1,25 +1,25 @@
 <template>
   <div class="page-holder" v-if="pageData">
-    <div class="mb-0 m-h-400 ">
+    <div class="mb-0 m-h-400">
       <div class="news-title my-12">
         <h1 class="page-title px-24">{{ pageData.title }}</h1>
 
         <!-- Page Image Section -->
-        <div class="page-image mt-12" v-if="pageData?.image">
-          <img :src="pageData.image" alt="" class="page-background" />
+        <div class="page-image mt-12" v-if="pageData?.main_image">
+          <img :src="pageData.main_image" alt="" class="page-background" />
         </div>
         <!-- Description Section -->
         <h5 class="page-description mt-8 px-24">
           {{ pageData.description }}
         </h5>
-        <div class="bruchour my-24 px-24">
-          <button class="bg-main text-white p-4 rounded">
+        <div class="bruchour my-24 px-24" v-if="pageData?.plan">
+          <a :href="pageData?.plan" target="_blank" class="bg-main text-white px-8 py-3 rounded">
             {{ $t("download bruchor") }}
-          </button>
+          </a>
         </div>
       </div>
-      <div class="gallery-holder" v-if="images?.length">
-        <Gallery :imgs="images" :title="$t('images gallery')" />
+      <div class="gallery-holder" v-if="pageData.all_images?.length">
+        <Gallery :imgs="pageData.all_images" :title="$t('images gallery')" />
       </div>
       <div class="projects-form px-24">
         <ProjectsForm />
@@ -29,6 +29,7 @@
 </template>
 
 <script setup>
+import axios from "axios"
 import { ref, onMounted } from "vue";
 const { $api } = useNuxtApp();
 // Define the articles array
@@ -70,12 +71,45 @@ const images = [
 ];
 const getBlog = () => {
   $api
-    .get(`/blogs/${route.params.id}`)
+    .get(`/projects/${route.params.id}`)
     .then((res) => {
       pageData.value = res.data.data;
     })
     .catch((err) => {
       console.log(err);
+    });
+};
+// const isAuthenticated = computed(() => useAuthStore().isAuthenticated);
+const downloadFile = (plan) => {
+  // const token = useCookie("token");
+  // console.log('token' , token);
+  
+  axios(
+    {
+      url: plan,
+      method: "GET",
+      responseType: "blob",
+      mode: "no-cors",
+    },
+    {
+      headers: {
+        // Authorization: "Bearer " + token,
+        mode: "no-cors",
+      },
+    }
+  )
+    .then((response) => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      console.log("Blob URL:", url); // Debugging: Log the Blob URL
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "bruchour.pdf");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link); // Clean up
+    })
+    .catch((error) => {
+      console.error("Download failed:", error); // Error handling
     });
 };
 onMounted(() => {
@@ -145,5 +179,8 @@ onMounted(() => {
 }
 .projects-form {
   background: #ebebeb;
+}
+.text-white{
+  color: #fff !important;
 }
 </style>
