@@ -327,7 +327,7 @@
           </div>
         </div>
         <div
-          class="mt-16 grid grid-cols-2 gap-0 xl:col-span-3 xl:mt-0 px-2 flex-sm-column"
+          class="mt-16 grid grid-cols-2 gap-0 xl:col-span-2 xl:mt-0 px-2 flex-sm-column"
         >
           <div class="md:grid md:grid-cols-1 md:gap-8 text-white">
             <div class="my-list">
@@ -403,7 +403,7 @@
             >
               <div class="md:grid md:grid-cols-1 md:gap-8">
                 <div>
-                  <section role="list" class="mt-6 flex items-center gap-4 flex-sm-column flex-md-column">
+                  <section role="list" class="mt-6 flex items-center gap-4 flex-sm-column">
                     <div>
                       <div
                         class="text-sm leading-6 text-gray-300 hover:text-white flex items-center"

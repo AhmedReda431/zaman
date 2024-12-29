@@ -5,13 +5,7 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page", mode: "out-in" },
     head: {
-      link: [
-        {
-          rel: "icon",
-          type: "image/png",
-          href: "/_nuxt/assets/img/Logo-zamn.png",
-        },
-      ],
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
     // layoutTransition: { name: "page", mode: "out-in" },
   },
